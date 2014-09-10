@@ -24,3 +24,12 @@ URL: https://beads2-lelik.rhcloud.com/phpmyadmin/
 127.7.157.130
 [beads2-lelik.rhcloud.com 53ff9c46e0b8cd9fee000e89]\> echo $OPENSHIFT_MYSQL_DB_PORT
 3306
+
+ssh : 53ff9c46e0b8cd9fee000e89@beads2-lelik.rhcloud.com
+
+Jenkins created successfully.  Please make note of these credentials:
+
+   User: admin
+   Password: NirJTA2ek3hq
+
+Note:  You can change your password at: https://jenkins-lelik.rhcloud.com/me/configure
