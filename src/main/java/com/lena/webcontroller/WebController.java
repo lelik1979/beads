@@ -23,7 +23,7 @@ public class WebController {
     public ModelAndView getMainData() {
         LOG.trace("getMainData");
         ModelAndView mv = new ModelAndView("main");
-        mv.addObject("razdels", service.findAllRazdels());
+        mv.addObject("sections", service.loadSections());
         return mv;
     }
 

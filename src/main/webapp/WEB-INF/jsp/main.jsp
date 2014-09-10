@@ -30,9 +30,11 @@
     <tr >
         <td>
             <div id="navigation" >
-            <c:forEach var="razdel" items="${razdels}">
-                <c:out value="${razdel.id} - ${razdel.name}"/>
+            <ul>
+            <c:forEach var="section" items="${sections}">
+                <li><c:out value="${section.name}"/></li>
             </c:forEach>
+            </ul>
             </div>
         </td>
 

@@ -11,5 +11,5 @@ import java.util.List;
 
 public interface RazdelService {
 
-    List<Razdel> findAllRazdels();
+    List<Razdel> loadSections();
 }

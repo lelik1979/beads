@@ -11,6 +11,7 @@ public class Razdel {
 
     private Integer id;
     private String name;
+    private Integer parentId;
     private Razdel childRazdels;
 
     public Razdel(int id, String name) {
@@ -32,6 +33,14 @@ public class Razdel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
     }
 
     public Razdel getChildRazdels() {
