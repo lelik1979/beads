@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context path="/">
 
-    <Resource name="jdbc/beadDS" auth="Container" type="javax.sql.DataSource"
+    <Resource name="jdbc/MySQLDS" auth="Container" type="javax.sql.DataSource"
               username="adminBxsjzFX"
               password="dvrStQsCQGZ6"
               driverClassName="com.mysql.jdbc.Driver"
-              url="jdbc:mysql://127.7.157.130:3306/bead2?useUnicode=true&amp;characterEncoding=utf8"
+              url="jdbc:mysql://127.7.157.130:3306/bead?useUnicode=true&amp;characterEncoding=utf8"
               maxActive="15"
               maxIdle="7"
               defaultTransactionIsolation="READ_COMMITTED"

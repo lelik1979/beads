@@ -4,7 +4,7 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <jee:jndi-lookup id="beadDS" jndi-name="jdbc/beadDS" lookup-on-startup="true" lazy-init="false" />
+    <jee:jndi-lookup id="beadDS" jndi-name="jdbc/MySQLDS" lookup-on-startup="true" lazy-init="false" />
 
 
     <import resource="appContext.xml"/>
