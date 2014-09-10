@@ -18,3 +18,9 @@ Please make note of these MySQL credentials again:
   Root User: adminBxsjzFX
   Root Password: dvrStQsCQGZ6
 URL: https://beads2-lelik.rhcloud.com/phpmyadmin/
+
+
+[beads2-lelik.rhcloud.com 53ff9c46e0b8cd9fee000e89]\> echo $OPENSHIFT_MYSQL_DB_HOST
+127.7.157.130
+[beads2-lelik.rhcloud.com 53ff9c46e0b8cd9fee000e89]\> echo $OPENSHIFT_MYSQL_DB_PORT
+3306
