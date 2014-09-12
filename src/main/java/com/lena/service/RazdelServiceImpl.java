@@ -23,7 +23,7 @@ public class RazdelServiceImpl implements RazdelService {
         return razdelDao.loadAllSections();
     }
 
-    @Autowired
+//    @Autowired
     public void setRazdelDao(RazdelDao razdelDao) {
         this.razdelDao = razdelDao;
     }
