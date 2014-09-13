@@ -21,3 +21,5 @@
 /target/classes/com/lena/configuration/WebConfig.class
 /target/classes/com/lena/dao/ProductDao.class
 /target/classes/com/lena/dao/ProductDaoImpl.class
+
+/target
