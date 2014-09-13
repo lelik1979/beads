@@ -2,16 +2,21 @@ package com.lena.domain;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-
-import java.math.BigDecimal;
+import javax.persistence.*;
 
 /**
  * Created by Administrator on 12.09.14.
  */
+@Entity
+@Table(name = "product")
 public class Product {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name = "ID")
     private Integer id;
 
+    @Column(name = "NAME")
     private String name;
 
     public Product() {

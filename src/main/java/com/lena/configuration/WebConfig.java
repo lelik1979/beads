@@ -25,7 +25,7 @@ import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"com.lena.restservice", "com.lena.webcontroller","com.lena.domain", "com.lena.service"})
+@ComponentScan(basePackages = {"com.lena"})
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override

@@ -1,7 +1,10 @@
 package com.lena.service;
 
+import com.lena.dao.ProductDao;
 import com.lena.domain.Product;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
@@ -14,6 +17,9 @@ import java.util.List;
 @Transactional
 public class ProductServiceImpl implements ProductService {
 
+    @Autowired
+    private ProductDao productDao;
+
     private static List<Product> products;
 
     static {
@@ -24,6 +30,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> findProducts() {
-        return products;
+        return productDao.findAllProducts();
+//        return products;
     }
 }
