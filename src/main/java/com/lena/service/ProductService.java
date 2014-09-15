@@ -9,5 +9,7 @@ import java.util.List;
  */
 public interface ProductService {
 
+    Product findProductById(Integer id);
+
     List<Product> findProducts();
 }

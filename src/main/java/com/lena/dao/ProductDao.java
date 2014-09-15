@@ -10,4 +10,6 @@ public interface ProductDao {
 
     List<Product> findAllProducts();
 
+    Product loadProductById(Integer id);
+
 }

@@ -72,9 +72,8 @@
                     <td th:text="${item.id}"></td>
                     <td th:text="${item.name}"></td>
                     <td>
-                        <form action="/addToBasket" method="POST">
-                            <input id="id" name="id" type="hidden" th:value="${item.id}"/>
-                            <input id="name" name="name" type="hidden" th:value="${item.name}"/>
+                        <form action="/addItemToOrder" method="POST">
+                            <input name="productId" type="hidden" th:value="${item.id}"/>
                             <input type="submit" value="Add to basket"/>
                         </form>
                     </td>

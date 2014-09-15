@@ -1,6 +1,6 @@
 package com.lena.webcontroller;
 
-import com.lena.restservice.RestWebService;
+import com.lena.restservice.OrderController;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -11,18 +11,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
-public class RestWebServiceTest {
+public class OrderControllerTest {
 
     private MockMvc mockMvc;
 
     @InjectMocks
-    private RestWebService restWebService;
+    private OrderController orderController;
 
 
     @Before
     public void init() {
         MockitoAnnotations.initMocks(this);
-        mockMvc = standaloneSetup(restWebService).build();
+        mockMvc = standaloneSetup(orderController).build();
 //        when(razdelService.loadSections()).thenReturn(WebControllerDataProvider.buildRazdels());
     }
 

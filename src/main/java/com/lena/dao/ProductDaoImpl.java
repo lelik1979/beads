@@ -29,6 +29,11 @@ public class ProductDaoImpl  implements ProductDao {
         return crt.list();
     }
 
+    @Override
+    public Product loadProductById(Integer id) {
+        return (Product) getSession().get(Product.class, id);
+    }
+
     private Session getSession() {
         return sessionFactory.getCurrentSession();
     }
