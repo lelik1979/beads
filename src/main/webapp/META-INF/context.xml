@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context path="/">
 
+    <!--driverClassName="net.sf.log4jdbc.DriverSpy"-->
+    <!--url="jdbc:log4jdbc:mysql://127.0.0.1:3306/bead"-->
+
     <Resource name="jdbc/MySQLDS" auth="Container" type="javax.sql.DataSource"
               username="bead"
               password="bead"
-              driverClassName="net.sf.log4jdbc.DriverSpy"
-              url="jdbc:log4jdbc:mysql://127.0.0.1:3306/bead"
+                driverClassName="com.mysql.jdbc.Driver"
+                url="jdbc:mysql://127.0.0.1:3306/bead"
               maxActive="15"
               maxIdle="7"
               defaultTransactionIsolation="READ_COMMITTED"

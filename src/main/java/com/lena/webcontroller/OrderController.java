@@ -30,7 +30,7 @@ public class OrderController {
     public String  addItemToOrder(AddItemToOrderEvent event) {
         Product product = productService.findProductById(event.getProductId());
         order.addProduct(product);
-        return "redirect:/";
+        return "ok";
     }
 
     @ModelAttribute("order")
