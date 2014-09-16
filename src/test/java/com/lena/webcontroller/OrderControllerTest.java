@@ -1,6 +1,5 @@
 package com.lena.webcontroller;
 
-import com.lena.restservice.OrderController;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
