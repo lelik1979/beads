@@ -57,7 +57,6 @@ public class Product {
         Product rhs = (Product) obj;
         return new EqualsBuilder()
                 .append(this.id, rhs.id)
-                .append(this.name, rhs.name)
                 .isEquals();
     }
 
@@ -65,7 +64,6 @@ public class Product {
     public int hashCode() {
         return new HashCodeBuilder()
                 .append(id)
-                .append(name)
                 .toHashCode();
     }
 }

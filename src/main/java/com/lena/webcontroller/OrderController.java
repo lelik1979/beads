@@ -25,9 +25,9 @@ public class OrderController {
     @Autowired
     private ProductService productService;
 
-    @RequestMapping(value = "/addItemToOrder", method = RequestMethod.POST)
+    @RequestMapping(value = "/addItemToOrder", method = RequestMethod.PUT)
     @ResponseBody
-    public String  addItemToOrder(AddItemToOrderEvent event) {
+    public String  addItemToOrder(@RequestBody AddItemToOrderEvent event) {
         Product product = productService.findProductById(event.getProductId());
         order.addProduct(product);
         return "ok";

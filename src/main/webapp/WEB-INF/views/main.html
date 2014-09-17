@@ -34,9 +34,10 @@
             console.log("send /addItemToOrder with id=" + id);
 
             $.ajax({
-                url: "/addItemToOrder?productId=" + id,
-                type: "POST",
-                data: "{}",
+                url: "/addItemToOrder",
+                type: "PUT",
+                contentType:"application/json; charset=utf-8",
+                data: '{"productId":1}',
                 success: function () {
                         console.log("Success add to basket");
                         button.attr('disabled', 'true');
