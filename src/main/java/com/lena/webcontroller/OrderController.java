@@ -1,6 +1,7 @@
 package com.lena.webcontroller;
 
 import com.lena.domain.Order;
+import com.lena.domain.ShoppingCard;
 import com.lena.domain.Product;
 import com.lena.event.AddItemToOrderEvent;
 import com.lena.service.ProductService;
@@ -20,7 +21,7 @@ public class OrderController {
     public static final Logger LOG = LoggerFactory.getLogger(OrderController.class);
 
     @Autowired
-    private Order order;
+    private ShoppingCard shoppingCard;
 
     @Autowired
     private ProductService productService;
@@ -29,19 +30,20 @@ public class OrderController {
     @ResponseBody
     public String  addItemToOrder(@RequestBody AddItemToOrderEvent event) {
         Product product = productService.findProductById(event.getProductId());
-        order.addProduct(product);
+        shoppingCard.addProduct(product);
         return "ok";
     }
 
     @ModelAttribute("order")
     public Order getOrder() {
-        return order;
+        return new Order();
     }
 
     @RequestMapping(value = "/showBasket", method = RequestMethod.GET)
     public String getMainData(Model model) {
         LOG.trace("showBasketState");
-        model.addAttribute("products", order.getProducts());
+        model.addAttribute("products", shoppingCard.getProducts());
+        model.addAttribute("shoppingCardSize", shoppingCard.getSize());
         return "/basket";
     }
 

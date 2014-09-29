@@ -32,6 +32,7 @@
     -->
 
     <Resource name="jdbc/MySQLDS"
+              factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
               url="jdbc:mysql://${OPENSHIFT_MYSQL_DB_HOST}:${OPENSHIFT_MYSQL_DB_PORT}/${OPENSHIFT_APP_NAME}?autoReconnect=true"
               driverClassName="com.mysql.jdbc.Driver"
               username="${OPENSHIFT_MYSQL_DB_USERNAME}"
@@ -53,4 +54,17 @@
               maxActive="20"
               maxIdle="5"
               maxWait="10000"/>
+
+    <Resource name="mail/beadMail" auth="Container" type="javax.mail.Session"
+              mail.smtp.host="smtp.gmail.com"
+              mail.smtp.port="587"
+              mail.transport.protocol="smtp"
+              mail.smtp.user="bbead72"
+              password="KtyfKtyf"
+
+              mail.debug="false"
+              mail.smtp.auth="true"
+              mail.smtp.starttls.enable="true"
+            />
+
 </Context>

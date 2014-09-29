@@ -1,41 +1,52 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="description" content=""/>
-    <meta name="author" content="Simplicity Itself"/>
+    <meta name="author" content="Alexey Dranchuk"/>
 
-    <title>Show basket state</title>
+    <title>Здравствуйте Show basket state</title>
 
-    <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
-    </link>
-    <style type="text/css">
-        body {
-            padding-top: 60px;
-            padding-bottom: 40px;
-        }
-
-        .sidebar-nav {
-            padding: 9px 0;
-        }
-    </style>
+    <link href="/resources/css/bootstrap.min.css" rel="stylesheet"/>
     <!-- See http://twitter.github.com/bootstrap/scaffolding.html#responsive -->
-    <link href="/resources/css/bootstrap-responsive.min.css" rel="stylesheet">
-    </link>
+
+    <link href="/resources/css/bootstrap-responsive.min.css" rel="stylesheet"/>
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <script src="/resources/js/jquery-1.11.1.min.js"  type="text/javascript"></script>
+
+    <script type="text/javascript">
+        function showSubmitOrderForm() {
+            $("#submitOrder").show();
+            $("#makeOrder").prop("disabled", "true");
+        }
+
+        function makeOrder(button) {
+            $.ajax({
+                url: "/submitOrder",
+                type: "PUT",
+                contentType:"application/json; charset=utf-8",
+                data: ' ',
+                success: function () {
+                    console.log("successfully created order");
+                },
+                error : function() {
+                    console.log("Error add to basket");
+                }
+            });
+        }
+    </script>
+
 </head>
 <body>
     <div class="row-fluid">
         <div class="span9">
 
             <div id="message" class="alert alert-info">
-                Select from the menu. Currently your basket contains <em th:text="${order.size}">SOME</em> truly
-                scrumptious item(s).
+                Сейчас в корзине <em th:text="${shoppingCardSize}">SOME</em> штук
             </div>
 
             <table class="table table-striped">
@@ -53,8 +64,24 @@
                 </tr>
                 </tbody>
             </table>
-            <div th:include="layout :: foot"></div>
 
+            <button id="makeOrder" onclick="showSubmitOrderForm()">Оформить заказ</button>
+
+            <div id="submitOrder" hidden="true">
+                <form action="#" th:action="@{/submitOrder}" th:object="${order}" method="post">
+                    <table>
+                        <tr>
+                            <td>email</td>
+                            <td><input type="text" th:field="*{email}" /></td>
+                        </tr>
+                        <tr>
+                            <td>details</td>
+                            <td><textarea th:field="*{orderDetails}"></textarea></td>
+                        </tr>
+                    </table>
+                    <input type="submit" value="Заказать"/>
+                </form>
+            </div>
 
         </div>
     </div>

@@ -1,6 +1,6 @@
 package com.lena.webcontroller;
 
-import com.lena.domain.Order;
+import com.lena.domain.ShoppingCard;
 import com.lena.service.ProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Created by Administrator on 25.08.14.
@@ -24,7 +23,7 @@ public class ProductController {
     private ProductService productService;
 
     @Autowired
-    private Order order;
+    private ShoppingCard shoppingCard;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getMainData(Model model) {
@@ -34,7 +33,7 @@ public class ProductController {
     }
 
     @ModelAttribute("order")
-    public Order getOrder() {
-        return order;
+    public ShoppingCard getShoppingCard() {
+        return shoppingCard;
     }
 }

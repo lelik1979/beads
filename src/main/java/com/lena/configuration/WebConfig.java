@@ -67,9 +67,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         ServletContextTemplateResolver resolver = new ServletContextTemplateResolver();
         resolver.setPrefix("/WEB-INF/views/");
         resolver.setSuffix(".html");
-        //NB, selecting HTML5 as the template mode.
         resolver.setTemplateMode("HTML5");
         resolver.setCacheable(false);
+        resolver.setCharacterEncoding("UTF-8");
         return resolver;
 
     }
@@ -83,6 +83,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Bean
     public ViewResolver viewResolver() {
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
+        viewResolver.setCharacterEncoding("UTF-8");
         viewResolver.setTemplateEngine(templateEngine());
         viewResolver.setOrder(1);
         viewResolver.setViewNames(new String[]{"*"});

@@ -17,15 +17,11 @@ import java.util.List;
  */
 @Repository
 @Transactional
-public class ProductDaoImpl  implements ProductDao {
-
-    @Autowired
-    private SessionFactory sessionFactory;
+public class ProductDaoImpl extends BaseDao implements ProductDao {
 
     @Override
     public List<Product> findAllProducts() {
-        Session session = getSession();
-        Criteria crt = session.createCriteria(Product.class);
+        Criteria crt = getSession().createCriteria(Product.class);
         return crt.list();
     }
 
@@ -34,8 +30,5 @@ public class ProductDaoImpl  implements ProductDao {
         return (Product) getSession().get(Product.class, id);
     }
 
-    private Session getSession() {
-        return sessionFactory.getCurrentSession();
-    }
 
 }

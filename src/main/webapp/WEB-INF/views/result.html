@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="author" content="Alexey Dranchuk"/>
+
+    <title>Результат Обработки заказа</title>
+
+    <link href="/resources/css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- See http://twitter.github.com/bootstrap/scaffolding.html#responsive -->
+
+    <link href="/resources/css/bootstrap-responsive.min.css" rel="stylesheet"/>
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script src="/resources/js/jquery-1.11.1.min.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="row-fluid">
+    <div class="span9">
+
+        Ваш заказ под номером <em th:text="${order.id}"></em> принят в обработку<br>
+        Наши менеджеры свяжутся с Вами в ближайшее время
+    </div>
+</div>
+</body>
+</html>
