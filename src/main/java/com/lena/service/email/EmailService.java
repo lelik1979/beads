@@ -22,7 +22,6 @@ import java.net.PasswordAuthentication;
  * Created by Administrator on 29.09.14.
  */
 @Service
-@PropertySource("classpath:/app.properties")
 public class EmailService {
 
     public static final Logger LOG = LoggerFactory.getLogger(EmailService.class);
@@ -30,8 +29,8 @@ public class EmailService {
     @Autowired
     private JavaMailSender mailSender;
 
-    @Autowired
-    Environment env;
+    @Value("${smtp.user}")
+    private String fromUser;
 
     public boolean sendEmail(Order order) {
         try {
@@ -47,7 +46,7 @@ public class EmailService {
 
         final MimeMessage mimeMessage = mailSender.createMimeMessage();
         final MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
-        message.setFrom(env.getProperty("smtp.user"));
+        message.setFrom(fromUser);
         message.setTo(order.getEmail());
         message.setSubject("new order");
         message.setText("new order with id=" + order.getId());

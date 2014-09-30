@@ -8,7 +8,6 @@
     <title>Результат Обработки заказа</title>
 
     <link href="/resources/css/bootstrap.min.css" rel="stylesheet"/>
-    <!-- See http://twitter.github.com/bootstrap/scaffolding.html#responsive -->
 
     <link href="/resources/css/bootstrap-responsive.min.css" rel="stylesheet"/>
 
@@ -16,15 +15,24 @@
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <script src="/resources/js/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="/resources/js/jquery-1.11.1.min.js"  type="text/javascript"></script>
+
 </head>
 <body>
+ <div th:include="layout :: head"></div>
 <div class="row-fluid">
     <div class="span9">
-
-        Ваш заказ под номером <em th:text="${order.id}"></em> принят в обработку<br></br>
-        Наши менеджеры свяжутся с Вами в ближайшее время
-    </div>
+<div id="message">
+    Заказ принят в обработку
 </div>
+ывывывывываапапапапа
+<br></br>
+        ывывывы<br></br>
+вывывы<br></br>
+ывывывы<br></br>
+ывывывr<br></br>
+ывыв>
+        </div>
+    </div>
 </body>
 </html>

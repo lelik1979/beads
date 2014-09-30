@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
 import org.springframework.jndi.JndiTemplate;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -27,10 +28,17 @@ public class EmailConfiguration {
     public static final Logger LOG = LoggerFactory.getLogger(EmailConfiguration.class);
 
     @Bean
+    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+        return new PropertySourcesPlaceholderConfigurer();
+    }
+
+
+    @Bean
     public JavaMailSenderImpl emailSender() throws NamingException {
 //        JavaMailSenderImpl mailSenderImpl = new JavaMailSenderImpl();
 //        mailSenderImpl.setSession(getMailSession());
 //        return mailSenderImpl;
+
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost(env.getProperty("smtp.host"));
         mailSender.setPort(env.getProperty("smtp.port", Integer.class));

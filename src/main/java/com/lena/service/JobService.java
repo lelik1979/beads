@@ -18,7 +18,7 @@ public class JobService {
 
     private static final Logger LOG  = LoggerFactory.getLogger(JobService.class);
 
-    @Scheduled(cron="*/10 * * * * *")
+    @Scheduled(cron="${email.job.schedule}")
     public void processOrders() {
         emailJobService.processPendingOrders();
     }
