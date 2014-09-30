@@ -44,19 +44,21 @@
 
 <div class="container-fluid">
     <div class="row-fluid">
-        <div class="span9">
+        <div class="span9" align="center">
 
             <div id="message" class="alert alert-info" align="center">
                 Сейчас в корзине <em th:text="${order.size}">SOME</em> штук.
             </div>
 
-            <div >
-                <form action="/serachProducts">
-                    <input id="productSearch" type="search" class="search-field" placeholder="search here" value="" name="s" title="Search form topics.."/>
-                    <input type="submit" class="search-submit" value=""/>
+            <div align="center">
+                <form th:action="@{/searchProducts}" method="get">
+                    <input type="search" name="searchString" th:field="${pv.searchString}"/>
+                    <input type="submit" value="Поиск"/>
                 </form>
             </div>
-
+            <div th:if="${pv.size == 0}" id="notFound" class="alert alert-error" align="center">
+                По вашему запросу ничего не найдено
+            </div>
             <table id="products" class="table table-striped">
                 <thead>
                 <tr>
@@ -67,7 +69,7 @@
                 </thead>
                 <tbody>
 
-                <tr th:each="item : ${products}">
+                <tr th:each="item : ${pv.products}">
                     <td th:text="${item.id}"></td>
                     <td th:text="${item.name}"></td>
                     <td>
@@ -75,7 +77,6 @@
                     </td>
 
                 </tr>
-                <!-- This example data will be removed by thmyeleafe during processing and replaced with the rows generated above -->
                 </tbody>
             </table>
             <div th:include="layout :: foot"></div>

@@ -20,14 +20,6 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductDao productDao;
 
-    private static List<Product> products;
-
-    static {
-        products = new ArrayList<Product>();
-        products.add(new Product(1, "product1"));
-        products.add(new Product(2, "product2"));
-    }
-
     @Override
     public Product findProductById(Integer id) {
         return productDao.loadProductById(id);
@@ -36,6 +28,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> findProducts() {
         return productDao.findAllProducts();
-//        return products;
+    }
+
+    @Override
+    public List<Product> searchProductBySearchString(String searchString) {
+        return productDao.searchProductBySearchString(searchString);
     }
 }

@@ -12,4 +12,5 @@ public interface ProductDao {
 
     Product loadProductById(Integer id);
 
+    List<Product> searchProductBySearchString(String searchString);
 }

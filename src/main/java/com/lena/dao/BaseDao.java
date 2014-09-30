@@ -14,6 +14,8 @@ public class BaseDao {
     @Autowired
     private SessionFactory sessionFactory;
 
+    public static final int MAX_ROW_RESULT = 1000;
+
 
     public SessionFactory getSessionFactory() {
         return sessionFactory;

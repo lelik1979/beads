@@ -12,4 +12,7 @@ public interface ProductService {
     Product findProductById(Integer id);
 
     List<Product> findProducts();
+
+    List<Product> searchProductBySearchString(String searchString);
+
 }

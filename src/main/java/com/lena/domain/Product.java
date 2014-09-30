@@ -11,6 +11,10 @@ import javax.persistence.*;
 @Table(name = "product")
 public class Product {
 
+    public static final String ID = "id";
+
+    public static final String NAME = "name";
+
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "ID")

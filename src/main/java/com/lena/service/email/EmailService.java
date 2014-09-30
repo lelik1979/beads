@@ -43,7 +43,6 @@ public class EmailService {
     }
 
     private void prepareAndSendMail(Order order) throws MessagingException {
-
         final MimeMessage mimeMessage = mailSender.createMimeMessage();
         final MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
         message.setFrom(fromUser);
