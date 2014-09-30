@@ -17,7 +17,7 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "ID")
+    @Column(name = "id")
     private Integer id;
 
     @NotNull(message = "email can't be empty or null")
@@ -32,7 +32,7 @@ public class Order {
     private OrderStatus status = OrderStatus.PENDING;
 
     @ManyToMany
-    @JoinTable(name = "ORDER_PRODUCT", joinColumns = { @JoinColumn(name = "order_id") }, inverseJoinColumns = { @JoinColumn(name = "product_id") })
+    @JoinTable(name = "order_product", joinColumns = { @JoinColumn(name = "order_id") }, inverseJoinColumns = { @JoinColumn(name = "product_id") })
     private List<Product> products;
 
     public Order(List<Product> products) {
