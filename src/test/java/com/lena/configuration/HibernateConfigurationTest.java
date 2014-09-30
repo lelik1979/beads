@@ -19,7 +19,7 @@ import javax.sql.DataSource;
 @Configuration
 @ComponentScan(basePackages = {"com.lena.dao"})
 @EnableTransactionManagement(proxyTargetClass = true)
-public class HobernateConfigurationTest {
+public class HibernateConfigurationTest {
 
     @Bean
     public DataSource beadDSTest() {

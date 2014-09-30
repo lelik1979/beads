@@ -14,16 +14,17 @@
               defaultTransactionIsolation="READ_COMMITTED"
               validationQuery="Select 1" />
 
+<!--
     <Resource name="mail/beadMail" auth="Container" type="javax.mail.Session"
-              mail.smtp.host="smtp.gmail.com"
-              mail.smtp.port="587"
-              mail.transport.protocol="smtp"
-              mail.smtp.user="bbead72"
-              password="KtyfKtyf"
+                            mail.smtp.host="smtp.gmail.com"
+                            mail.smtp.port="587"
+                            mail.transport.protocol="smtp"
+                            mail.smtp.user="bbead72"
+                            password="KtyfKtyf"
 
-              mail.debug="false"
-              mail.smtp.auth="true"
-              mail.smtp.starttls.enable="true"
-            />
-
+                            mail.debug="false"
+                            mail.smtp.auth="true"
+                            mail.smtp.starttls.enable="true"
+        />
+-->
 </Context>

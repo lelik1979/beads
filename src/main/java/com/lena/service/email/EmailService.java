@@ -47,7 +47,7 @@ public class EmailService {
 
         final MimeMessage mimeMessage = mailSender.createMimeMessage();
         final MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
-        message.setFrom(env.getProperty("app.mail.user"));
+        message.setFrom(env.getProperty("smtp.user"));
         message.setTo(order.getEmail());
         message.setSubject("new order");
         message.setText("new order with id=" + order.getId());

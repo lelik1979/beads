@@ -1,6 +1,6 @@
 package com.lena.dao;
 
-import com.lena.configuration.HobernateConfigurationTest;
+import com.lena.configuration.HibernateConfigurationTest;
 import com.lena.domain.Order;
 import com.lena.domain.Product;
 import org.junit.Assert;
@@ -19,7 +19,7 @@ import java.util.List;
  * Created by Administrator on 28.09.14.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes= HobernateConfigurationTest.class)
+@ContextConfiguration(classes= HibernateConfigurationTest.class)
 @Transactional
 public class OrderDaoTest {
 
