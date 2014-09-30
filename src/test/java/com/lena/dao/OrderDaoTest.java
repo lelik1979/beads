@@ -31,8 +31,11 @@ public class OrderDaoTest {
 
     @Test
     public void loadOrderById() {
-        Integer orderId = 10;
-        Order order = orderDao.loadOrderById(orderId);
+        Order order = new Order();
+        order.setEmail("email3");
+        orderDao.saveOrUpdate(order);
+        Integer orderId = order.getId();
+        order = orderDao.loadOrderById(orderId);
         Assert.assertEquals("Order.id must be as expected", orderId, order.getId());
     }
 
