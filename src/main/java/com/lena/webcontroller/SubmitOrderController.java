@@ -5,6 +5,7 @@ import com.lena.domain.Order;
 import com.lena.domain.ShoppingCard;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.aop.scope.ScopedObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,7 +38,7 @@ public class SubmitOrderController {
     }
 
     private void resetShoppingCard() {
-        shoppingCard = new ShoppingCard();
+        ((ScopedObject) shoppingCard).removeFromScope();
     }
 
 }

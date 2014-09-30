@@ -52,5 +52,6 @@ public class EmailService {
         message.setSubject("new order");
         message.setText("new order with id=" + order.getId());
         mailSender.send(mimeMessage);
+        LOG.info("Email has been to {} for order.id={}", order.getEmail(), order.getId());
     }
 }
