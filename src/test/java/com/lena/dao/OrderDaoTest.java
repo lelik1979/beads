@@ -18,10 +18,7 @@ import java.util.List;
 /**
  * Created by Administrator on 28.09.14.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes= HibernateConfigurationTest.class)
-@Transactional
-public class OrderDaoTest {
+public class OrderDaoTest extends CommonDaoIT{
 
     @Autowired
     private OrderDao orderDao;

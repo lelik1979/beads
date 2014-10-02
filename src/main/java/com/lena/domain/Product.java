@@ -23,12 +23,24 @@ public class Product {
     @Column(name = "NAME")
     private String name;
 
+    @Column(name="PHOTO")
+    @Lob
+    private byte[] photo;
+
     public Product() {
     }
 
     public Product(Integer id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
     }
 
     public Integer getId() {
