@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Created by Administrator on 28.09.14.
  */
-public class OrderDaoTest extends CommonDaoIT{
+public class OrderDaoTest extends CommonDaoIT {
 
     @Autowired
     private OrderDao orderDao;
