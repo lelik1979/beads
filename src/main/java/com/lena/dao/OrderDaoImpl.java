@@ -16,7 +16,6 @@ import java.util.List;
  * Created by Administrator on 28.09.14.
  */
 @Repository
-@Transactional
 public class OrderDaoImpl extends BaseDao implements OrderDao {
 
     public static final Logger LOG = LoggerFactory.getLogger(OrderDaoImpl.class);

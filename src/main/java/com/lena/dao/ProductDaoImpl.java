@@ -7,15 +7,12 @@ import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
-
-import javax.transaction.Transactional;
 import java.util.List;
 
 /**
  * Created by Administrator on 13.09.14.
  */
 @Repository
-@Transactional
 public class ProductDaoImpl extends BaseDao implements ProductDao {
 
     @Override
