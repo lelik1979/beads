@@ -24,10 +24,12 @@ public class HibernateConfigurationTest {
     @Bean
     public DataSource beadDSTest() {
         DriverManagerDataSource ds = new org.springframework.jdbc.datasource.DriverManagerDataSource();
-        ds.setDriverClassName("com.mysql.jdbc.Driver");
+//        ds.setDriverClassName("com.mysql.jdbc.Driver");
+        ds.setDriverClassName("net.sf.log4jdbc.DriverSpy");
         ds.setUsername("bead");
         ds.setPassword("bead");
-        ds.setUrl("jdbc:mysql://127.0.0.1:3306/bead");
+//        ds.setUrl("jdbc:mysql://127.0.0.1:3306/bead");
+        ds.setUrl("jdbc:log4jdbc:mysql://127.0.0.1:3306/bead");
         return ds;
     }
 

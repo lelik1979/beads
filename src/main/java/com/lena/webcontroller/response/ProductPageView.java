@@ -1,6 +1,7 @@
 package com.lena.webcontroller.response;
 
 import com.lena.domain.Product;
+import com.lena.domain.ProductGroup;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -8,11 +9,21 @@ import java.util.List;
 /**
  * Created by Administrator on 30.09.14.
  */
-public class ProductView {
+public class ProductPageView {
 
     private List<Product> products = new LinkedList<Product>();
 
     private String searchString;
+
+    private List<ProductGroup> categories;
+
+    public List<ProductGroup> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<ProductGroup> categories) {
+        this.categories = categories;
+    }
 
     public String getSearchString() {
         return searchString;

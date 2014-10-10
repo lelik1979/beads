@@ -1,5 +1,8 @@
 package com.lena.domain;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -11,8 +14,6 @@ import java.util.List;
 @Table(name = "productgroup")
 public class ProductGroup {
 
-    public static final String CHILDGROUP = "childGroups";
-
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "id")
@@ -22,9 +23,13 @@ public class ProductGroup {
     @Column(name = "name", length = 100)
     private String name;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
     @JoinColumn(table = "productgroup", name = "parent_id")
     private List<ProductGroup> childGroups;
+
+    @Column(name="parent_id")
+    private Integer parentId;
 
     public Integer getId() {
         return id;
@@ -48,5 +53,13 @@ public class ProductGroup {
 
     public void setChildGroups(List<ProductGroup> childGroups) {
         this.childGroups = childGroups;
+    }
+
+    public Integer getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
     }
 }
