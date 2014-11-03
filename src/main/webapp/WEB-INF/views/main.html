@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -8,16 +8,15 @@
 
     <title>Мир бисера</title>
 
-    <link rel="stylesheet" href="/resources/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/resources/css/bootstrap.css" />
-    <link rel="stylesheet" href="/resources/css/main.css" />
+    <link rel="stylesheet" href="/resources/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/resources/css/main.css"/>
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"/>
     <![endif]-->
 
-    <script src="/resources/js/jquery-1.11.1.min.js"  type="text/javascript"></script>
+    <script src="/resources/js/jquery-1.11.1.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         function addToBasket(button) {
             var id = button.attr('id');
@@ -26,15 +25,15 @@
             $.ajax({
                 url: "/addItemToOrder",
                 type: "PUT",
-                contentType:"application/json; charset=utf-8",
-                data: '{"productId":'+id+'}',
+                contentType: "application/json; charset=utf-8",
+                data: '{"productId":' + id + '}',
                 success: function () {
-                        console.log("Success add to basket");
-                        button.attr('disabled', 'true');
-                    },
-                error : function() {
-                        console.log("Error add to basket");
-                    }
+                    console.log("Success add to basket");
+                    button.attr('disabled', 'true');
+                },
+                error: function () {
+                    console.log("Error add to basket");
+                }
             });
         }
     </script>
@@ -45,14 +44,14 @@
 
 <div class="container-fluid">
     <div class="row-fluid">
-        <div class="span9">
+        <div id="page" class="span9">
 
             <div id="message" class="alert alert-info">
                 Сейчас в корзине <em th:text="${order.size}">SOME</em> штук.
             </div>
 
-            <div align="center">
-                <form class="navbar-form navbar-center"  th:action="@{/searchProducts}" method="get" role="search">
+            <div id="search" align="center">
+                <form class="navbar-form navbar-center" th:action="@{/searchProducts}" method="get" role="search">
                     <span class="input-group-btn">
                     <input type="search" class="form-control" name="searchString" th:field="${pv.searchString}"/>
                         <button id="btnSearch" type="submit" class="btn btn-default">Поиск
@@ -64,52 +63,56 @@
             <div th:if="${pv.size == 0}" id="notFound" class="alert alert-error">
                 По вашему запросу ничего не найдено
             </div>
-<table width="100%">
-    <tr>
-        <td width="30%">
-            <div class="wrapper">
-            <nav class="vertical">
-                <ul class="nav nav-stacked">
-                    <li th:each="category : ${pv.categories}"><a th:text="${category.name}" href="#"></a>
-                        <div>
-                            <ul>
-                                <li th:each="subCat : ${category.childGroups}"><a th:text="${subCat.name}" href="#"></a></li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
+            <div id="center">
+                <div id="productGroup" class="wrapper">
+                    <nav class="vertical">
+                        <ul class="nav nav-stacked">
+                            <li th:each="category : ${pv.categories}"><a th:text="${category.name}" href="#"></a>
+                                <div>
+                                    <ul>
+                                        <li th:each="subCat : ${category.childGroups}"><a th:text="${subCat.name}" href="#"></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div id="main">
+                    <table id="products" class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <tr th:each="item : ${pv.products}">
+                            <td th:text="${item.id}"/>
+                            <td>
+                                <div>
+                                <img class="" th:src="@{getPhoto?id=}+${item.id}" height="100" width="100"/>
+                                <span th:inline="text">[[${item.name}]]</span>
+                                <span>wdwdwd</span>
+                                </div>
+                            </td>
+                            <td>
+                                <button class="btn" th:id="${item.id}" onclick="addToBasket($(this))">Добавить в заказ
+                                </button>
+
+
+                            </td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </td>
-        <td width="70%">
-            <table id="products" class="table table-striped">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-
-                <tr th:each="item : ${pv.products}">
-                    <td th:text="${item.id}"></td>
-                    <td th:text="${item.name}"></td>
-                    <td>
-                        <button class="btn" th:id="${item.id}" onclick="addToBasket($(this))">Добавить в заказ</button>
-                    </td>
-
-                </tr>
-                </tbody>
-            </table>
-        </td>
-    </tr>
-</table>
-            <div th:include="layout :: foot"></div>
-
-
         </div>
     </div>
 </div>
+<img src="getPhoto?id=1" height="100" width="100"/>
+<div th:include="layout :: foot"></div>
 </body>
 </html>
