@@ -67,10 +67,10 @@
                 <div id="productGroup" class="wrapper">
                     <nav class="vertical">
                         <ul class="nav nav-stacked">
-                            <li th:each="category : ${pv.categories}"><a th:text="${category.name}" href="#"></a>
+                            <li th:each="category : ${pv.categories}"><a th:text="${category.name}"></a>
                                 <div>
                                     <ul>
-                                        <li th:each="subCat : ${category.childGroups}"><a th:text="${subCat.name}" href="#"></a></li>
+                                        <li th:each="subCat : ${category.childGroups}"><a th:text="${subCat.name}" th:href="@{/loadProductsByGroupId?(groupId=${subCat.id})}"></a></li>
                                     </ul>
                                 </div>
                             </li>

@@ -35,6 +35,14 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
         return crt.list();
     }
 
+    @Override
+    public List<Product> loadProductByGroupId(Integer groupId) {
+        Criteria crt = getSession().createCriteria(Product.class);
+        crt.add(Restrictions.eq(Product.GROUP_ID, groupId));
+        crt.setMaxResults(MAX_ROW_RESULT);
+        return crt.list();
+    }
+
     private Criterion buildSearchRestriction(String searchString) {
         Disjunction dj = Restrictions.disjunction();
         Integer id = parseToInteger(searchString);

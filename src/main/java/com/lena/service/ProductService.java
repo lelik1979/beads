@@ -15,4 +15,5 @@ public interface ProductService {
 
     List<Product> searchProductBySearchString(String searchString);
 
+    List<Product> loadProductByGroupId(Integer groupId);
 }

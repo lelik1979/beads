@@ -34,4 +34,9 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> searchProductBySearchString(String searchString) {
         return productDao.searchProductBySearchString(searchString);
     }
+
+    @Override
+    public List<Product> loadProductByGroupId(Integer groupId) {
+        return productDao.loadProductByGroupId(groupId);
+    }
 }

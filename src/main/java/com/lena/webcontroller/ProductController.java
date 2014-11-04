@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -62,7 +63,16 @@ public class ProductController {
         return "/main";
     }
 
-    @ModelAttribute("order")
+    @RequestMapping(value="/loadProductsByGroupId", method = RequestMethod.GET)
+    public String loadProductsByGroupId(Model model, @RequestParam("groupId")int groupId) {
+        List<Product> products = productService.loadProductByGroupId(groupId);
+        ProductPageView ppv = new ProductPageView();
+        ppv.setProducts(products);
+        return buildProductViewResponse(model, ppv);
+    }
+
+
+        @ModelAttribute("order")
     public ShoppingCard getShoppingCard() {
         return shoppingCard;
     }

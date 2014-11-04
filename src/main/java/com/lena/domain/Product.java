@@ -15,6 +15,8 @@ public class Product {
 
     public static final String NAME = "name";
 
+    public static final String GROUP_ID = "groupId";
+
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "ID")
@@ -26,6 +28,9 @@ public class Product {
     @Column(name="PHOTO")
     @Lob
     private byte[] photo;
+
+    @Column(name="group_id")
+    private Integer groupId;
 
     public Product() {
     }
@@ -57,6 +62,14 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(Integer groupId) {
+        this.groupId = groupId;
     }
 
     @Override
