@@ -37,7 +37,6 @@ public class ProductController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getMainData(Model model) {
-        LOG.trace("getMainData");
         ProductPageView ppv = new ProductPageView();
         ppv.setProducts(productService.findProducts());
         return buildProductViewResponse(model, ppv);
