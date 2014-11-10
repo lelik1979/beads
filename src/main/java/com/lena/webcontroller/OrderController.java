@@ -4,6 +4,7 @@ import com.lena.domain.Order;
 import com.lena.domain.ShoppingCard;
 import com.lena.domain.Product;
 import com.lena.event.AddItemToOrderEvent;
+import com.lena.event.RemoveItemToOrderEvent;
 import com.lena.service.ProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,6 +36,16 @@ public class OrderController {
         return "ok";
     }
 
+    @RequestMapping(value = "/deleteItemFromBasket", method = RequestMethod.PUT)
+    @ResponseBody
+    public String  deleteItemFromBasket(@RequestBody RemoveItemToOrderEvent event) {
+        Product product = productService.findProductById(event.getProductId());
+        shoppingCard.deleteProduct(product);
+        LOG.debug("Product {} has been removed from the basket", product);
+        return "ok";
+    }
+
+
     @ModelAttribute("order")
     public Order getOrder() {
         return new Order();
@@ -43,8 +54,10 @@ public class OrderController {
     @RequestMapping(value = "/showBasket", method = RequestMethod.GET)
     public String getMainData(Model model) {
         LOG.trace("showBasketState");
-        model.addAttribute("products", shoppingCard.getProducts());
-        model.addAttribute("shoppingCardSize", shoppingCard.getSize());
+        BasketPageModel bpm = new BasketPageModel();
+        bpm.setProducts(shoppingCard.getProducts());
+        bpm.setBasketSize(shoppingCard.getSize());
+        model.addAttribute("model", bpm);
         return "/basket";
     }
 

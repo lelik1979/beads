@@ -5,23 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="author" content="Alexey Dranchuk"/>
 
-    <title>Здравствуйте Show basket state</title>
+    <title>Содержимое корзины</title>
 
     <link href="/resources/css/bootstrap.css" rel="stylesheet"/>
-    <!-- See http://twitter.github.com/bootstrap/scaffolding.html#responsive -->
-
     <link href="/resources/css/bootstrap-responsive.css" rel="stylesheet"/>
+    <link href="/resources/css/main.css" rel="stylesheet"/>
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <script src="/resources/js/jquery-1.11.1.min.js"  type="text/javascript"></script>
+    <script src="/resources/js/jquery-1.11.1.min.js" type="text/javascript"></script>
 
     <script type="text/javascript">
         function deleteProduct(button) {
             console.log("Delete productId=" + button.attr('productId'));
-            var productId=button.attr('productId');
+            var productId = button.attr('productId');
+            $.ajax({
+                url: "/deleteItemFromBasket",
+                type: "PUT",
+                contentType: "application/json; charset=utf-8",
+                data: '{"productId":' + productId + '}',
+                success: function () {
+                    console.log("successfully deleted product");
+                    location.reload(true);
+                },
+                error: function () {
+                    console.log("Failed to remove product from basket");
+                }
+            });
+
+
         }
 
         function showSubmitOrderForm() {
@@ -33,12 +47,12 @@
             $.ajax({
                 url: "/submitOrder",
                 type: "PUT",
-                contentType:"application/json; charset=utf-8",
+                contentType: "application/json; charset=utf-8",
                 data: ' ',
                 success: function () {
                     console.log("successfully created order");
                 },
-                error : function() {
+                error: function () {
                     console.log("Error add to basket");
                 }
             });
@@ -47,53 +61,62 @@
 
 </head>
 <body>
-    <div th:include="layout :: head"></div>
-    <div class="row-fluid">
-        <div class="span9">
-
-            <div id="message" class="alert alert-info">
-                Сейчас в корзине <em th:text="${shoppingCardSize}">SOME</em> штук
-            </div>
-
-            <table id="basketTable" class="table table-striped">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Delete</th>
-                </tr>
-                </thead>
-                <tbody>
-
-                <tr th:each="item : ${products}">
-                    <td th:text="${item.id}"></td>
-                    <td th:text="${item.name}"></td>
-                    <td>
-                        <button id="deleteButton" th:attr="productId=${item.id}" class="btn btn-default" onclick="deleteProduct($(this))">Удалить</button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
-            <button id="makeOrder" class="btn btn-info" onclick="showSubmitOrderForm()">Оформить заказ</button>
-
-            <div id="submitOrder" hidden="true">
-                <form action="#" th:action="@{/submitOrder}" th:object="${order}" method="post">
-                    <table>
-                        <tr>
-                            <td>email</td>
-                            <td><input type="text" th:field="*{email}" /></td>
-                        </tr>
-                        <tr>
-                            <td>details</td>
-                            <td><textarea th:field="*{orderDetails}"></textarea></td>
-                        </tr>
-                    </table>
-                    <input type="submit" value="Заказать"/>
-                </form>
-            </div>
-
+<div th:include="layout :: head"/>
+        <div id="message" class="alert alert-info" style="margin-top: 50px; text-align: center">В вашей корзине
+            <em th:text="${model.basketSize}">SOME</em> товаров.
+            Проверьте заказ и нажмите оформить заказ для начала его выполнения
         </div>
-    </div>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>№</th>
+                <th>Товар</th>
+                <th>Удалить из корзины</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:each="item,status : ${model.products}" th:for="${status.index}">
+
+                <td th:text="${status.index}+1"></td>
+                <td>
+                    <img th:src="@{getPhoto?id=}+${item.id}" height="100" width="100" style="float:left" alt="no image">
+                    <div th:inline="text" style="margin-left:130px">
+                        <b>Код продукта</b> : [[${item.id}]]
+                        <br><b>Описание</b> : [[${item.name}]]</br>
+                        <b>Цена</b> : [[${item.price}]]
+                    </div>
+                    </img>
+                </td>
+                <td>
+                    <button id="deleteButton" th:attr="productId=${item.id}" class="btn btn-default" onclick="deleteProduct($(this))">Удалить</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div th:inline="text" class="totalPrice" style="margin-bottom: 10px; font-style: italic">
+            <b>Итого : [[${model.totalPrice}]] грн.</b>
+        </div>
+
+        <button id="makeOrder" class="btn btn-info" onclick="showSubmitOrderForm()">Оформить заказ</button>
+
+        <div id="submitOrder" hidden="true">
+            <form action="#" th:action="@{/submitOrder}" th:object="${order}" method="post">
+                <table>
+                    <tr>
+                        <td>email</td>
+                        <td><input type="text" th:field="*{email}"/></td>
+                    </tr>
+                    <tr>
+                        <td>details</td>
+                        <td><textarea th:field="*{orderDetails}"></textarea></td>
+                    </tr>
+                </table>
+                <input type="submit" value="Заказать"/>
+            </form>
+        </div>
+
 </body>
 </html>
