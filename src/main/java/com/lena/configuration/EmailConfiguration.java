@@ -1,5 +1,6 @@
 package com.lena.configuration;
 
+import org.apache.velocity.app.VelocityEngine;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,11 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
 import org.springframework.jndi.JndiTemplate;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.ui.velocity.VelocityEngineFactoryBean;
+
 import javax.mail.Session;
 import javax.naming.NamingException;
+import java.io.IOException;
 import java.util.Properties;
 
 /**
@@ -35,10 +39,6 @@ public class EmailConfiguration {
 
     @Bean
     public JavaMailSenderImpl emailSender() throws NamingException {
-//        JavaMailSenderImpl mailSenderImpl = new JavaMailSenderImpl();
-//        mailSenderImpl.setSession(getMailSession());
-//        return mailSenderImpl;
-
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost(env.getProperty("smtp.host"));
         mailSender.setPort(env.getProperty("smtp.port", Integer.class));
@@ -52,8 +52,13 @@ public class EmailConfiguration {
 
     }
 
-    private Session getMailSession() throws  NamingException {
-        JndiTemplate template = new JndiTemplate();
-        return (Session) template.lookup("java:comp/env/mail/beadMail");
+    @Bean
+    public VelocityEngine buildVelocityEngine() throws IOException {
+        VelocityEngineFactoryBean velocityEngine = new VelocityEngineFactoryBean();
+        Properties prop = new Properties();
+        prop.setProperty("resource.loader", "class");
+        prop.setProperty("class.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
+        velocityEngine.setVelocityProperties(prop);
+        return velocityEngine.createVelocityEngine();
     }
 }

@@ -1,5 +1,7 @@
 ﻿<!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta http-equiv="Content-Type" content="text/html"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -110,7 +112,11 @@
                         <td><input type="text" th:field="*{email}"/></td>
                     </tr>
                     <tr>
-                        <td>details</td>
+                        <td>телефон</td>
+                        <td><input type="text" th:field="*{phoneNumber}"/></td>
+                    </tr>
+                    <tr>
+                        <td>Коментарий</td>
                         <td><textarea th:field="*{orderDetails}"></textarea></td>
                     </tr>
                 </table>

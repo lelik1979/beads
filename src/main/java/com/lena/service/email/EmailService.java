@@ -1,22 +1,17 @@
 package com.lena.service.email;
 
 import com.lena.domain.Order;
+import com.lena.service.velocity.EmailGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.PropertySources;
-import org.springframework.core.env.Environment;
-import org.springframework.mail.MailSender;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
-import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
-import java.net.PasswordAuthentication;
 
 /**
  * Created by Administrator on 29.09.14.
@@ -32,9 +27,15 @@ public class EmailService {
     @Value("${smtp.user}")
     private String fromUser;
 
+    @Value("${manager.email}")
+    private String managerEmail;
+
+    @Autowired
+    private EmailGenerator emailGenerator;
+
     public boolean sendEmail(Order order) {
         try {
-            prepareAndSendMail(order);
+            prepareAndSendMailToManager(order);
             return true;
         } catch (MessagingException ex) {
             LOG.warn("There was a problem during sending email", ex);
@@ -42,13 +43,13 @@ public class EmailService {
         }
     }
 
-    private void prepareAndSendMail(Order order) throws MessagingException {
-        final MimeMessage mimeMessage = mailSender.createMimeMessage();
-        final MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
+    private void prepareAndSendMailToManager(Order order) throws MessagingException {
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        MimeMessageHelper message = new MimeMessageHelper(mimeMessage, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED, "utf-8");
         message.setFrom(fromUser);
-        message.setTo(order.getEmail());
-        message.setSubject("new order");
-        message.setText("new order with id=" + order.getId());
+        message.setTo(managerEmail);
+        message.setSubject("Новый заказ");
+        message.setText(emailGenerator.getEmailBody(order), true);
         mailSender.send(mimeMessage);
         LOG.info("Email has been to {} for order.id={}", order.getEmail(), order.getId());
     }

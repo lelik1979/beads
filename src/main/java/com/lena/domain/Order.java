@@ -4,6 +4,7 @@ import javax.validation.constraints.NotNull;
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -30,6 +31,9 @@ public class Order {
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private OrderStatus status = OrderStatus.PENDING;
+
+    @Column(name="phone_number")
+    private String phoneNumber;
 
     @ManyToMany
     @JoinTable(name = "order_product", joinColumns = { @JoinColumn(name = "order_id") }, inverseJoinColumns = { @JoinColumn(name = "product_id") })
@@ -81,4 +85,25 @@ public class Order {
     public void setOrderDetails(String orderDetails) {
         this.orderDetails = orderDetails;
     }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public BigDecimal getTotalPrice() {
+        return calculateTotalPrice();
+    }
+
+    protected BigDecimal calculateTotalPrice() {
+        BigDecimal total = BigDecimal.valueOf(0);
+        for (Product p : getProducts()) {
+            total = total.add(p.getPrice());
+        }
+        return total;
+    }
+
 }

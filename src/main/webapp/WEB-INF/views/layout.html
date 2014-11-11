@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:pages="http://www.thymeleaf.org/pagesdialect">
+      xmlns:th="http://www.thymeleaf.org">
 
 <body>
 
 <div th:fragment="main">
-    <table id="products" class="table table-striped">
+    <table class="table table-striped">
         <tbody >
         <tr th:each="item : ${pv.products}">
             <td>
-                <img th:src="@{getPhoto?id=}+${item.id}" height="100" width="100" style="float:left" alt="no image">
+                <img th:src="@{getPhoto?id=}+${item.id}" width="130" style="float:left; padding-right: 10px; vertical-align: middle;display: inline-block;" alt="no image">
 <!--                <a th:href="@{/showProduct?id=}+${item.id}"> -->
-                    <div th:inline="text" style="margin-left:130px">
+                    <div th:inline="text" style="vertical-align: middle;display: inline-block;height: 100%;">
                     <b>Код продукта</b> : [[${item.id}]]
                     <br><b>Описание</b> : [[${item.name}]]</br>
-                    <b>Цена</b> : [[${item.price}]]
+                    <b>Цена</b> : [[${item.price}]] грн.
                     </div>
 <!--                </a> -->
                 </img>
             </td>
-            <td>
-                <button class="btn" th:id="${item.id}" onclick="addToBasket($(this))">Добавить в заказ
+            <td  style="vertical-align: middle;">
+                <button class="btn" th:id="${item.id}" style="float: right" onclick="addToBasket($(this))">Добавить в заказ
                 </button>
             </td>
         </tr>
@@ -34,7 +33,6 @@
     <nav class="vertical">
         <ul class="nav">
             <li th:each="category : ${pv.categories}"><a th:text="${category.name}"></a>
-
                 <div>
                     <ul>
                         <li th:each="subCat : ${category.childGroups}"><a th:text="${subCat.name}"

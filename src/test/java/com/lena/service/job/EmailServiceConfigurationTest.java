@@ -4,10 +4,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
-
-import javax.mail.Authenticator;
-import javax.mail.Session;
-import java.net.PasswordAuthentication;
 import java.util.Properties;
 
 /**

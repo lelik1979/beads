@@ -1,0 +1,33 @@
+<html>
+<body>
+
+<div>
+Вы получили новый заказ № ${order.id}
+</div>
+
+<div>
+    Телефон клиента : ${order.phoneNumber}
+</div>
+<div>
+    email клиента : ${order.email}
+</div>
+
+<table border="1">
+    #foreach( $product in $order.products )
+        <tr>
+            <td>$product.id</td>
+            <td>$product.name</td>
+            <td>$product.price</td>
+        </tr>
+    #end
+</table>
+<div>
+<b>Cумма заказа : $order.totalPrice</b>
+</div>
+<div>
+Коментарий клиента :
+$order.orderDetails
+</div>
+</body>
+
+</html>
