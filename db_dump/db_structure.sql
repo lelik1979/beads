@@ -29,8 +29,9 @@ CREATE TABLE `order` (
   `email` varchar(50) NOT NULL,
   `details` varchar(500) DEFAULT NULL,
   `status` varchar(10) NOT NULL DEFAULT 'PENDING',
+  `phone_number` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -112,4 +113,4 @@ CREATE TABLE `productgroup` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-11-11  0:39:08
+-- Dump completed on 2014-11-12  2:57:33
