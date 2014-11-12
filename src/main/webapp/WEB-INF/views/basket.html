@@ -20,6 +20,23 @@
     <script src="/resources/js/jquery-1.11.1.min.js" type="text/javascript"></script>
 
     <script type="text/javascript">
+        function removeEmailError() {
+            $("#email_error").hide();
+        }
+
+        function checkEmail() {
+            var email = $("#email_field").val();
+            var filter = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
+
+            if (filter.test(email)) {
+                removeEmailError();
+                $("#Order_button").removeAttr('disabled')
+            } else {
+                $("#email_error").show();
+                $("#Order_button").attr('disabled','disabled')
+            }
+        }
+
         function deleteProduct(button) {
             console.log("Delete productId=" + button.attr('productId'));
             var productId = button.attr('productId');
@@ -91,7 +108,7 @@
                     </div>
                     </img>
                 </td>
-                <td>
+                <td style="vertical-align: middle;">
                     <button id="deleteButton" th:attr="productId=${item.id}" class="btn btn-default" onclick="deleteProduct($(this))">Удалить</button>
                 </td>
             </tr>
@@ -102,14 +119,17 @@
             <b>Итого : [[${model.totalPrice}]] грн.</b>
         </div>
 
-        <button id="makeOrder" class="btn btn-info" onclick="showSubmitOrderForm()">Оформить заказ</button>
+        <button id="makeOrder" class="btn btn-info" style="margin: 10px" onclick="showSubmitOrderForm()">Оформить заказ</button>
 
-        <div id="submitOrder" hidden="true">
+        <div id="submitOrder" hidden="true" style="margin-left: 100px">
             <form action="#" th:action="@{/submitOrder}" th:object="${order}" method="post">
-                <table>
+                <table class="center">
                     <tr>
                         <td>email</td>
-                        <td><input type="text" th:field="*{email}"/></td>
+                        <td>
+                            <div id="email_error" style="display: none; color: #b94a48;">not correct email</div>
+                            <input id="email_field" onkeypress="removeEmailError()" onfocusout="checkEmail()" type="text" th:field="*{email}" />
+                        </td>
                     </tr>
                     <tr>
                         <td>телефон</td>
@@ -117,10 +137,10 @@
                     </tr>
                     <tr>
                         <td>Коментарий</td>
-                        <td><textarea th:field="*{orderDetails}"></textarea></td>
+                        <td><textarea cols="50" rows="5"  th:field="*{orderDetails}"></textarea></td>
                     </tr>
                 </table>
-                <input type="submit" value="Заказать"/>
+                <input id="Order_button" type="submit" value="Заказать"/>
             </form>
         </div>
 
