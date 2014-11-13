@@ -5,6 +5,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 /**
@@ -25,7 +26,8 @@ public class Product {
     @Column(name = "ID")
     private Integer id;
 
-    @Column(name = "NAME")
+    @Column(name = "NAME", length = 4000)
+    @NotNull(message = "Product name can't be empty")
     private String name;
 
     @Column(name="PHOTO")

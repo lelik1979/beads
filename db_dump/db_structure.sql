@@ -60,7 +60,7 @@ DROP TABLE IF EXISTS `product`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `product` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `NAME` varchar(45) NOT NULL,
+  `NAME` varchar(4000) NOT NULL,
   `photo` longblob,
   `group_id` int(11) DEFAULT NULL,
   `price` decimal(5,2) DEFAULT NULL,
@@ -113,4 +113,4 @@ CREATE TABLE `productgroup` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-11-12  2:57:33
+-- Dump completed on 2014-11-12  3:17:20
