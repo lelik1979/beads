@@ -6,11 +6,13 @@
 <body>
 
 <div th:fragment="main">
-    <table id="products" class="table table-striped" dt:table="true" dt:sortable="false" dt:filterable="false">
+    <table id="products" class="table table-striped"
+           dt:table="true" dt:sortable="false" dt:filterable="false"
+           >
         <thead>
         <tr>
-            <th>Id</th>
-            <th>LastName</th>
+            <th></th>
+            <th></th>
         </tr>
         </thead>
         <tr th:each="item : ${pv.products}">
@@ -35,9 +37,9 @@
 </div>
 
 <div th:fragment="productGroup">
-    <nav class="vertical">
-        <ul class="nav">
-            <li th:each="category : ${pv.categories}"><a th:text="${category.name}"></a>
+    <nav class="vertical" style="margin-left: -250px">
+        <ul class="nav" >
+            <li th:each="category : ${pv.categories}"><a th:text="${category.name}" ></a>
                 <div>
                     <ul>
                         <li th:each="subCat : ${category.childGroups}"><a th:text="${subCat.name}"
@@ -53,7 +55,7 @@
 
     <form th:action="@{/searchProducts}" method="get" role="search" >
 
-        <input type="search" class="form-control" name="searchString" th:field="${pv.searchString}" style="width:500px"/>
+        <input type="search" class="form-control" name="searchString" th:field="${pv.searchString}" style="width:500px; margin-left:-100px"/>
         <button id="btnSearch" type="submit" class="btn btn-default" style="margin-top: -10px">Поиск</button>
     </form>
        <div th:if="${pv.size == 0}" style="text-align: center; margin-left: -200px" class="alert alert-error">По вашему запросу ничего не найдено</div>
