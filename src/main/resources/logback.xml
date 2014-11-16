@@ -21,12 +21,13 @@
     </appender>
 
     <logger name="com.lena" level="DEBUG"/>
-
-<!--
-    <logger name="org.springframework" level="debug"/>
-
-    <logger name="org.hibernate" level="info"/>
--->
+    <!--
+        <logger name="com.github.dandelion.datatables" level="DEBUG" />
+        <logger name="com.github.dandelion" level="DEBUG" />
+        <logger name="org.thymeleaf" level="DEBUG" />
+        <logger name="org.springframework" level="debug"/>
+        <logger name="org.hibernate" level="info"/>
+    -->
 
     <root level="INFO">
         <appender-ref ref="STDOUT"/>

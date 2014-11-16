@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:dt="dandelion/datatables">
 
 <body>
 
 <div th:fragment="main">
-    <table class="table table-striped">
-        <tbody >
+    <table id="products" class="table table-striped" dt:table="true" dt:sortable="false" dt:filterable="false">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>LastName</th>
+        </tr>
+        </thead>
         <tr th:each="item : ${pv.products}">
             <td>
                 <img th:src="@{getPhoto?id=}+${item.id}" width="130" style="float:left; padding: 10px" alt="no image">
@@ -24,7 +30,6 @@
                 </button>
             </td>
         </tr>
-        </tbody>
     </table>
 
 </div>

@@ -2,10 +2,7 @@ package com.lena.dao;
 
 import com.lena.domain.Product;
 import org.hibernate.Criteria;
-import org.hibernate.criterion.Criterion;
-import org.hibernate.criterion.Disjunction;
-import org.hibernate.criterion.MatchMode;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.*;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
@@ -18,6 +15,7 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
     @Override
     public List<Product> findAllProducts() {
         Criteria crt = getSession().createCriteria(Product.class);
+        crt.addOrder(Order.desc(Product.ID));
         crt.setMaxResults(MAX_ROW_RESULT);
         return crt.list();
     }
@@ -31,6 +29,7 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
     public List<Product> searchProductBySearchString(String searchString) {
         Criteria crt = getSession().createCriteria(Product.class);
         crt.add(buildSearchRestriction(searchString));
+        crt.addOrder(Order.desc(Product.ID));
         crt.setMaxResults(MAX_ROW_RESULT);
         return crt.list();
     }
