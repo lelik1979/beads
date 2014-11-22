@@ -18,6 +18,16 @@
 
     <script src="/resources/js/jquery-1.11.1.min.js" type="text/javascript"></script>
     <script type="text/javascript">
+
+        $(document).ready(function(){
+            $('.img-zoom').hover(function() {
+                $(this).addClass('transition');
+
+            }, function() {
+                $(this).removeClass('transition');
+            });
+        });
+
         function addToBasket(button) {
             var id = button.attr('id');
             console.log("send /addItemToOrder with id=" + id);

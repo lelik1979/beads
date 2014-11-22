@@ -17,7 +17,7 @@
         </thead>
         <tr th:each="item : ${pv.products}">
             <td>
-                <img th:src="@{getPhoto?id=}+${item.id}" width="130" style="float:left; padding: 10px" alt="no image">
+                <img class="img-zoom" th:src="@{getPhoto?id=}+${item.id}" width="130" style="float:left; padding: 10px" alt="no image">
 <!--                <a th:href="@{/showProduct?id=}+${item.id}"> -->
                     <div th:inline="text">
                     <b>Код продукта</b> : [[${item.id}]]
