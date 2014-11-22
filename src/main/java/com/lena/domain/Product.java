@@ -26,9 +26,12 @@ public class Product {
     @Column(name = "ID")
     private Integer id;
 
-    @Column(name = "NAME", length = 4000)
+    @Column(name = "NAME")
     @NotNull(message = "Product name can't be empty")
     private String name;
+
+    @Column(name = "DESCRIPTION", length = 4000)
+    private String description;
 
     @Column(name="PHOTO")
     @Lob
@@ -86,6 +89,14 @@ public class Product {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override

@@ -20,9 +20,10 @@
                 <img class="img-zoom" th:src="@{getPhoto?id=}+${item.id}" width="130" style="float:left; padding: 10px" alt="no image">
 <!--                <a th:href="@{/showProduct?id=}+${item.id}"> -->
                     <div th:inline="text">
-                    <b>Код продукта</b> : [[${item.id}]]
-                    <br><b>Описание</b> : [[${item.name}]]</br>
-                    <b>Цена</b> : [[${item.price}]] грн.
+                    <p><b>Код продукта</b> : [[${item.id}]]</p>
+                    <p><b>Название</b> : [[${item.name}]]</p>
+                    <p><b>Описание</b> : [[${item.description}]]</p>
+                    <p><b>Цена : [[${item.price}]] грн.</b></p>
                     </div>
 <!--                </a> -->
                 </img>

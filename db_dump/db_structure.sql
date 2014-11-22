@@ -30,8 +30,9 @@ CREATE TABLE `order` (
   `details` varchar(500) DEFAULT NULL,
   `status` varchar(10) NOT NULL DEFAULT 'PENDING',
   `phone_number` varchar(15) DEFAULT NULL,
+  `modified_date` timestamp(2) NOT NULL DEFAULT CURRENT_TIMESTAMP(2),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -60,14 +61,15 @@ DROP TABLE IF EXISTS `product`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `product` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `NAME` varchar(4000) NOT NULL,
+  `NAME` varchar(255) NOT NULL,
   `photo` longblob,
   `group_id` int(11) DEFAULT NULL,
   `price` decimal(5,2) DEFAULT NULL,
+  `description` varchar(4000) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `FK_group_id_idx` (`group_id`),
   CONSTRAINT `FK_group_id` FOREIGN KEY (`group_id`) REFERENCES `productgroup` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101,7 +103,7 @@ CREATE TABLE `productgroup` (
   PRIMARY KEY (`ID`),
   KEY `FK_PRD_GRP_ID_idx` (`PARENT_ID`),
   CONSTRAINT `FK_PRD_GRP_ID` FOREIGN KEY (`PARENT_ID`) REFERENCES `productgroup` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -113,4 +115,4 @@ CREATE TABLE `productgroup` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-11-12  3:17:20
+-- Dump completed on 2014-11-23  0:13:18
