@@ -33,10 +33,6 @@ public class Product {
     @Column(name = "DESCRIPTION", length = 4000)
     private String description;
 
-    @Column(name="PHOTO")
-    @Lob
-    private byte[] photo;
-
     @Column(name="group_id")
     private Integer groupId;
 
@@ -49,14 +45,6 @@ public class Product {
     public Product(Integer id, String name) {
         this.id = id;
         this.name = name;
-    }
-
-    public byte[] getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(byte[] photo) {
-        this.photo = photo;
     }
 
     public Integer getId() {
