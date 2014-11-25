@@ -203,6 +203,23 @@
     <build>
     <plugins>
         <plugin>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-maven-plugin</artifactId>
+            <version>9.2.3.v20140905</version>
+            <configuration>
+                <stopKey>alpha</stopKey>
+                <stopPort>9099</stopPort>
+                <scanIntervalSeconds>1</scanIntervalSeconds>
+                <webApp>
+                    <resourceBases>
+                        <resourceBase>src/main/webapp/resources</resourceBase>
+                        <resourceBase>src/main/webapp/WEB-INF/views</resourceBase>
+                    </resourceBases>
+                    <jettyEnvXml>src/main/webapp/WEB-INF/jetty-env.xml</jettyEnvXml>
+                </webApp>
+            </configuration>
+        </plugin>
+        <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
             <version>2.17</version>
