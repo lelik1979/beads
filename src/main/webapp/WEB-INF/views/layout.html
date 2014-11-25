@@ -4,30 +4,14 @@
       xmlns:dt="dandelion/datatables">
 
 <head>
-    <script>
-        $(document).ready(function () {
-            $('#Tableproducts').dataTable({
-                "paginationType": "four_button",
-                "bSort":false,
-                "bFilter":false,
-                "oLanguage": {
-                    "sLengthMenu": "Показать _MENU_ записей",
-                    "sInfo":         "Записи с _START_ до _END_ из _TOTAL_ записей",
-                    "oPaginate": {
-                        "sPrevious": "Предыдущая",
-                        "sNext": "Следующая"
-                    }
-                }
-            });
-        });
-    </script>
+
 </head>
 
 <body>
 
 <div th:fragment="main">
     <table id="Tableproducts" class="table table-striped"
-           dt:table="true" dt:sortable="false" dt:filterable="false"
+            dt:table="true" dt:filterable="false" dt:pageable="true" dt:paginationType="four_button" dt:sortable="false"
            >
         <thead>
         <tr>
