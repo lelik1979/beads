@@ -10,6 +10,8 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.util.Properties;
 
@@ -20,10 +22,12 @@ import java.util.Properties;
 @EnableTransactionManagement
 public class HibernateConfiguration {
 
+    @Resource(mappedName = "jdbc/MySQLDS")
+    private DataSource dataSource;
+
     @Bean
     public DataSource dataSource() throws Exception {
-        JndiDataSourceLookup dataSourceLookup = new JndiDataSourceLookup();
-        return  dataSourceLookup.getDataSource("java:comp/env/jdbc/MySQLDS");
+        return  dataSource;
     }
 
     @Bean

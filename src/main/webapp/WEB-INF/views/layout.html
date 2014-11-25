@@ -3,10 +3,30 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:dt="dandelion/datatables">
 
+<head>
+    <script>
+        $(document).ready(function () {
+            $('#Tableproducts').dataTable({
+                "paginationType": "four_button",
+                "bSort":false,
+                "bFilter":false,
+                "oLanguage": {
+                    "sLengthMenu": "Показать _MENU_ записей",
+                    "sInfo":         "Записи с _START_ до _END_ из _TOTAL_ записей",
+                    "oPaginate": {
+                        "sPrevious": "Предыдущая",
+                        "sNext": "Следующая"
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+
 <body>
 
 <div th:fragment="main">
-    <table id="products" class="table table-striped"
+    <table id="Tableproducts" class="table table-striped"
            dt:table="true" dt:sortable="false" dt:filterable="false"
            >
         <thead>
@@ -19,12 +39,12 @@
             <td>
                 <img class="img-zoom" th:src="@{getPhoto?id=}+${item.id}" width="130" style="float:left; padding: 10px" alt="no image">
 <!--                <a th:href="@{/showProduct?id=}+${item.id}"> -->
-                    <div th:inline="text">
+                <div th:inline="text">
                     <p><b>Код продукта</b> : [[${item.id}]]</p>
                     <p><b>Название</b> : [[${item.name}]]</p>
                     <p><b>Описание</b> : [[${item.description}]]</p>
                     <p><b>Цена : [[${item.price}]] грн.</b></p>
-                    </div>
+                </div>
 <!--                </a> -->
                 </img>
             </td>
@@ -39,8 +59,9 @@
 
 <div th:fragment="productGroup">
     <nav class="vertical">
-        <ul class="nav" >
-            <li th:each="category : ${pv.categories}"><a th:text="${category.name}" ></a>
+        <ul class="nav">
+            <li th:each="category : ${pv.categories}"><a th:text="${category.name}"></a>
+
                 <div>
                     <ul>
                         <li th:each="subCat : ${category.childGroups}"><a th:text="${subCat.name}"
@@ -54,12 +75,12 @@
 
 <div th:fragment="search1">
 
-    <form th:action="@{/searchProducts}" method="get" role="search" >
+    <form th:action="@{/searchProducts}" method="get" role="search">
 
         <input type="search" class="form-control" name="searchString" th:field="${pv.searchString}" style="width:500px"/>
         <button id="btnSearch" type="submit" class="btn btn-default" style="margin-top: -10px">Поиск</button>
     </form>
-       <div th:if="${pv.size == 0}" style="text-align: center; margin-left: -200px" class="alert alert-error">По вашему запросу ничего не найдено</div>
+    <div th:if="${pv.size == 0}" style="text-align: center; margin-left: -200px" class="alert alert-error">По вашему запросу ничего не найдено</div>
 </div>
 
 <div th:fragment="head">
