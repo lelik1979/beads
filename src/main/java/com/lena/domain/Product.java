@@ -3,6 +3,7 @@ package com.lena.domain;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 /**
  * Created by Administrator on 12.09.14.
@@ -31,6 +32,9 @@ public class Product {
 
     @Column(name="group_id")
     private Integer groupId;
+
+    @Column(name="price", precision = 8, scale=2)
+    private BigDecimal price;
 
     public Product() {
     }
@@ -70,6 +74,14 @@ public class Product {
 
     public void setGroupId(Integer groupId) {
         this.groupId = groupId;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
     @Override

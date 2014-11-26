@@ -42,7 +42,9 @@
 <body>
 <div id="wrapper">
     <div id="header" th:include="layout :: head"></div>
-    <div id="search" th:include="layout :: search"></div>
+
+    <div id="search" th:include="layout :: search1"></div>
+
     <table>
         <tr>
             <td valign="top">
@@ -54,7 +56,15 @@
         </tr>
     </table>
 
-
+<!--
+    <div class='pagination'>
+        <ul>
+            <li><a href='#'>Prev</a></li>
+            <li><a href='#'>1</a></li>
+            <li><a href='#'>Next</a></li>
+        </ul>
+    </div>
+-->
 </div>
 </body>
 </html>

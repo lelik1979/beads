@@ -1,25 +1,33 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:pages="http://www.thymeleaf.org/pagesdialect">
 
 <body>
 
 <div th:fragment="main">
     <table id="products" class="table table-striped">
-        <tr th:each="item : ${pv.products}">
+        <tbody th:remove="all-but-first">
+        <tr th:each="item : ${pv.products}" pages:paginate="5">
             <td>
-                <img class="" th:src="@{getPhoto?id=}+${item.id}" height="50" width="50"/>
+                <img th:src="@{getPhoto?id=}+${item.id}" height="100" width="100" style="float:left" alt="no image">
                 <a th:href="@{/showProduct?id=}+${item.id}">
-                <span th:text="${item.id}"/>
-                <span th:inline="text">[[${item.name}]]</span>
+                    <div th:inline="text" style="margin-left:130px">
+                    <b>Код продукта</b> : [[${item.id}]]
+                    <br><b>Описание</b> : [[${item.name}]]</br>
+                    <b>Цена</b> : [[${item.price}]]
+                    </div>
                 </a>
+                </img>
             </td>
             <td valign="middle">
                 <button class="btn" th:id="${item.id}" onclick="addToBasket($(this))">Добавить в заказ
                 </button>
             </td>
         </tr>
+        </tbody>
     </table>
+
 </div>
 
 <div th:fragment="productGroup">
@@ -38,15 +46,14 @@
     </nav>
 </div>
 
-<div th:fragment="search">
-    <form th:action="@{/searchProducts}" method="get" role="search">
-        <input type="search" class="form-control" name="searchString" th:field="${pv.searchString}"/>
-        <button id="btnSearch" type="submit" class="btn btn-default">Поиск
-        </button>
+<div th:fragment="search1">
+
+    <form th:action="@{/searchProducts}" method="get" role="search" >
+
+        <input type="search" class="form-control" name="searchString" th:field="${pv.searchString}" style="width:500px"/>
+        <button id="btnSearch" type="submit" class="btn btn-default">Поиск</button>
     </form>
-    <div th:if="${pv.size == 0}" id="notFound" style="text-align: center" class="alert alert-error">
-        По вашему запросу ничего не найдено
-    </div>
+       <div th:if="${pv.size == 0}" style="text-align: center" class="alert alert-error">По вашему запросу ничего не найдено</div>
 </div>
 
 <div th:fragment="head">
