@@ -49,6 +49,7 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
             dj.add(Restrictions.eq(Product.ID, id));
         }
         dj.add(Restrictions.ilike(Product.NAME, searchString, MatchMode.ANYWHERE));
+        dj.add(Restrictions.ilike(Product.DESCRIPTION, searchString, MatchMode.ANYWHERE));
         return dj;
     }
 

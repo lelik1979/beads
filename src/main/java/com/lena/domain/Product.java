@@ -19,6 +19,8 @@ public class Product {
 
     public static final String NAME = "name";
 
+    public static final String DESCRIPTION = "description";
+
     public static final String GROUP_ID = "groupId";
 
     @Id
