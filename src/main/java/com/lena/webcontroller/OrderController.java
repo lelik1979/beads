@@ -31,6 +31,7 @@ public class OrderController {
     public String  addItemToOrder(@RequestBody AddItemToOrderEvent event) {
         Product product = productService.findProductById(event.getProductId());
         shoppingCard.addProduct(product);
+        LOG.debug("Product = {} has been added to basket", product);
         return "ok";
     }
 
