@@ -28,7 +28,7 @@ public class ShowImageController {
         if (pp == null) {
             return;
         }
-        InputStream in1 = new ByteArrayInputStream(pp.getBigPhoto());
+        InputStream in1 = new ByteArrayInputStream(pp.getPhoto());
         try {
             IOUtils.copy(in1, response.getOutputStream());
         } catch (IOException e) {

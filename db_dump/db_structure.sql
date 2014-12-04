@@ -62,7 +62,6 @@ DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `NAME` varchar(255) NOT NULL,
-  `photo` longblob,
   `group_id` int(11) DEFAULT NULL,
   `price` decimal(5,2) DEFAULT NULL,
   `description` varchar(4000) DEFAULT NULL,
@@ -81,8 +80,7 @@ DROP TABLE IF EXISTS `product_photo`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `product_photo` (
   `product_id` int(11) NOT NULL,
-  `small_photo` tinyblob,
-  `big_photo` longblob,
+  `photo` longblob,
   PRIMARY KEY (`product_id`),
   KEY `id_idx` (`product_id`),
   CONSTRAINT `id` FOREIGN KEY (`product_id`) REFERENCES `product` (`ID`) ON DELETE CASCADE ON UPDATE NO ACTION
@@ -115,4 +113,4 @@ CREATE TABLE `productgroup` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-11-23  0:13:18
+-- Dump completed on 2014-12-05  0:00:31

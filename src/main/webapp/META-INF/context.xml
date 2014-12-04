@@ -5,10 +5,10 @@
     <!--url="jdbc:log4jdbc:mysql://127.0.0.1:3306/bead"-->
 
     <Resource name="jdbc/MySQLDS" auth="Container" type="javax.sql.DataSource"
-              username="bead"
-              password="bead"
+              username="beads"
+              password="beads"
               driverClassName="com.mysql.jdbc.Driver"
-              url="jdbc:mysql://127.0.0.1:3306/bead"
+              url="jdbc:mysql://127.0.0.1:3306/beads3"
               maxActive="15"
               maxIdle="7"
               defaultTransactionIsolation="READ_COMMITTED"

@@ -15,12 +15,8 @@ public class ProductPhoto {
     private Integer productId;
 
     @Lob
-    @Column(name = "small_photo", columnDefinition = "tinyblob")
-    private Blob smallPhoto;
-
-    @Lob
-    @Column(name = "big_photo")
-    private byte[] bigPhoto;
+    @Column(name = "photo")
+    private byte[] photo;
 
     public Integer getProductId() {
         return productId;
@@ -30,19 +26,11 @@ public class ProductPhoto {
         this.productId = productId;
     }
 
-    public Blob getSmallPhoto() {
-        return smallPhoto;
+    public byte[] getPhoto() {
+        return photo;
     }
 
-    public void setSmallPhoto(Blob smallPhoto) {
-        this.smallPhoto = smallPhoto;
-    }
-
-    public byte[] getBigPhoto() {
-        return bigPhoto;
-    }
-
-    public void setBigPhoto(byte[] bigPhoto) {
-        this.bigPhoto = bigPhoto;
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
     }
 }
