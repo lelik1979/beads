@@ -1,5 +1,6 @@
 package com.lena.domain;
 
+import org.hibernate.annotations.Type;
 import javax.validation.constraints.NotNull;
 import javax.persistence.*;
 import javax.persistence.Entity;
@@ -26,6 +27,7 @@ public class Order {
     private String email;
 
     @Column(name = "details")
+    @Type(type="text")
     private String orderDetails;
 
     @Column(name = "status")
