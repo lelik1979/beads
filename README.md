@@ -27,6 +27,6 @@ mail bbead72@gmail.com
 passwd : KtyfKtyf
 
 deploy database done via liquibase and can be deployed using this command
-mvn org.liquibase:liquibase-maven-plugin:3.2.0:generateChangeLog process-resources
+mvn liquibase:update
 
 DB customization done via liquibase.properties file
