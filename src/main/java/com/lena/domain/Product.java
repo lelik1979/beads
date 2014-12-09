@@ -41,12 +41,23 @@ public class Product {
     @Column(name="price", precision = 8, scale=2)
     private BigDecimal price;
 
+    @Column(name="product_code")
+    private String productCode;
+
     public Product() {
     }
 
     public Product(Integer id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public String getProductCode() {
+        return productCode;
+    }
+
+    public void setProductCode(String productCode) {
+        this.productCode = productCode;
     }
 
     public Integer getId() {

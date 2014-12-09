@@ -20,4 +20,9 @@
     <changeSet id="3" author="adranchuk">
         <addForeignKeyConstraint baseColumnNames="group_id" baseTableName="product" constraintName="FK_group_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ID" referencedTableName="productgroup"/>
     </changeSet>
+    <changeSet id="4.1" author="adranchuk">
+        <addColumn tableName="product">
+            <column name="product_code" type="VARCHAR(10)"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

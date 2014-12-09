@@ -5,8 +5,8 @@
     <!--url="jdbc:log4jdbc:mysql://127.0.0.1:3306/bead"-->
 
     <Resource name="jdbc/MySQLDS" auth="Container" type="javax.sql.DataSource"
-              username="beads"
-              password="beads"
+              username="adminjWtFQq8"
+              password="9cvX9c2QjfIF"
               driverClassName="com.mysql.jdbc.Driver"
               url="jdbc:mysql://127.0.0.1:3306/beads3"
               maxActive="15"
