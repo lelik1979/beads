@@ -30,3 +30,10 @@ deploy database done via liquibase and can be deployed using this command
 mvn liquibase:update -Denv=dev|prod|uat
 
 DB customization done via env/dev|prod|uat.properties file
+
+mysql must use parameters
+characterEncoding=utf8;autoReconnect=true
+to support russian chars
+
+to avoid ssh close connection by timeout we can unset variable
+unset TMOUT
