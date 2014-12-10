@@ -8,23 +8,13 @@
               username="adminjWtFQq8"
               password="9cvX9c2QjfIF"
               driverClassName="com.mysql.jdbc.Driver"
-              url="jdbc:mysql://127.0.0.1:3306/beads3"
+              factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+              url="jdbc:mysql://127.0.0.1:3306/na"
+              connectionProperties="characterEncoding=utf8;autoReconnect=true"
               maxActive="15"
               maxIdle="7"
               defaultTransactionIsolation="READ_COMMITTED"
               validationQuery="Select 1" />
 
-<!--
-    <Resource name="mail/beadMail" auth="Container" type="javax.mail.Session"
-                            mail.smtp.host="smtp.gmail.com"
-                            mail.smtp.port="587"
-                            mail.transport.protocol="smtp"
-                            mail.smtp.user="bbead72"
-                            password="KtyfKtyf"
 
-                            mail.debug="false"
-                            mail.smtp.auth="true"
-                            mail.smtp.starttls.enable="true"
-        />
--->
 </Context>

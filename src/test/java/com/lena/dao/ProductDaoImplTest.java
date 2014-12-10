@@ -14,6 +14,11 @@ public class ProductDaoImplTest extends CommonDaoIT {
     private ProductDao productDao;
 
     @Test
+    public void testSearchProductBySearchString() throws Exception {
+        List<Product> products = productDao.searchProductBySearchString("имя");
+    }
+
+    @Test
     public void testLoadProductsByGroupId() throws Exception {
         List<Product> products = productDao.loadProductByGroupId(2);
     }
