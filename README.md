@@ -27,6 +27,6 @@ mail bbead72@gmail.com
 passwd : KtyfKtyf
 
 deploy database done via liquibase and can be deployed using this command
-mvn liquibase:update
+mvn liquibase:update -Denv=dev|prod|uat
 
-DB customization done via liquibase.properties file
+DB customization done via env/dev|prod|uat.properties file

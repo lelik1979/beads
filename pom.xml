@@ -223,7 +223,7 @@
             <artifactId>liquibase-maven-plugin</artifactId>
             <version>3.0.5</version>
             <configuration>
-                <propertyFile>db/liquibase.properties</propertyFile>
+                <propertyFile>env/${env}.properties</propertyFile>
                 <propertyFileWillOverride>true</propertyFileWillOverride>
                 <changeLogFile>db/changelog-master.xml</changeLogFile>
                 <logging>DEBUG</logging>
