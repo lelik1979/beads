@@ -23,7 +23,7 @@ import java.util.Properties;
  * Created by Administrator on 29.09.14.
  */
 @Configuration
-@PropertySources(value = {@PropertySource("classpath:/app.properties")})
+@PropertySources(value = {@PropertySource("classpath:/${env}.properties")})
 public class EmailConfiguration {
 
     @Autowired

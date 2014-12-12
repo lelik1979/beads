@@ -12,7 +12,7 @@
     email клиента : ${order.email}
 </div>
 
-<table border="1">
+<table>
     #foreach( $product in $order.products )
         <tr>
             <td>$product.id</td>
