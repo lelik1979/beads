@@ -10,7 +10,7 @@
     </appender>
 
     <appender name="APP_LOG_FILE" class="ch.qos.logback.core.FileAppender">
-        <file>bead_app.log</file>
+        <file>${OPENSHIFT_LOG_DIR}beads.log</file>
         <append>false</append>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <pattern>
