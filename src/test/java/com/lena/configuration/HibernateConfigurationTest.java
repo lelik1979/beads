@@ -2,9 +2,12 @@ package com.lena.configuration;
 
 import org.apache.tomcat.jdbc.pool.DataSourceFactory;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.instrument.classloading.tomcat.TomcatLoadTimeWeaver;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
@@ -18,18 +21,20 @@ import javax.sql.DataSource;
  */
 @Configuration
 @ComponentScan(basePackages = {"com.lena.dao"})
+@PropertySource("classpath:/env/${env:dev}.properties")
 @EnableTransactionManagement(proxyTargetClass = true)
 public class HibernateConfigurationTest {
+
+    @Autowired
+    private Environment env;
 
     @Bean
     public DataSource beadDSTest() {
         DriverManagerDataSource ds = new org.springframework.jdbc.datasource.DriverManagerDataSource();
-//        ds.setDriverClassName("com.mysql.jdbc.Driver");
-        ds.setDriverClassName("net.sf.log4jdbc.DriverSpy");
-        ds.setUsername("bead");
-        ds.setPassword("bead");
-//        ds.setUrl("jdbc:mysql://127.0.0.1:3306/bead");
-        ds.setUrl("jdbc:log4jdbc:mysql://127.0.0.1:3306/bead");
+        ds.setDriverClassName(env.getProperty("driver", "com.mysql.jdbc.Driver"));
+        ds.setUsername(env.getProperty("username", "beads3"));
+        ds.setPassword(env.getProperty("password", "beads3"));
+        ds.setUrl(env.getProperty("url", "jdbc:log4jdbc:mysql://localhost:3306/beads3"));
         return ds;
     }
 

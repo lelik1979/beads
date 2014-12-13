@@ -35,5 +35,8 @@ mysql must use parameters
 characterEncoding=utf8;autoReconnect=true
 to support russian chars
 
-to avoid ssh close connection by timeout we can unset variable
+#to avoid ssh close connection by timeout we can unset variable
 unset TMOUT
+
+#setup 'env' property with value 'uat' in openshift application 'uat'
+rhc set-env env=uat --app uat
