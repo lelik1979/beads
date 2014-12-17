@@ -5,11 +5,11 @@
     <!--url="jdbc:log4jdbc:mysql://127.0.0.1:3306/bead"-->
 
     <Resource name="jdbc/MySQLDS" auth="Container" type="javax.sql.DataSource"
-              username="adminjWtFQq8"
-              password="9cvX9c2QjfIF"
+              username="beads"
+              password="beads"
               driverClassName="com.mysql.jdbc.Driver"
               factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
-              url="jdbc:mysql://127.0.0.1:3306/beads3"
+              url="jdbc:mysql://localhost:3306/beads3"
               connectionProperties="characterEncoding=utf8;autoReconnect=true"
               maxActive="15"
               maxIdle="7"
