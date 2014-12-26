@@ -1,5 +1,7 @@
 package com.lena.configuration;
 
+import com.github.dandelion.core.DandelionMode;
+import com.github.dandelion.core.config.DandelionConfig;
 import com.github.dandelion.core.web.DandelionFilter;
 import com.github.dandelion.core.web.DandelionServlet;
 import org.springframework.web.context.WebApplicationContext;
@@ -20,6 +22,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
         super.onStartup(servletContext);
         FilterRegistration.Dynamic dandelionFilter = servletContext.addFilter("dandelionFilter", new DandelionFilter());
         dandelionFilter.addMappingForUrlPatterns(null, false, "/*");
+        dandelionFilter.setInitParameter(DandelionConfig.DANDELION_MODE.getName(), DandelionMode.PRODUCTION.name());
 
         DandelionServlet dispatcherServlet = new DandelionServlet();
         ServletRegistration.Dynamic registration = servletContext.addServlet("dandelionServlet", dispatcherServlet);

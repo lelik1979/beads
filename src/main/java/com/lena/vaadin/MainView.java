@@ -1,12 +1,11 @@
 package com.lena.vaadin;
 
+import com.lena.vaadin.components.BeadsMenu;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Panel;
-import com.vaadin.ui.VerticalLayout;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
+import com.vaadin.ui.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import ru.xpoft.vaadin.VaadinView;
@@ -21,29 +20,24 @@ import javax.annotation.PostConstruct;
 @VaadinView(MainView.NAME)
 public class MainView extends Panel implements View {
 
-    public static final String NAME = "";
+    public static final Logger LOG = LoggerFactory.getLogger(MainView.class);
 
-    @Autowired
-    private transient ApplicationContext applicationContext;
+    public static final String NAME = "";
 
     @PostConstruct
     public void init() {
         setSizeFull();
+
         VerticalLayout layout = new VerticalLayout();
-        Button button = new Button("change");
-        button.addClickListener(new Button.ClickListener() {
-            @Override
-            public void buttonClick(Button.ClickEvent event) {
-                System.out.println("clicked");
-            }
-        });
-        layout.addComponent(button);
         setContent(layout);
+        layout.addComponent(new BeadsMenu());
+
     }
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event)
     {
+        LOG.info("MainView.enter");
     }
 
 }
