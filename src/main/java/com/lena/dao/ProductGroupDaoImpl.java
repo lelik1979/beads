@@ -9,8 +9,10 @@ import java.util.List;
 /**
  * Created by Administrator on 10.10.14.
  */
-@Repository
+@Repository(ProductGroupDaoImpl.BEAN_NAME)
 public class ProductGroupDaoImpl extends BaseDao implements ProductGroupDao {
+
+    public static final String BEAN_NAME = "ProductGroupDaoImpl";
 
     @Override
     public List<ProductGroup> findAllProductGroup() {

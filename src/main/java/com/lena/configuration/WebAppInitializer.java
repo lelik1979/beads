@@ -4,12 +4,8 @@ import com.github.dandelion.core.DandelionMode;
 import com.github.dandelion.core.config.DandelionConfig;
 import com.github.dandelion.core.web.DandelionFilter;
 import com.github.dandelion.core.web.DandelionServlet;
-import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
-import ru.xpoft.vaadin.SpringApplicationContext;
-import ru.xpoft.vaadin.SpringVaadinServlet;
-
 import javax.servlet.*;
 
 /**
@@ -29,23 +25,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
         registration.setLoadOnStartup(2);
         registration.addMapping("/dandelion-assets/*");
 
-        SpringVaadinServlet vaadinServlet = new SpringVaadinServlet();
-        servletContext.setInitParameter("beanName", "MainUI");
 
-        ServletRegistration.Dynamic vaadinRegistration = servletContext.addServlet("vaadinServlet", vaadinServlet);
-        vaadinRegistration.setLoadOnStartup(100);
-        vaadinRegistration.addMapping("/admin/*", "/VAADIN/*");
-
-        servletContext.setInitParameter("productionMode", "false");
-
-    }
-
-    @Override
-    protected WebApplicationContext createRootApplicationContext() {
-        WebApplicationContext webAppContext = super.createRootApplicationContext();
-        if (webAppContext != null && SpringApplicationContext.getApplicationContext() == null)
-            SpringApplicationContext.setApplicationContext(webAppContext);
-        return webAppContext;
     }
 
     @Override

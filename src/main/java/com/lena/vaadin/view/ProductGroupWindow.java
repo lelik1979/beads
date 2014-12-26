@@ -1,43 +1,37 @@
 package com.lena.vaadin.view;
 
-import com.lena.dao.ProductDao;
-import com.lena.vaadin.components.BeadWindow;
 import com.lena.vaadin.components.SearchModel;
 import com.lena.vaadin.components.SearchPanel;
+import com.vaadin.annotations.Theme;
+import com.vaadin.navigator.View;
+import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 
 /**
  * Created by alexey.dranchuk on 26/12/14.
  */
-@Component
-public class ProductGroupWindow extends BeadWindow {
+
+@Theme("reindeer")
+public class ProductGroupWindow extends Panel implements View {
+
+    public static final String VIEW_NAME = "productGroupView";
 
     public static final Logger LOG = LoggerFactory.getLogger(ProductGroupWindow.class);
-
-    @Autowired
-    private ProductDao productDao;
 
     private VerticalLayout layout;
 
     public ProductGroupWindow() {
-        super("Группы продуктов");
+        super("Группы товаров");
         init();
     }
 
     private void init() {
-        removePreviousWindow();
-        setHeight(400, Unit.POINTS);
-        setWidth(800, Unit.POINTS);
-
+        setSizeFull();
         initLayout();
         addComponents();
-
-        center();
     }
 
     private void addComponents() {
@@ -51,4 +45,8 @@ public class ProductGroupWindow extends BeadWindow {
         setContent(layout);
     }
 
+    @Override
+    public void enter(ViewChangeListener.ViewChangeEvent event) {
+
+    }
 }

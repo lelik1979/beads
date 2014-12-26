@@ -14,6 +14,9 @@ public class SearchPanel extends HorizontalLayout {
     public SearchPanel(SearchModel searchModel) {
         this.searchModel = searchModel;
         setImmediate(true);
+        setHeight(50, Unit.POINTS);
+        setWidth(100, Unit.POINTS);
+
         initComponents();
     }
 
