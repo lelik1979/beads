@@ -16,5 +16,8 @@
               defaultTransactionIsolation="READ_COMMITTED"
               validationQuery="Select 1" />
 
+    <Environment name="env" value="dev" type="java.lang.String" override="false"/>
+
+    <Environment name="OPENSHIFT_LOG_DIR" value="logs" type="java.lang.String" override="false"/>
 
 </Context>
