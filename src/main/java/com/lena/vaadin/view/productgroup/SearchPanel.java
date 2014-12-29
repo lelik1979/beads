@@ -1,4 +1,4 @@
-package com.lena.vaadin.components;
+package com.lena.vaadin.view.productgroup;
 
 import com.vaadin.ui.*;
 
@@ -13,10 +13,6 @@ public class SearchPanel extends HorizontalLayout {
 
     public SearchPanel(SearchModel searchModel) {
         this.searchModel = searchModel;
-        setImmediate(true);
-        setHeight(50, Unit.POINTS);
-        setWidth(100, Unit.POINTS);
-
         initComponents();
     }
 

@@ -14,13 +14,17 @@ import java.util.List;
 @Table(name = "productgroup")
 public class ProductGroup {
 
+    public static final String ID = "id";
+
+    public static final String NAME = "name";
+
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = ID)
     private Integer id;
 
     @NotNull(message = "productgroup.name can't be empty or null")
-    @Column(name = "name", length = 100)
+    @Column(name = NAME, length = 100)
     private String name;
 
     @OneToMany(fetch = FetchType.EAGER)
@@ -61,5 +65,22 @@ public class ProductGroup {
 
     public void setParentId(Integer parentId) {
         this.parentId = parentId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ProductGroup that = (ProductGroup) o;
+
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
     }
 }

@@ -11,4 +11,6 @@ import java.util.List;
 public interface ProductGroupDao {
 
     List<ProductGroup> findAllProductGroup();
+
+    void saveProductGroup(ProductGroup productGroup);
 }

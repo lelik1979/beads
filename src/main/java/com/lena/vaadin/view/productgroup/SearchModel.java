@@ -1,4 +1,4 @@
-package com.lena.vaadin.components;
+package com.lena.vaadin.view.productgroup;
 
 
 import com.lena.dao.ProductGroupDao;
@@ -14,17 +14,9 @@ import org.slf4j.LoggerFactory;
  */
 public class SearchModel {
 
-    private ProductGroupDao productGroupDao;
-
     public static final Logger LOG = LoggerFactory.getLogger(SearchModel.class);
 
     private ObjectProperty<String> searchProperty = new ObjectProperty<String>("");
-
-
-    public SearchModel() {
-        SpringContextHelper helper = new SpringContextHelper(VaadinServlet.getCurrent().getServletContext());
-        productGroupDao = (ProductGroupDao) helper.getBean(ProductGroupDaoImpl.BEAN_NAME);
-    }
 
     public ObjectProperty<String> getSearchProperty() {
         return searchProperty;

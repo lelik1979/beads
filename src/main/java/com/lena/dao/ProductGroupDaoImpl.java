@@ -2,6 +2,7 @@ package com.lena.dao;
 
 import com.lena.domain.ProductGroup;
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import java.util.List;
@@ -18,7 +19,14 @@ public class ProductGroupDaoImpl extends BaseDao implements ProductGroupDao {
     public List<ProductGroup> findAllProductGroup() {
         Criteria crt = getSession().createCriteria(ProductGroup.class);
         crt.add(Restrictions.isNull("parentId"));
+        crt.addOrder(Order.desc(ProductGroup.ID));
         crt.setMaxResults(MAX_ROW_RESULT);
         return crt.list();
+    }
+
+    @Override
+    public void saveProductGroup(ProductGroup productGroup) {
+        getSession().save(productGroup);
+        getSession().flush();
     }
 }
