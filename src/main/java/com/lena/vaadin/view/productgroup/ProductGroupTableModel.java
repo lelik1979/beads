@@ -15,13 +15,12 @@ public class ProductGroupTableModel {
 
     private BeanItemContainer<ProductGroup> container = new BeanItemContainer<ProductGroup>(ProductGroup.class);
 
-    private Object[] visibleColumns;
+    private Object[] visibleColumns = new Object[] {"id", "name", "parentName"};;
 
     private ProductGroupDao productGroupDao;
 
     public ProductGroupTableModel(ProductGroupDao productGroups) {
         this.productGroupDao = productGroups;
-        visibleColumns = new Object[] {"id", "name"};
         populateContainer();
     }
 

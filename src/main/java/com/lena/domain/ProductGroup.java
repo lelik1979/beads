@@ -11,12 +11,16 @@ import java.util.List;
  * Created by Administrator on 10.10.14.
  */
 @Entity
-@Table(name = "productgroup")
+@Table(name = ProductGroup.TABLE_NAME)
 public class ProductGroup {
+
+    public static final String TABLE_NAME = "productgroup";
 
     public static final String ID = "id";
 
     public static final String NAME = "name";
+
+    public static final String PARENT_PRODUCT_GROUP = "parentProductGroup";
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -29,11 +33,14 @@ public class ProductGroup {
 
     @OneToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
-    @JoinColumn(table = "productgroup", name = "parent_id")
+    @JoinColumn(table = ProductGroup.TABLE_NAME, name = "parent_id")
     private List<ProductGroup> childGroups;
 
-    @Column(name="parent_id")
-    private Integer parentId;
+    @ManyToOne
+    @Fetch(FetchMode.JOIN)
+    @JoinColumn(table = ProductGroup.TABLE_NAME, name = "parent_id")
+    private ProductGroup parentProductGroup;
+
 
     public Integer getId() {
         return id;
@@ -41,6 +48,10 @@ public class ProductGroup {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getParentName() {
+        return parentProductGroup != null ? parentProductGroup.getName() : "";
     }
 
     public String getName() {
@@ -59,12 +70,12 @@ public class ProductGroup {
         this.childGroups = childGroups;
     }
 
-    public Integer getParentId() {
-        return parentId;
+    public ProductGroup getParentProductGroup() {
+        return parentProductGroup;
     }
 
-    public void setParentId(Integer parentId) {
-        this.parentId = parentId;
+    public void setParentProductGroup(ProductGroup parentProductGroup) {
+        this.parentProductGroup = parentProductGroup;
     }
 
     @Override
@@ -82,5 +93,13 @@ public class ProductGroup {
     @Override
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductGroup{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

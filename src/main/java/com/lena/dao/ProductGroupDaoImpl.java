@@ -18,7 +18,7 @@ public class ProductGroupDaoImpl extends BaseDao implements ProductGroupDao {
     @Override
     public List<ProductGroup> findAllProductGroup() {
         Criteria crt = getSession().createCriteria(ProductGroup.class);
-        crt.add(Restrictions.isNull("parentId"));
+        crt.add(Restrictions.isNull(ProductGroup.PARENT_PRODUCT_GROUP));
         crt.addOrder(Order.desc(ProductGroup.ID));
         crt.setMaxResults(MAX_ROW_RESULT);
         return crt.list();
@@ -28,5 +28,10 @@ public class ProductGroupDaoImpl extends BaseDao implements ProductGroupDao {
     public void saveProductGroup(ProductGroup productGroup) {
         getSession().save(productGroup);
         getSession().flush();
+    }
+
+    @Override
+    public ProductGroup loadProductGroupById(int productGroupId) {
+        return (ProductGroup) getSession().get(ProductGroup.class, productGroupId);
     }
 }

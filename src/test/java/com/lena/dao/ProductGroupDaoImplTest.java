@@ -13,6 +13,10 @@ public class ProductGroupDaoImplTest extends CommonDaoIT {
     @Autowired
     private ProductGroupDao productGroupDao;
 
+    @Test
+    public void loadProductGroupById() {
+        ProductGroup pg = productGroupDao.loadProductGroupById(2);
+    }
 
     @Test
     public void testFindAllProductGroup() throws Exception {
