@@ -15,4 +15,6 @@ public interface ProductGroupDao {
     void saveProductGroup(ProductGroup productGroup);
 
     ProductGroup loadProductGroupById(int productGroupId);
+
+    void deleteProductGroup(ProductGroup selectedProductGroup);
 }

@@ -5,6 +5,7 @@ import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,7 +35,7 @@ public class ProductGroup {
     @OneToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
     @JoinColumn(table = ProductGroup.TABLE_NAME, name = "parent_id")
-    private List<ProductGroup> childGroups;
+    private List<ProductGroup> childGroups = new ArrayList<ProductGroup>();
 
     @ManyToOne
     @Fetch(FetchMode.JOIN)

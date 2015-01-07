@@ -27,11 +27,18 @@ public class ProductGroupDaoImpl extends BaseDao implements ProductGroupDao {
     @Override
     public void saveProductGroup(ProductGroup productGroup) {
         getSession().save(productGroup);
-        getSession().flush();
     }
 
     @Override
     public ProductGroup loadProductGroupById(int productGroupId) {
         return (ProductGroup) getSession().get(ProductGroup.class, productGroupId);
+    }
+
+    @Override
+    public void deleteProductGroup(ProductGroup productGroup) {
+        for(ProductGroup pg : productGroup.getChildGroups()) {
+            getSession().delete(pg);
+        }
+        getSession().delete(productGroup);
     }
 }

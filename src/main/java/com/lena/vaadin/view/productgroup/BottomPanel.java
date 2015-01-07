@@ -14,6 +14,7 @@ public class BottomPanel extends HorizontalLayout {
     public static final Logger LOG = LoggerFactory.getLogger(BottomPanel.class);
 
     private Button newButton;
+    private Button deleteButton;
     private BottomPanelModel model;
 
 
@@ -23,6 +24,18 @@ public class BottomPanel extends HorizontalLayout {
         setSizeUndefined();
         setSpacing(true);
         addNewButton();
+        addDeleteButton();
+    }
+
+    private void addDeleteButton() {
+        deleteButton = new Button("Удалить", new Button.ClickListener() {
+            @Override
+            public void buttonClick(Button.ClickEvent event) {
+                model.deleteButtonClick();
+            }
+        });
+        addComponent(deleteButton);
+        setComponentAlignment(deleteButton, Alignment.MIDDLE_RIGHT);
     }
 
     private void addNewButton() {

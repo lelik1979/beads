@@ -36,4 +36,8 @@ public class BottomPanelModel {
     public void setProductGroupViewModel(ProductGroupViewModel productGroupViewModel) {
         this.productGroupViewModel = productGroupViewModel;
     }
+
+    public void deleteButtonClick() {
+        productGroupViewModel.getProductGroupTableModel().deleteButtonClick();
+    }
 }
