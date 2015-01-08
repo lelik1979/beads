@@ -105,6 +105,7 @@ public class ProductGroupFormLayout extends FormLayout {
         parent = binder.buildAndBind("Родительская группа", ProductGroup.PARENT_PRODUCT_GROUP, ComboBox.class);
         parent.addItems(parentGroups);
         updateParentCaption(parentGroups);
+        setComponentWidth(parent);
         addComponent(parent);
     }
 
@@ -117,7 +118,12 @@ public class ProductGroupFormLayout extends FormLayout {
     private void bindName() {
         name = binder.buildAndBind("Имя группы", ProductGroup.NAME, TextField.class);
         name.setNullRepresentation("");
+        setComponentWidth(name);
         addComponent(name);
+    }
+
+    private void setComponentWidth(Component component) {
+        component.setWidth(200, Unit.POINTS);
     }
 
     private void bindId() {

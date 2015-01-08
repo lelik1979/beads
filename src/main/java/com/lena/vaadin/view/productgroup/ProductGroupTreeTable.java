@@ -22,11 +22,18 @@ public class ProductGroupTreeTable extends TreeTable {
         this.model = model;
         setContainerDataSource(model.getContainer());
         setVisibleColumns(model.getVisibleColumns());
+        setColumnNames();
         setCaption("Группы товаров");
         setSizeFull();
         setSelectable(true);
         setImmediate(true);
         addListeners();
+    }
+
+    private void setColumnNames() {
+        setColumnHeader(ProductGroup.PARENT_PRODUCT_NAME, "Родительская группа");
+        setColumnHeader(ProductGroup.NAME, "Имя группы");
+        setColumnHeader(ProductGroup.ID, "№");
     }
 
     private void addListeners() {

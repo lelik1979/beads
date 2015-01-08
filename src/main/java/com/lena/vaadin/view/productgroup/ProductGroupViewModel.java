@@ -3,12 +3,16 @@ package com.lena.vaadin.view.productgroup;
 import com.github.wolfie.blackboard.Blackboard;
 import com.lena.vaadin.SpringContextHelper;
 import com.lena.vaadin.view.productgroup.listener.ProductGroupSearchEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.context.WebApplicationContext;
 
 /**
  * Created by alexey.dranchuk on 29/12/14.
  */
 public class ProductGroupViewModel {
+
+    public static final Logger LOG = LoggerFactory.getLogger(ProductGroupViewModel.class);
 
     private SearchModel searchPanelModel;
 
@@ -29,7 +33,8 @@ public class ProductGroupViewModel {
     }
 
     private void initListeners() {
-        blackboard.enableLogging();
+        if (LOG.isDebugEnabled())
+            blackboard.enableLogging();
         blackboard.register(ProductGroupSearchEvent.ProductGroupSearchListener.class, ProductGroupSearchEvent.class);
         blackboard.addListener(productGroupTableModel);
     }
