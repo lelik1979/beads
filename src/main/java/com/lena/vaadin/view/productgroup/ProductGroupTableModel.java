@@ -2,12 +2,14 @@ package com.lena.vaadin.view.productgroup;
 
 import com.lena.dao.ProductGroupDao;
 import com.lena.domain.ProductGroup;
+import com.lena.vaadin.view.productgroup.edit.ProductGroupWindow;
+import com.lena.vaadin.view.productgroup.edit.ProductGroupWindowModel;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.HierarchicalContainer;
 import com.vaadin.event.ItemClickEvent;
+import com.vaadin.ui.UI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.Collection;
 import java.util.List;
 
@@ -77,6 +79,17 @@ public class ProductGroupTableModel implements ItemClickEvent.ItemClickListener 
     public void itemClick(ItemClickEvent event) {
         selectedProductGroup = (BeanItem<ProductGroup>) event.getItemId();
         LOG.trace("Selected productGroup item {}", selectedProductGroup);
+        if (event.isDoubleClick()) {
+            showEditProductGroup(selectedProductGroup);
+        }
+    }
+
+    private void showEditProductGroup(BeanItem<ProductGroup> selectedProductGroup) {
+        ProductGroupWindowModel pgwm = new ProductGroupWindowModel(productGroupDao);
+        pgwm.setProductGroup(selectedProductGroup.getBean());
+        pgwm.setProductGroupTreeTableModel(this);
+        ProductGroupWindow productGroupWindow = new ProductGroupWindow(pgwm);
+        UI.getCurrent().addWindow(productGroupWindow);
     }
 
     public void deleteButtonClick() {

@@ -12,7 +12,7 @@ public interface ProductGroupDao {
 
     List<ProductGroup> findAllProductGroup();
 
-    void saveProductGroup(ProductGroup productGroup);
+    void saveOrUpdate(ProductGroup productGroup);
 
     ProductGroup loadProductGroupById(int productGroupId);
 

@@ -25,8 +25,8 @@ public class ProductGroupDaoImpl extends BaseDao implements ProductGroupDao {
     }
 
     @Override
-    public void saveProductGroup(ProductGroup productGroup) {
-        getSession().save(productGroup);
+    public void saveOrUpdate(ProductGroup productGroup) {
+        getSession().saveOrUpdate(productGroup);
     }
 
     @Override

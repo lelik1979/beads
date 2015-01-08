@@ -2,7 +2,6 @@ package com.lena.vaadin.view.productgroup.edit;
 
 import com.lena.dao.ProductGroupDao;
 import com.lena.domain.ProductGroup;
-import com.lena.vaadin.SpringContextHelper;
 import com.lena.vaadin.view.productgroup.ProductGroupTableModel;
 
 /**
@@ -17,8 +16,8 @@ public class ProductGroupWindowModel {
     public ProductGroupWindowModel() {
     }
 
-    public ProductGroupWindowModel(SpringContextHelper contextHelper) {
-        productGroupDao = contextHelper.getProductGroupDao();
+    public ProductGroupWindowModel(ProductGroupDao productGroupDao) {
+        this.productGroupDao = productGroupDao;
         productGroup = new ProductGroup();
     }
 
@@ -26,8 +25,12 @@ public class ProductGroupWindowModel {
         return productGroup;
     }
 
+    public void setProductGroup(ProductGroup productGroup) {
+        this.productGroup = productGroup;
+    }
+
     public void saveProductGroup() {
-        productGroupDao.saveProductGroup(productGroup);
+        productGroupDao.saveOrUpdate(productGroup);
         productGroupTreeTableModel.populateContainer();
     }
 

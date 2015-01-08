@@ -24,7 +24,7 @@ public class BottomPanelModel {
 
     public void newProductGroupClick() {
         LOG.debug("Clicked on New ProductGroup");
-        ProductGroupWindowModel pgwm = new ProductGroupWindowModel(contextHelper);
+        ProductGroupWindowModel pgwm = new ProductGroupWindowModel(contextHelper.getProductGroupDao());
         pgwm.setProductGroupTreeTableModel(productGroupViewModel.getProductGroupTableModel());
         ProductGroupWindow productGroupWindow = new ProductGroupWindow(pgwm);
         UI.getCurrent().addWindow(productGroupWindow);
