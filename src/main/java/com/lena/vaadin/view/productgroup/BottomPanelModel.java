@@ -1,6 +1,8 @@
 package com.lena.vaadin.view.productgroup;
 
 import com.lena.vaadin.SpringContextHelper;
+import com.lena.vaadin.view.productgroup.edit.ProductGroupWindow;
+import com.lena.vaadin.view.productgroup.edit.ProductGroupWindowModel;
 import com.vaadin.ui.UI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

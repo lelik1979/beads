@@ -23,6 +23,8 @@ public class ProductGroup {
 
     public static final String PARENT_PRODUCT_GROUP = "parentProductGroup";
 
+    public static final String PARENT_PRODUCT_NAME = "parentName";
+
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = ID)
@@ -102,5 +104,9 @@ public class ProductGroup {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    public boolean isChildrenAllowed() {
+        return !childGroups.isEmpty();
     }
 }

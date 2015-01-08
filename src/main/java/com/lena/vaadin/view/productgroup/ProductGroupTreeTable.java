@@ -1,6 +1,8 @@
 package com.lena.vaadin.view.productgroup;
 
 import com.lena.domain.ProductGroup;
+import com.vaadin.data.Item;
+import com.vaadin.ui.Tree;
 import com.vaadin.ui.TreeTable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +21,6 @@ public class ProductGroupTreeTable extends TreeTable {
     public ProductGroupTreeTable(ProductGroupTableModel model) {
         this.model = model;
         setContainerDataSource(model.getContainer());
-        setParent(model);
         setVisibleColumns(model.getVisibleColumns());
         setCaption("Группы товаров");
         setSizeFull();
@@ -31,18 +32,6 @@ public class ProductGroupTreeTable extends TreeTable {
     private void addListeners() {
         LOG.trace("Added ItemClickListener {} to {}", model, this);
         addItemClickListener(model);
-
     }
 
-    private void setParent(ProductGroupTableModel model) {
-        for (ProductGroup pg : model.getContainer().getItemIds()) {
-            addChilds(pg.getChildGroups(), pg);
-        }
-    }
-
-    private void addChilds(List<ProductGroup> childGroups, ProductGroup parent) {
-        for (ProductGroup pg : childGroups) {
-            setParent(pg, parent);
-        }
-    }
 }
