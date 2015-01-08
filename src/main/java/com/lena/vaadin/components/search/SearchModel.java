@@ -42,7 +42,10 @@ public class SearchModel {
 
     public void processClickEvent() {
         LOG.debug("search value : {}", getSearchPropertyValue());
-        eventBus.fireEvent(new ProductGroupSearchEvent(searchProperty.getValue()));
+        if (blackboard != null)
+            blackboard.fire(new ProductGroupSearchEvent(searchProperty.getValue()));
+        else
+            eventBus.fireEvent(new ProductGroupSearchEvent(searchProperty.getValue()));
     }
 
 }
