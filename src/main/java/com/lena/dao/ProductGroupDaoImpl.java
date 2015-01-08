@@ -2,8 +2,7 @@ package com.lena.dao;
 
 import com.lena.domain.ProductGroup;
 import org.hibernate.Criteria;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.*;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
@@ -17,11 +16,7 @@ public class ProductGroupDaoImpl extends BaseDao implements ProductGroupDao {
 
     @Override
     public List<ProductGroup> findAllProductGroup() {
-        Criteria crt = getSession().createCriteria(ProductGroup.class);
-        crt.add(Restrictions.isNull(ProductGroup.PARENT_PRODUCT_GROUP));
-        crt.addOrder(Order.desc(ProductGroup.ID));
-        crt.setMaxResults(MAX_ROW_RESULT);
-        return crt.list();
+        return baseQuerySearch(Restrictions.isNull(ProductGroup.PARENT_PRODUCT_GROUP));
     }
 
     @Override
@@ -40,5 +35,18 @@ public class ProductGroupDaoImpl extends BaseDao implements ProductGroupDao {
             getSession().delete(pg);
         }
         getSession().delete(productGroup);
+    }
+
+    @Override
+    public List<ProductGroup> findProductGroupsByName(String searchString) {
+        return baseQuerySearch(Restrictions.like(ProductGroup.NAME, searchString, MatchMode.ANYWHERE));
+    }
+
+    private List<ProductGroup> baseQuerySearch(Criterion criterion) {
+        Criteria crt = getSession().createCriteria(ProductGroup.class);
+        crt.add(criterion);
+        crt.addOrder(Order.desc(ProductGroup.ID));
+        crt.setMaxResults(MAX_ROW_RESULT);
+        return crt.list();
     }
 }

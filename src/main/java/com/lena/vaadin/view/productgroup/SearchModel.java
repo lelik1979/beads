@@ -1,11 +1,9 @@
 package com.lena.vaadin.view.productgroup;
 
 
-import com.lena.dao.ProductGroupDao;
-import com.lena.dao.ProductGroupDaoImpl;
-import com.lena.vaadin.SpringContextHelper;
+import com.github.wolfie.blackboard.Blackboard;
+import com.lena.vaadin.view.productgroup.listener.ProductGroupSearchEvent;
 import com.vaadin.data.util.ObjectProperty;
-import com.vaadin.server.VaadinServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,6 +16,12 @@ public class SearchModel {
 
     private ObjectProperty<String> searchProperty = new ObjectProperty<String>("");
 
+    private Blackboard blackboard;
+
+    public SearchModel(Blackboard blackboard) {
+        this.blackboard = blackboard;
+    }
+
     public ObjectProperty<String> getSearchProperty() {
         return searchProperty;
     }
@@ -28,6 +32,7 @@ public class SearchModel {
 
     public void processClickEvent() {
         LOG.debug("search value : {}", getSearchPropertyValue());
+        blackboard.fire(new ProductGroupSearchEvent(searchProperty.getValue()));
     }
 
 }

@@ -18,7 +18,7 @@ public class ProductGroupWindowModel {
 
     public ProductGroupWindowModel(ProductGroupDao productGroupDao) {
         this.productGroupDao = productGroupDao;
-        productGroup = new ProductGroup();
+        this.productGroup = new ProductGroup();
     }
 
     public ProductGroup getProductGroup() {
@@ -31,7 +31,7 @@ public class ProductGroupWindowModel {
 
     public void saveProductGroup() {
         productGroupDao.saveOrUpdate(productGroup);
-        productGroupTreeTableModel.populateContainer();
+        productGroupTreeTableModel.populateContainerWithFullList();
     }
 
     public void setProductGroupTreeTableModel(ProductGroupTableModel productGroupTreeTableModel) {

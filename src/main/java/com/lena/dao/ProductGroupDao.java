@@ -17,4 +17,6 @@ public interface ProductGroupDao {
     ProductGroup loadProductGroupById(int productGroupId);
 
     void deleteProductGroup(ProductGroup selectedProductGroup);
+
+    List<ProductGroup> findProductGroupsByName(String searchString);
 }

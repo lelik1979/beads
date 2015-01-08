@@ -4,6 +4,7 @@ import com.lena.dao.ProductGroupDao;
 import com.lena.domain.ProductGroup;
 import com.lena.vaadin.view.productgroup.edit.ProductGroupWindow;
 import com.lena.vaadin.view.productgroup.edit.ProductGroupWindowModel;
+import com.lena.vaadin.view.productgroup.listener.ProductGroupSearchEvent;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.HierarchicalContainer;
 import com.vaadin.event.ItemClickEvent;
@@ -16,7 +17,8 @@ import java.util.List;
 /**
  * Created by alexey.dranchuk on 27/12/14.
  */
-public class ProductGroupTableModel implements ItemClickEvent.ItemClickListener {
+public class ProductGroupTableModel implements ItemClickEvent.ItemClickListener,
+        ProductGroupSearchEvent.ProductGroupSearchListener {
 
     public static final Logger LOG = LoggerFactory.getLogger(ProductGroupTableModel.class);
 
@@ -28,17 +30,21 @@ public class ProductGroupTableModel implements ItemClickEvent.ItemClickListener 
 
     private BeanItem<ProductGroup> selectedProductGroup;
 
-    public ProductGroupTableModel(ProductGroupDao productGroups) {
-        this.productGroupDao = productGroups;
+    public ProductGroupTableModel(ProductGroupDao productGroupDao) {
+        this.productGroupDao = productGroupDao;
         container.addContainerProperty(ProductGroup.ID, Integer.class, null);
         container.addContainerProperty(ProductGroup.NAME, String.class, null);
         container.addContainerProperty(ProductGroup.PARENT_PRODUCT_NAME, String.class, null);
-        populateContainer();
+        populateContainerWithFullList();
     }
 
-    public void populateContainer() {
+    public void populateContainerWithFullList() {
+        populateContainer(productGroupDao.findAllProductGroup());
+    }
+
+    public void populateContainer(List<ProductGroup> productGroups) {
         container.removeAllItems();
-        for (ProductGroup pg : productGroupDao.findAllProductGroup()) {
+        for (ProductGroup pg : productGroups) {
             BeanItem item = new BeanItem<ProductGroup>(pg);
             container.addItem(item);
             container.setChildrenAllowed(item, pg.isChildrenAllowed());
@@ -109,5 +115,11 @@ public class ProductGroupTableModel implements ItemClickEvent.ItemClickListener 
             }
         }
         container.removeItem(selectedProductGroup);
+    }
+
+    @Override
+    public void fireSearch(ProductGroupSearchEvent event) {
+        List<ProductGroup> productGroups = productGroupDao.findProductGroupsByName(event.getSearchString());
+        populateContainer(productGroups);
     }
 }

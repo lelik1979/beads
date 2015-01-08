@@ -14,6 +14,11 @@ public class ProductGroupDaoImplTest extends CommonDaoIT {
     private ProductGroupDao productGroupDao;
 
     @Test
+    public void loadProductGroupByName() {
+        List<ProductGroup> pg = productGroupDao.findProductGroupsByName("Чешский");
+    }
+
+    @Test
     public void loadProductGroupById() {
         ProductGroup pg = productGroupDao.loadProductGroupById(2);
     }
