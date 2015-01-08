@@ -3,7 +3,7 @@ package com.lena.vaadin;
 import com.lena.vaadin.components.ContextPanel;
 import com.lena.vaadin.components.MenuPanel;
 import com.lena.vaadin.view.productgroup.ProductGroupView;
-import com.lena.vaadin.view.ProductView;
+import com.lena.vaadin.view.product.ProductView;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.annotations.VaadinServletConfiguration;
@@ -42,7 +42,7 @@ public class MainUI extends UI {
     private void initNavigator(ContextPanel cp) {
         Navigator navigator = new Navigator(this, cp);
         navigator.addView(ProductGroupView.VIEW_NAME, ProductGroupView.class);
-        navigator.addView("product", ProductView.class);
+        navigator.addView(ProductView.VIEW_NAME, ProductView.class);
         navigator.addView("", ContextPanel.class);
     }
 

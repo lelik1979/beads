@@ -22,7 +22,15 @@ public class Product implements Serializable {
 
     public static final String DESCRIPTION = "description";
 
-    public static final String GROUP_ID = "groupId";
+    public static final String GROUP_ID = "productGroupView.id";
+
+    public static final String PRODUCT_CODE = "productCode";
+
+    public static final String PRICE = "price";
+
+    public static final String PRODUCT_GROUP_VIEW = "productGroupView";
+
+    public static final String GROUP_NAME = "productGroupName";
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -36,8 +44,9 @@ public class Product implements Serializable {
     @Column(name = "DESCRIPTION", length = 4000)
     private String description;
 
-    @Column(name="group_id")
-    private Integer groupId;
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    private ProductGroupView productGroupView;
 
     @Column(name="price", precision = 8, scale=2)
     private BigDecimal price;
@@ -77,14 +86,6 @@ public class Product implements Serializable {
         this.name = name;
     }
 
-    public Integer getGroupId() {
-        return groupId;
-    }
-
-    public void setGroupId(Integer groupId) {
-        this.groupId = groupId;
-    }
-
     public BigDecimal getPrice() {
         return price;
     }
@@ -99,6 +100,10 @@ public class Product implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getProductGroupName() {
+        return productGroupView != null ? productGroupView.getName(): "";
     }
 
     @Override

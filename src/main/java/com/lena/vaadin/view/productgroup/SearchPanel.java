@@ -13,6 +13,8 @@ public class SearchPanel extends HorizontalLayout {
 
     public SearchPanel(SearchModel searchModel) {
         this.searchModel = searchModel;
+        setSpacing(true);
+        setMargin(true);
         initComponents();
     }
 

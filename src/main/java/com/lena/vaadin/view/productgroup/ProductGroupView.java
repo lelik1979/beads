@@ -14,7 +14,6 @@ import org.slf4j.LoggerFactory;
  * Created by alexey.dranchuk on 26/12/14.
  */
 
-@Theme("reindeer")
 public class ProductGroupView extends Panel implements View {
 
     public static final String VIEW_NAME = "productGroupView";
