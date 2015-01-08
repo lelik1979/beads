@@ -1,6 +1,7 @@
 package com.lena.dao;
 
 import com.lena.domain.ProductGroup;
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.*;
 import org.springframework.stereotype.Repository;
@@ -39,7 +40,10 @@ public class ProductGroupDaoImpl extends BaseDao implements ProductGroupDao {
 
     @Override
     public List<ProductGroup> findProductGroupsByName(String searchString) {
-        return baseQuerySearch(Restrictions.like(ProductGroup.NAME, searchString, MatchMode.ANYWHERE));
+        if (StringUtils.isNotBlank(searchString)) {
+            return baseQuerySearch(Restrictions.like(ProductGroup.NAME, searchString, MatchMode.ANYWHERE));
+        }
+        return findAllProductGroup();
     }
 
     private List<ProductGroup> baseQuerySearch(Criterion criterion) {
