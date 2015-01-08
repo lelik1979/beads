@@ -1,4 +1,4 @@
-package com.lena.vaadin.view.productgroup;
+package com.lena.vaadin.components.search;
 
 
 import com.github.wolfie.blackboard.Blackboard;
@@ -18,12 +18,12 @@ public class SearchModel {
 
     public static final Logger LOG = LoggerFactory.getLogger(SearchModel.class);
 
-    private ObjectProperty<String> searchProperty = new ObjectProperty<String>("");
+    protected ObjectProperty<String> searchProperty = new ObjectProperty<>("");
 
     private Blackboard blackboard;
 
     @Autowired
-    private EventBus eventBus;
+    protected EventBus eventBus;
 
     public SearchModel() {
     }
@@ -42,7 +42,7 @@ public class SearchModel {
 
     public void processClickEvent() {
         LOG.debug("search value : {}", getSearchPropertyValue());
-        blackboard.fire(new ProductGroupSearchEvent(searchProperty.getValue()));
+        eventBus.fireEvent(new ProductGroupSearchEvent(searchProperty.getValue()));
     }
 
 }

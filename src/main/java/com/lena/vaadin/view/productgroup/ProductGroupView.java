@@ -1,7 +1,7 @@
 package com.lena.vaadin.view.productgroup;
 
 import com.lena.vaadin.SpringContextHelper;
-import com.vaadin.annotations.Theme;
+import com.lena.vaadin.components.search.SearchPanel;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.VaadinServlet;

@@ -1,11 +1,13 @@
 package com.lena.vaadin.view.product;
 
-import com.lena.vaadin.SpringContextHelper;
 import com.lena.vaadin.listener.EventBus;
+import com.lena.vaadin.view.product.component.ProductSearchModel;
 import com.lena.vaadin.view.product.component.ProductTableModel;
-import com.lena.vaadin.view.productgroup.SearchModel;
+import com.lena.vaadin.components.search.SearchModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
 
 /**
  * Created by alexey.dranchuk on 8/1/15.
@@ -13,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProductViewModel {
 
-    @Autowired
+    @Resource(name = ProductSearchModel.BEAN_NAME)
     private SearchModel searchPanelModel;
 
     @Autowired

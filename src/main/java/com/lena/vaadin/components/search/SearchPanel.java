@@ -1,4 +1,4 @@
-package com.lena.vaadin.view.productgroup;
+package com.lena.vaadin.components.search;
 
 import com.vaadin.ui.*;
 

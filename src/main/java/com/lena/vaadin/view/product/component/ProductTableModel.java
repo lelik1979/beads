@@ -3,6 +3,7 @@ package com.lena.vaadin.view.product.component;
 import com.lena.dao.ProductDao;
 import com.lena.domain.Product;
 import com.lena.vaadin.listener.EventBus;
+import com.lena.vaadin.view.product.listener.ProductSearchEvent;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.event.ItemClickEvent;
@@ -17,7 +18,8 @@ import java.util.List;
  * Created by alexey.dranchuk on 8/1/15.
  */
 @Component
-public class ProductTableModel extends BeanItemContainer<Product> implements ItemClickEvent.ItemClickListener {
+public class ProductTableModel extends BeanItemContainer<Product>
+        implements ItemClickEvent.ItemClickListener, ProductSearchEvent.ProductSearchListener {
 
     public static final Logger LOG = LoggerFactory.getLogger(ProductTableModel.class);
 
@@ -44,6 +46,7 @@ public class ProductTableModel extends BeanItemContainer<Product> implements Ite
         addNestedContainerProperty(Product.GROUP_NAME);
         addNestedContainerProperty(Product.DESCRIPTION);
         populateContainerFullList();
+        eventBus.addListener(this);
     }
 
     private void populateContainerFullList() {
@@ -64,5 +67,10 @@ public class ProductTableModel extends BeanItemContainer<Product> implements Ite
     public void itemClick(ItemClickEvent event) {
         selectedProduct = (BeanItem<Product>) event.getItem();
         LOG.trace("Selected product {}", selectedProduct.getBean().toString());
+    }
+
+    @Override
+    public void fireSearch(ProductSearchEvent event) {
+        populateContainer(productDao.searchProductBySearchString(event.getSearchString()));
     }
 }

@@ -2,6 +2,7 @@ package com.lena.vaadin.view.productgroup;
 
 import com.github.wolfie.blackboard.Blackboard;
 import com.lena.vaadin.SpringContextHelper;
+import com.lena.vaadin.components.search.SearchModel;
 import com.lena.vaadin.view.productgroup.listener.ProductGroupSearchEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
