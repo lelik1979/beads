@@ -1,7 +1,7 @@
 package com.lena.dao;
 
 import com.lena.domain.Product;
-
+import com.lena.domain.ProductGroupView;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -18,4 +18,8 @@ public interface ProductDao {
     List<Product> searchProductBySearchString(String searchString);
 
     List<Product> loadProductByGroupId(Integer groupId);
+
+    List<ProductGroupView> loadAllProductGroupView();
+
+    void saveOrUpdate(Product product);
 }

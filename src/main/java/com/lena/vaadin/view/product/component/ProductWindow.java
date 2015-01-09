@@ -8,15 +8,12 @@ import com.vaadin.ui.Window;
  */
 public class ProductWindow extends Window {
 
-    private ProductWindowModel productWindowModel;
-
     public ProductWindow(ProductWindowModel model) {
-        this.productWindowModel = model;
         setCaption("Товар " + model.getProduct().getName());
-//        setContent(new ProductGroupFormLayout(model));
+        setContent(new ProductFormLayout(model));
         setModal(true);
-        setHeight(200, Unit.POINTS);
-        setWidth(350, Unit.POINTS);
+        setHeight(300, Unit.POINTS);
+        setWidth(850, Unit.POINTS);
         setImmediate(true);
         center();
     }

@@ -106,6 +106,14 @@ public class Product implements Serializable {
         return productGroupView != null ? productGroupView.getName(): "";
     }
 
+    public ProductGroupView getProductGroupView() {
+        return productGroupView;
+    }
+
+    public void setProductGroupView(ProductGroupView productGroupView) {
+        this.productGroupView = productGroupView;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
