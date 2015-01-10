@@ -1,6 +1,6 @@
 package com.lena.vaadin.view.product.component;
 
-import com.lena.vaadin.view.productgroup.edit.ProductGroupFormLayout;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Window;
 
 /**
@@ -10,11 +10,18 @@ public class ProductWindow extends Window {
 
     public ProductWindow(ProductWindowModel model) {
         setCaption("Товар " + model.getProduct().getName());
-        setContent(new ProductFormLayout(model));
         setModal(true);
-        setHeight(300, Unit.POINTS);
-        setWidth(850, Unit.POINTS);
+        setHeight(360, Unit.POINTS);
+        setWidth(650, Unit.POINTS);
         setImmediate(true);
         center();
+        initLayout(model);
+    }
+
+    private void initLayout(ProductWindowModel model) {
+        HorizontalLayout hl = new HorizontalLayout();
+        hl.addComponent(new ProductFormLayout(model));
+        hl.addComponent(new ProductPhotoLayout(model));
+        setContent(hl);
     }
 }

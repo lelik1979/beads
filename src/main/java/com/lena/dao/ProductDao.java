@@ -22,4 +22,6 @@ public interface ProductDao {
     List<ProductGroupView> loadAllProductGroupView();
 
     void saveOrUpdate(Product product);
+
+    void removeProduct(Product product);
 }

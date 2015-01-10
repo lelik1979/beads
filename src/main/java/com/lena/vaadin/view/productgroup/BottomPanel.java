@@ -1,5 +1,6 @@
 package com.lena.vaadin.view.productgroup;
 
+import com.lena.vaadin.components.common.ButtonPanelModel;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
@@ -13,12 +14,10 @@ public class BottomPanel extends HorizontalLayout {
 
     public static final Logger LOG = LoggerFactory.getLogger(BottomPanel.class);
 
-    private Button newButton;
-    private Button deleteButton;
-    private BottomPanelModel model;
+    private ButtonPanelModel model;
 
 
-    public BottomPanel(BottomPanelModel model) {
+    public BottomPanel(ButtonPanelModel model) {
         this.model = model;
         setMargin(true);
         setSizeUndefined();
@@ -28,9 +27,10 @@ public class BottomPanel extends HorizontalLayout {
     }
 
     private void addDeleteButton() {
-        deleteButton = new Button("Удалить", new Button.ClickListener() {
+        Button deleteButton = new Button("Удалить", new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent event) {
+                LOG.debug("Click on delete item");
                 model.deleteButtonClick();
             }
         });
@@ -39,10 +39,11 @@ public class BottomPanel extends HorizontalLayout {
     }
 
     private void addNewButton() {
-        newButton = new Button("Добавить", new Button.ClickListener() {
+        Button newButton = new Button("Добавить", new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent event) {
-                model.newProductGroupClick();
+                LOG.debug("Click on new  item");
+                model.newButtonClick();
             }
         });
         addComponent(newButton);

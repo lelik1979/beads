@@ -1,6 +1,7 @@
 package com.lena.vaadin.view.product;
 
-import com.lena.vaadin.listener.EventBus;
+import com.lena.vaadin.components.common.ButtonPanelModel;
+import com.lena.vaadin.view.product.component.ProductButtonPanelModel;
 import com.lena.vaadin.view.product.component.ProductSearchModel;
 import com.lena.vaadin.view.product.component.ProductTableModel;
 import com.lena.vaadin.components.search.SearchModel;
@@ -19,10 +20,10 @@ public class ProductViewModel {
     private SearchModel searchPanelModel;
 
     @Autowired
-    private EventBus eventBus;
+    private ProductTableModel productTableModel;
 
     @Autowired
-    private ProductTableModel productTableModel;
+    private ProductButtonPanelModel productButtonPanelModel;
 
     public SearchModel getSearchPanelModel() {
         return searchPanelModel;
@@ -30,5 +31,9 @@ public class ProductViewModel {
 
     public ProductTableModel getProductTableModel() {
         return productTableModel;
+    }
+
+    public ButtonPanelModel getButtonPanelModel() {
+        return productButtonPanelModel;
     }
 }

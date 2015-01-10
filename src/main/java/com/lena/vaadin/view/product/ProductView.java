@@ -3,6 +3,7 @@ package com.lena.vaadin.view.product;
 import com.lena.vaadin.SpringContextHelper;
 import com.lena.vaadin.view.product.component.ProductTable;
 import com.lena.vaadin.components.search.SearchPanel;
+import com.lena.vaadin.view.productgroup.BottomPanel;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.VaadinServlet;
@@ -24,14 +25,10 @@ public class ProductView extends Panel implements View {
     public ProductView() {
         super("Работа с товаром");
         SpringContextHelper contextHelper = new SpringContextHelper(VaadinServlet.getCurrent().getServletContext());
-        initModels(contextHelper);
+        this.productViewModel = contextHelper.getWebAppContext().getBean(ProductViewModel.class);
         initLayout();
         addComponents();
         setSizeFull();
-    }
-
-    private void initModels(SpringContextHelper contextHelper) {
-        this.productViewModel = contextHelper.getWebAppContext().getBean(ProductViewModel.class);
     }
 
     private void addComponents() {
@@ -39,8 +36,14 @@ public class ProductView extends Panel implements View {
         layout.addComponent(searchPanel);
         ProductTable table = new ProductTable(productViewModel.getProductTableModel());
         layout.addComponent(table);
-//        addBottomPanel();
+        addBottomPanel();
     }
+
+    private void addBottomPanel() {
+        BottomPanel bp = new BottomPanel(productViewModel.getButtonPanelModel());
+        layout.addComponent(bp);
+    }
+
 
     private void initLayout() {
         layout = new VerticalLayout();

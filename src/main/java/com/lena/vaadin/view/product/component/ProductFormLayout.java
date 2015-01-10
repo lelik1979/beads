@@ -77,7 +77,7 @@ public class ProductFormLayout extends FormLayout {
     }
 
     private void closeParentWindow() {
-        ((Window)getParent()).close();
+        ((Window)getParent().getParent()).close();
     }
 
     private void bindComponents() {

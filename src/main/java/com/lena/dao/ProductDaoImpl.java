@@ -56,6 +56,11 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
         getSession().saveOrUpdate(product);
     }
 
+    @Override
+    public void removeProduct(Product product) {
+        getSession().delete(product);
+    }
+
     private Criterion buildSearchRestriction(String searchString) {
         Disjunction dj = Restrictions.disjunction();
         Integer id = parseToInteger(searchString);

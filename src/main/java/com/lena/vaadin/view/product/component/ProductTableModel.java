@@ -3,6 +3,7 @@ package com.lena.vaadin.view.product.component;
 import com.lena.dao.ProductDao;
 import com.lena.domain.Product;
 import com.lena.vaadin.listener.EventBus;
+import com.lena.vaadin.view.product.listener.ProductChangeEvent;
 import com.lena.vaadin.view.product.listener.ProductSearchEvent;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
@@ -22,7 +23,7 @@ import static com.vaadin.event.ItemClickEvent.*;
  */
 @Component
 public class ProductTableModel extends BeanItemContainer<Product>
-        implements ItemClickListener, ProductSearchListener {
+        implements ItemClickListener, ProductSearchListener, ProductChangeEvent.ProductChangeListner {
 
     public static final Logger LOG = LoggerFactory.getLogger(ProductTableModel.class);
 
@@ -89,5 +90,19 @@ public class ProductTableModel extends BeanItemContainer<Product>
     @Override
     public void fireSearch(ProductSearchEvent event) {
         populateContainer(productDao.searchProductBySearchString(event.getSearchString()));
+    }
+
+    @Override
+    public void fireProductChange(ProductChangeEvent event) {
+        removeItem(event.getProduct());
+        addItemAt(0, event.getProduct());
+    }
+
+    public void deleteSelectedProduct() {
+        if (selectedProduct == null) {
+            return;
+        }
+        removeItem(selectedProduct.getBean());
+        productDao.removeProduct(selectedProduct.getBean());
     }
 }

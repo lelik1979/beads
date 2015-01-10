@@ -4,6 +4,7 @@ import com.lena.dao.ProductDao;
 import com.lena.domain.Product;
 import com.lena.domain.ProductGroupView;
 import com.lena.vaadin.listener.EventBus;
+import com.lena.vaadin.view.product.listener.ProductChangeEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.util.List;
@@ -37,5 +38,6 @@ public class ProductWindowModel {
 
     public void saveProduct() {
         productDao.saveOrUpdate(product);
+        eventBus.fireEvent(new ProductChangeEvent(product));
     }
 }
