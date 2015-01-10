@@ -104,5 +104,6 @@ public class ProductTableModel extends BeanItemContainer<Product>
         }
         removeItem(selectedProduct.getBean());
         productDao.removeProduct(selectedProduct.getBean());
+        selectedProduct = null;
     }
 }
