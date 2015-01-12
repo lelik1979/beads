@@ -39,7 +39,7 @@ public class ProductTableModel extends BeanItemContainer<Product>
     private Object[] visibleColumns = new Object[]{
             Product.ID, Product.PRODUCT_CODE, Product.PRICE, Product.NAME, Product.GROUP_NAME, Product.DESCRIPTION};
 
-    private BeanItem<Product> selectedProduct;
+    private Product selectedProduct;
 
     public ProductTableModel() {
         super(Product.class);
@@ -72,9 +72,7 @@ public class ProductTableModel extends BeanItemContainer<Product>
 
     @Override
     public void itemClick(ItemClickEvent event) {
-        selectedProduct = (BeanItem<Product>) event.getItem();
-        Product selectedProduct = getSelectedProductBean();
-        LOG.trace("Selected product {}", selectedProduct.toString());
+        selectedProduct = ((BeanItem<Product>) event.getItem()).getBean();
         if (event.isDoubleClick()) {
             showEditProduct(selectedProduct);
         }
@@ -89,24 +87,24 @@ public class ProductTableModel extends BeanItemContainer<Product>
 
     @Override
     public void fireSearch(ProductSearchEvent event) {
+        LOG.debug("Trying to search with pattern {}", event.getSearchString());
         populateContainer(productDao.searchProductBySearchString(event.getSearchString()));
     }
 
     @Override
     public void fireProductChange(ProductChangeEvent event) {
+        LOG.debug("Product {} was updated", event.getProduct());
         removeItem(event.getProduct());
         addItemAt(0, event.getProduct());
     }
 
     public void deleteSelectedProduct() {
         if (selectedProduct != null) {
+            LOG.debug("Trying to delete product {}", selectedProduct);
             removeItem(selectedProduct);
-            productDao.removeProduct(getSelectedProductBean());
+            productDao.removeProduct(selectedProduct);
             selectedProduct = null;
         }
     }
 
-    public Product getSelectedProductBean() {
-        return selectedProduct.getBean();
-    }
 }

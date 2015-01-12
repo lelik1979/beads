@@ -3,15 +3,19 @@ package com.lena.dao;
 import com.lena.domain.Product;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class ProductDaoImplTest extends CommonDaoIT {
 
     @Autowired
     private ProductDao productDao;
+
+    @Test
+    public void deleteProduct() {
+        Product p = new Product();
+        p.setId(5);
+        productDao.removeProduct(p);
+    }
 
     @Test
     public void testSearchProductBySearchString() throws Exception {

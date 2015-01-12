@@ -3,6 +3,7 @@ package com.lena.dao;
 import com.lena.domain.Product;
 import com.lena.domain.ProductGroupView;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.criterion.*;
 import org.springframework.stereotype.Repository;
 import java.util.List;
@@ -58,6 +59,9 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
 
     @Override
     public void removeProduct(Product product) {
+        Query query = getSession().createQuery("delete from ProductPhoto where id = :id ");
+        query.setInteger("id", product.getId());
+        query.executeUpdate();
         getSession().delete(product);
     }
 
