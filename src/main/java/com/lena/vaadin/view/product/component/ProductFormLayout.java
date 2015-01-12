@@ -9,8 +9,8 @@ import com.lena.vaadin.components.common.BeadsTextField;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.FieldGroup;
 import com.vaadin.data.fieldgroup.PropertyId;
+import com.vaadin.event.ShortcutAction;
 import com.vaadin.ui.*;
-
 
 
 /**
@@ -57,6 +57,7 @@ public class ProductFormLayout extends FormLayout {
                 closeParentWindow();
             }
         });
+        closeButton.setClickShortcut(ShortcutAction.KeyCode.ESCAPE);
         hl.addComponent(closeButton);
     }
 
