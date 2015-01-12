@@ -8,7 +8,6 @@ import com.lena.vaadin.components.common.BeadsTextArea;
 import com.lena.vaadin.components.common.BeadsTextField;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.FieldGroup;
-import com.vaadin.data.fieldgroup.PropertyId;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.ui.*;
 
@@ -21,15 +20,6 @@ public class ProductFormLayout extends FormLayout {
     private ProductWindowModel model;
 
     private BeanFieldGroup<Product> binder;
-
-    private BeadsTextField id;
-
-    @PropertyId(Product.PRODUCT_GROUP_VIEW)
-    private BeadsComboBox parent;
-
-    private Button saveButton;
-
-    private Button closeButton;
 
     public ProductFormLayout(ProductWindowModel model) {
         this.model = model;
@@ -51,7 +41,7 @@ public class ProductFormLayout extends FormLayout {
     }
 
     private void addCloseButton(Layout hl) {
-        closeButton = new Button("Закрыть", new Button.ClickListener() {
+        Button closeButton = new Button("Закрыть", new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent event) {
                 closeParentWindow();
@@ -62,7 +52,7 @@ public class ProductFormLayout extends FormLayout {
     }
 
     private void addSaveButton(HorizontalLayout layout) {
-        saveButton = new Button("Сохранить", new Button.ClickListener() {
+        Button saveButton = new Button("Сохранить", new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent event) {
                 try {
@@ -110,7 +100,7 @@ public class ProductFormLayout extends FormLayout {
     }
 
     private void bindParentGroup() {
-        parent = (BeadsComboBox<ProductGroupView>) bindAndAddComponent("Группа товара", Product.PRODUCT_GROUP_VIEW, BeadsComboBox.class);
+        BeadsComboBox parent = (BeadsComboBox<ProductGroupView>) bindAndAddComponent("Группа товара", Product.PRODUCT_GROUP_VIEW, BeadsComboBox.class);
         parent.addItems(model.loadProductGroupViews());
     }
 
@@ -119,7 +109,7 @@ public class ProductFormLayout extends FormLayout {
     }
 
     private void bindId() {
-        id = (BeadsTextField) bindAndAddComponent("№", Product.ID, BeadsTextField.class);
+        BeadsTextField id = (BeadsTextField) bindAndAddComponent("№", Product.ID, BeadsTextField.class);
         id.setEnabled(false);
     }
 }
