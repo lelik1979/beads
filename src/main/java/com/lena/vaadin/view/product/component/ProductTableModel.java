@@ -73,19 +73,19 @@ public class ProductTableModel extends BeanItemContainer<Product>
     @Override
     public void itemClick(ItemClickEvent event) {
         selectedProduct = (BeanItem<Product>) event.getItem();
-        LOG.trace("Selected product {}", selectedProduct.getBean().toString());
+        Product selectedProduct = getSelectedProductBean();
+        LOG.trace("Selected product {}", selectedProduct.toString());
         if (event.isDoubleClick()) {
             showEditProduct(selectedProduct);
         }
     }
 
-    private void showEditProduct(BeanItem<Product> selectedProductGroup) {
-        productWindowModel.setProduct(selectedProductGroup.getBean());
+    private void showEditProduct(Product selectedProduct) {
+        productWindowModel.setProduct(selectedProduct);
         LOG.debug("Edit product {}", productWindowModel.getProduct().toString());
         ProductWindow productWindow = new ProductWindow(productWindowModel);
         UI.getCurrent().addWindow(productWindow);
     }
-
 
     @Override
     public void fireSearch(ProductSearchEvent event) {
@@ -99,11 +99,14 @@ public class ProductTableModel extends BeanItemContainer<Product>
     }
 
     public void deleteSelectedProduct() {
-        if (selectedProduct == null) {
-            return;
+        if (selectedProduct != null) {
+            removeItem(selectedProduct);
+            productDao.removeProduct(getSelectedProductBean());
+            selectedProduct = null;
         }
-        removeItem(selectedProduct.getBean());
-        productDao.removeProduct(selectedProduct.getBean());
-        selectedProduct = null;
+    }
+
+    public Product getSelectedProductBean() {
+        return selectedProduct.getBean();
     }
 }

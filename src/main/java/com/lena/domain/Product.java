@@ -3,7 +3,6 @@ package com.lena.domain;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -112,6 +111,10 @@ public class Product implements Serializable {
 
     public void setProductGroupView(ProductGroupView productGroupView) {
         this.productGroupView = productGroupView;
+    }
+
+    public ProductPhoto buildProductPhoto(byte[] photo) {
+        return new ProductPhoto(id, photo);
     }
 
     @Override

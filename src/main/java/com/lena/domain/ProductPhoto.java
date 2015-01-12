@@ -1,7 +1,6 @@
 package com.lena.domain;
 
 import javax.persistence.*;
-import java.sql.Blob;
 
 /**
  * Created by Administrator on 31.10.14.
@@ -17,6 +16,14 @@ public class ProductPhoto {
     @Lob
     @Column(name = "photo")
     private byte[] photo;
+
+    public ProductPhoto() {
+    }
+
+    public ProductPhoto(Integer id, byte[] photo) {
+        this.productId = id;
+        this.photo = photo;
+    }
 
     public Integer getProductId() {
         return productId;

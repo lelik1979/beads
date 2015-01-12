@@ -12,18 +12,24 @@ public class ProductPhotoLayout extends VerticalLayout {
 
     private Image productPhoto;
 
+    private Upload upload;
+
     public ProductPhotoLayout(ProductWindowModel model) {
         this.model = model;
-        addUploadButton();
+        productPhoto = new Image("Фото Продукта", new ExternalResource("getPhoto?id=" + model.getProduct().getId()));
+        addUpload();
         addImage();
     }
 
-    private void addUploadButton() {
-
+    private void addUpload() {
+        PhotoReciever photoReciever = new PhotoReciever(productPhoto, model);
+        upload = new Upload("Загрузить фото", photoReciever);
+        upload.setButtonCaption("Загрузить");
+        upload.addSucceededListener(photoReciever);
+        addComponent(upload);
     }
 
     private void addImage() {
-        productPhoto = new Image("Фото Продукта", new ExternalResource("getPhoto?id=" + model.getProduct().getId()));
         productPhoto.setWidth(300, Unit.POINTS);
         productPhoto.setHeight(300, Unit.POINTS);
         addComponent(productPhoto);
