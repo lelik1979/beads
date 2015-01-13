@@ -9,5 +9,7 @@
     <include file="db/changelog_productphoto.xml"/>
     <include file="db/changelog_order.xml"/>
     <include file="db/changelog_order_product.xml"/>
+    <include file="db/changelog_user.xml"/>
+    <include file="db/changelog_user_roles.xml"/>
 
 </databaseChangeLog>

@@ -7,14 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.PropertySources;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
-import org.springframework.jndi.JndiTemplate;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.ui.velocity.VelocityEngineFactoryBean;
-
-import javax.mail.Session;
 import javax.naming.NamingException;
 import java.io.IOException;
 import java.util.Properties;
@@ -23,7 +19,7 @@ import java.util.Properties;
  * Created by Administrator on 29.09.14.
  */
 @Configuration
-@PropertySources(value = {@PropertySource("classpath:/env/${env:dev}.properties")})
+@PropertySource("classpath:/env/${env:dev}.properties")
 public class EmailConfiguration {
 
     @Autowired

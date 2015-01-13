@@ -40,7 +40,9 @@ public class SearchPanel extends HorizontalLayout {
     }
 
     private void addSearchLabel() {
-        addComponent(new Label("Поиск : "));
+        Label label = new Label("Поиск : ");
+        label.setWidth(30, Unit.POINTS);
+        addComponent(label);
     }
 
 }
