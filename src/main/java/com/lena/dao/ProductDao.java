@@ -1,7 +1,9 @@
 package com.lena.dao;
 
+import com.lena.configuration.Constant;
 import com.lena.domain.Product;
 import com.lena.domain.ProductGroupView;
+import org.springframework.security.access.prepost.PreAuthorize;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -21,7 +23,9 @@ public interface ProductDao {
 
     List<ProductGroupView> loadAllProductGroupView();
 
+    @PreAuthorize(Constant.HAS_ROLE_ADMIN)
     void saveOrUpdate(Product product);
 
+    @PreAuthorize(Constant.HAS_ROLE_ADMIN)
     void removeProduct(Product product);
 }
