@@ -11,6 +11,8 @@ import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.*;
+import javax.servlet.annotation.HttpConstraint;
+import javax.servlet.annotation.ServletSecurity;
 import javax.servlet.annotation.WebServlet;
 
 /**
@@ -23,6 +25,7 @@ public class MainUI extends UI {
 
     @WebServlet(urlPatterns = {"/admin/*", "/VAADIN/*"}, asyncSupported = true)
     @VaadinServletConfiguration(ui = MainUI.class, productionMode = false)
+    @ServletSecurity(value = @HttpConstraint(transportGuarantee = ServletSecurity.TransportGuarantee.CONFIDENTIAL))
     public static class MyUIServlet extends VaadinServlet {
     }
 
