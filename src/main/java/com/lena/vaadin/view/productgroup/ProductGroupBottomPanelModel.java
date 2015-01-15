@@ -8,13 +8,17 @@ import com.vaadin.ui.UI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 /**
  * Created by alexey.dranchuk on 29/12/14.
+ *
  */
 @Component
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @Lazy
 public class ProductGroupBottomPanelModel {
 
@@ -28,7 +32,7 @@ public class ProductGroupBottomPanelModel {
     private ProductGroupWindowModel productGroupWindowModel;
 
     @Autowired
-    private ProductGroupViewModel productGroupViewModel;
+    private ProductGroupTableModel productGroupTableModel;
 
     public static final Logger LOG = LoggerFactory.getLogger(ProductGroupBottomPanelModel.class);
 
@@ -40,7 +44,7 @@ public class ProductGroupBottomPanelModel {
     }
 
     public void deleteButtonClick() {
-        productGroupViewModel.getProductGroupTableModel().deleteButtonClick();
+        productGroupTableModel.deleteButtonClick();
     }
 
     public BeadsButtonModel getNewButtonModel() {
