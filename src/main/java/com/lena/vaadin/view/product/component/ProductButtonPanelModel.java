@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * Created by alexey.dranchuk on 10/1/15.
+ *
  */
 @Component
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
@@ -26,7 +27,6 @@ public class ProductButtonPanelModel  {
 
     @Autowired
     private BeadsButtonModel deleteButtonModel;
-
 
     @Autowired
     private ProductTableModel productTableModel;

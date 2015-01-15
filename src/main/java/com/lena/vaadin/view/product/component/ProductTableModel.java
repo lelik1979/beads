@@ -12,9 +12,7 @@ import com.vaadin.ui.UI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -23,9 +21,9 @@ import static com.vaadin.event.ItemClickEvent.*;
 
 /**
  * Created by alexey.dranchuk on 8/1/15.
+ *
  */
 @Component
-@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @Lazy
 public class ProductTableModel extends BeanItemContainer<Product>
         implements ItemClickListener, ProductSearchListener, ProductChangeEvent.ProductChangeListner {
@@ -76,6 +74,7 @@ public class ProductTableModel extends BeanItemContainer<Product>
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void itemClick(ItemClickEvent event) {
         selectedProduct = ((BeanItem<Product>) event.getItem()).getBean();
         if (event.isDoubleClick()) {
