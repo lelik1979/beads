@@ -10,6 +10,7 @@ import com.vaadin.ui.Field;
  */
 public class BeadsBeanFieldGroup<T> extends BeanFieldGroup<T> {
 
+    @SuppressWarnings("unchecked")
     public BeadsBeanFieldGroup(final T model, final Class comboBoxClass) {
         super((Class<T>) model.getClass());
         setItemDataSource(model);

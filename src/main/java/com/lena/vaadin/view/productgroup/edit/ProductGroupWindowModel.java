@@ -3,23 +3,22 @@ package com.lena.vaadin.view.productgroup.edit;
 import com.lena.dao.ProductGroupDao;
 import com.lena.domain.ProductGroup;
 import com.lena.vaadin.view.productgroup.ProductGroupTableModel;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by alexey.dranchuk on 29/12/14.
  */
+@Component
 public class ProductGroupWindowModel {
 
-    private ProductGroup productGroup = new ProductGroup();
+    private ProductGroup productGroup;
+
+    @Autowired
     private ProductGroupDao productGroupDao;
+
+    @Autowired
     private ProductGroupTableModel productGroupTreeTableModel;
-
-    public ProductGroupWindowModel() {
-    }
-
-    public ProductGroupWindowModel(ProductGroupDao productGroupDao) {
-        this.productGroupDao = productGroupDao;
-        this.productGroup = new ProductGroup();
-    }
 
     public ProductGroup getProductGroup() {
         return productGroup;
@@ -34,7 +33,7 @@ public class ProductGroupWindowModel {
         productGroupTreeTableModel.populateContainerWithFullList();
     }
 
-    public void setProductGroupTreeTableModel(ProductGroupTableModel productGroupTreeTableModel) {
-        this.productGroupTreeTableModel = productGroupTreeTableModel;
+    public ProductGroupDao getProductGroupDao() {
+        return productGroupDao;
     }
 }

@@ -1,43 +1,39 @@
 package com.lena.vaadin.view.productgroup;
 
-import com.github.wolfie.blackboard.Blackboard;
-import com.lena.vaadin.SpringContextHelper;
 import com.lena.vaadin.components.search.SearchModel;
-import com.lena.vaadin.view.productgroup.listener.ProductGroupSearchEvent;
+import com.lena.vaadin.listener.EventBus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.context.WebApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import javax.annotation.PostConstruct;
 
 /**
  * Created by alexey.dranchuk on 29/12/14.
  */
+@Component(ProductGroupViewModel.BEAN_NAME)
 public class ProductGroupViewModel {
+
+    public static final String BEAN_NAME = "ProductGroupViewModel";
 
     public static final Logger LOG = LoggerFactory.getLogger(ProductGroupViewModel.class);
 
-    private SearchModel searchPanelModel;
+    @Autowired
+    private ProductGroupSearchModel searchPanelModel;
 
+    @Autowired
     private ProductGroupTableModel productGroupTableModel;
 
-    private WebApplicationContext appContext;
+    @Autowired
     private BottomPanelModel bottomPanelModel;
 
-    private final Blackboard blackboard = new Blackboard();
+    @Autowired
+    private EventBus eventBus;
 
-    public ProductGroupViewModel(SpringContextHelper contextHelper) {
-        this.appContext = contextHelper.getWebAppContext();
-        this.productGroupTableModel = new ProductGroupTableModel(contextHelper.getProductGroupDao());
-        this.searchPanelModel = new SearchModel(blackboard);
-        this.bottomPanelModel = new BottomPanelModel(contextHelper);
-        bottomPanelModel.setProductGroupViewModel(this);
-        initListeners();
-    }
 
+    @PostConstruct
     private void initListeners() {
-        if (LOG.isDebugEnabled())
-            blackboard.enableLogging();
-        blackboard.register(ProductGroupSearchEvent.ProductGroupSearchListener.class, ProductGroupSearchEvent.class);
-        blackboard.addListener(productGroupTableModel);
+        eventBus.addListener(productGroupTableModel);
     }
 
     public SearchModel getSearchPanelModel() {
@@ -46,10 +42,6 @@ public class ProductGroupViewModel {
 
     public ProductGroupTableModel getProductGroupTableModel() {
         return productGroupTableModel;
-    }
-
-    public WebApplicationContext getAppContext() {
-        return appContext;
     }
 
     public BottomPanelModel getBottomPanelModel() {

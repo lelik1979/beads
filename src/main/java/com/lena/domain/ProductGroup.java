@@ -1,8 +1,8 @@
 package com.lena.domain;
 
+import com.lena.vaadin.components.common.BeadsComboBoxCaption;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = ProductGroup.TABLE_NAME)
-public class ProductGroup {
+public class ProductGroup implements BeadsComboBoxCaption {
 
     public static final String TABLE_NAME = "productgroup";
 
@@ -108,5 +108,10 @@ public class ProductGroup {
 
     public boolean isChildrenAllowed() {
         return !childGroups.isEmpty();
+    }
+
+    @Override
+    public String getComboBoxCaption() {
+        return name != null ? name : "";
     }
 }

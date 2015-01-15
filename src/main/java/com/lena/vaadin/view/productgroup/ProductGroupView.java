@@ -21,12 +21,13 @@ public class ProductGroupView extends Panel implements View {
     public static final Logger LOG = LoggerFactory.getLogger(ProductGroupView.class);
 
     private VerticalLayout layout;
+
     private ProductGroupViewModel productGroupWindowModel;
 
     public ProductGroupView() {
         super("Группы товаров");
         SpringContextHelper contextHelper = new SpringContextHelper(VaadinServlet.getCurrent().getServletContext());
-        this.productGroupWindowModel = new ProductGroupViewModel(contextHelper);
+        this.productGroupWindowModel = (ProductGroupViewModel) contextHelper.getBean(ProductGroupViewModel.BEAN_NAME);
         init();
     }
 

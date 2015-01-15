@@ -11,12 +11,16 @@ import com.vaadin.event.ItemClickEvent;
 import com.vaadin.ui.UI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import javax.annotation.PostConstruct;
 import java.util.Collection;
 import java.util.List;
 
 /**
  * Created by alexey.dranchuk on 27/12/14.
  */
+@Component
 public class ProductGroupTableModel implements ItemClickEvent.ItemClickListener,
         ProductGroupSearchEvent.ProductGroupSearchListener {
 
@@ -26,12 +30,16 @@ public class ProductGroupTableModel implements ItemClickEvent.ItemClickListener,
 
     private Object[] visibleColumns = new Object[]{ProductGroup.ID, ProductGroup.NAME, ProductGroup.PARENT_PRODUCT_NAME};
 
+    @Autowired
     private ProductGroupDao productGroupDao;
 
     private BeanItem<ProductGroup> selectedProductGroup;
 
-    public ProductGroupTableModel(ProductGroupDao productGroupDao) {
-        this.productGroupDao = productGroupDao;
+    @Autowired
+    private ProductGroupWindowModel pgwm;
+
+    @PostConstruct
+    private void init() {
         container.addContainerProperty(ProductGroup.ID, Integer.class, null);
         container.addContainerProperty(ProductGroup.NAME, String.class, null);
         container.addContainerProperty(ProductGroup.PARENT_PRODUCT_NAME, String.class, null);
@@ -45,7 +53,7 @@ public class ProductGroupTableModel implements ItemClickEvent.ItemClickListener,
     public void populateContainer(List<ProductGroup> productGroups) {
         container.removeAllItems();
         for (ProductGroup pg : productGroups) {
-            BeanItem item = new BeanItem<ProductGroup>(pg);
+            BeanItem<ProductGroup> item = new BeanItem<>(pg);
             container.addItem(item);
             container.setChildrenAllowed(item, pg.isChildrenAllowed());
             propagatePropertyValues(item);
@@ -54,6 +62,7 @@ public class ProductGroupTableModel implements ItemClickEvent.ItemClickListener,
         }
     }
 
+    @SuppressWarnings("unchecked")
     private void propagatePropertyValues(BeanItem item) {
         for (Object propertyId : container.getContainerPropertyIds()) {
             Object value = item.getItemProperty(propertyId).getValue();
@@ -63,7 +72,7 @@ public class ProductGroupTableModel implements ItemClickEvent.ItemClickListener,
 
     private void addChilds(List<ProductGroup> childGroups, BeanItem parentGroup) {
         for (ProductGroup pg : childGroups) {
-            BeanItem item = new BeanItem<ProductGroup>(pg);
+            BeanItem<ProductGroup> item = new BeanItem<>(pg);
             container.addItem(item);
             container.setChildrenAllowed(item, false);
             propagatePropertyValues(item);
@@ -80,8 +89,8 @@ public class ProductGroupTableModel implements ItemClickEvent.ItemClickListener,
         return visibleColumns;
     }
 
-
     @Override
+    @SuppressWarnings("unchecked")
     public void itemClick(ItemClickEvent event) {
         selectedProductGroup = (BeanItem<ProductGroup>) event.getItemId();
         LOG.trace("Selected productGroup item {}", selectedProductGroup);
@@ -91,9 +100,7 @@ public class ProductGroupTableModel implements ItemClickEvent.ItemClickListener,
     }
 
     private void showEditProductGroup(BeanItem<ProductGroup> selectedProductGroup) {
-        ProductGroupWindowModel pgwm = new ProductGroupWindowModel(productGroupDao);
         pgwm.setProductGroup(selectedProductGroup.getBean());
-        pgwm.setProductGroupTreeTableModel(this);
         ProductGroupWindow productGroupWindow = new ProductGroupWindow(pgwm);
         UI.getCurrent().addWindow(productGroupWindow);
     }
