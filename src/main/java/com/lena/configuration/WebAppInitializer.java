@@ -24,8 +24,6 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
         ServletRegistration.Dynamic registration = servletContext.addServlet("dandelionServlet", dispatcherServlet);
         registration.setLoadOnStartup(2);
         registration.addMapping("/dandelion-assets/*");
-
-
     }
 
     @Override

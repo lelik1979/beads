@@ -1,5 +1,6 @@
-package com.lena.vaadin.components.common;
+package com.lena.vaadin.components;
 
+import com.lena.vaadin.components.common.DefaultComponentSize;
 import com.vaadin.ui.TextField;
 
 /**

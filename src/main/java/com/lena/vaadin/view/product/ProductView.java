@@ -3,7 +3,6 @@ package com.lena.vaadin.view.product;
 import com.lena.vaadin.SpringContextHelper;
 import com.lena.vaadin.view.product.component.ProductTable;
 import com.lena.vaadin.components.search.SearchPanel;
-import com.lena.vaadin.view.productgroup.BottomPanel;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.VaadinServlet;
@@ -22,15 +21,6 @@ public class ProductView extends Panel implements View {
 
     private Layout layout;
 
-    public ProductView() {
-        super("Работа с товаром");
-        SpringContextHelper contextHelper = new SpringContextHelper(VaadinServlet.getCurrent().getServletContext());
-        this.productViewModel = contextHelper.getWebAppContext().getBean(ProductViewModel.class);
-        initLayout();
-        addComponents();
-        setSizeFull();
-    }
-
     private void addComponents() {
         SearchPanel searchPanel = new SearchPanel(productViewModel.getSearchPanelModel());
         layout.addComponent(searchPanel);
@@ -40,10 +30,9 @@ public class ProductView extends Panel implements View {
     }
 
     private void addBottomPanel() {
-        BottomPanel bp = new BottomPanel(productViewModel.getButtonPanelModel());
+        ProductBottomPanel bp = new ProductBottomPanel(productViewModel.getButtonPanelModel());
         layout.addComponent(bp);
     }
-
 
     private void initLayout() {
         layout = new VerticalLayout();
@@ -52,6 +41,12 @@ public class ProductView extends Panel implements View {
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
+        setCaption("Работа с товаром");
+        SpringContextHelper contextHelper = new SpringContextHelper(VaadinServlet.getCurrent().getServletContext());
+        this.productViewModel = contextHelper.getBean(ProductViewModel.class);
+        initLayout();
+        addComponents();
+        setSizeFull();
 
     }
 }

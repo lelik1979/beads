@@ -4,9 +4,13 @@ import com.lena.dao.ProductDao;
 import com.lena.dao.ProductPhotoDao;
 import com.lena.domain.Product;
 import com.lena.domain.ProductGroupView;
+import com.lena.vaadin.components.BeadsButtonModel;
 import com.lena.vaadin.listener.EventBus;
 import com.lena.vaadin.view.product.listener.ProductChangeEvent;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -16,6 +20,8 @@ import java.util.List;
  * Created by alexey.dranchuk on 9/1/15.
  */
 @Component
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+@Lazy
 public class ProductWindowModel {
 
     private Product product;
@@ -30,6 +36,9 @@ public class ProductWindowModel {
     private ProductPhotoDao productPhotoDao;
 
     private File uploadedFile;
+
+    @Autowired
+    private BeadsButtonModel saveButtonModel;
 
     public void setProduct(Product product) {
         this.product = product;
@@ -55,5 +64,9 @@ public class ProductWindowModel {
             uploadedFile = null;
         }
         eventBus.fireEvent(new ProductChangeEvent(product));
+    }
+
+    public BeadsButtonModel getSaveButtonModel() {
+        return saveButtonModel;
     }
 }

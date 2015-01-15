@@ -1,6 +1,6 @@
 package com.lena.vaadin.view.productgroup;
 
-import com.lena.vaadin.components.common.ButtonPanelModel;
+import com.lena.vaadin.components.BeadsButton;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
@@ -10,14 +10,14 @@ import org.slf4j.LoggerFactory;
 /**
  * Created by alexey.dranchuk on 29/12/14.
  */
-public class BottomPanel extends HorizontalLayout {
+public class ProductGroupBottomPanel extends HorizontalLayout {
 
-    public static final Logger LOG = LoggerFactory.getLogger(BottomPanel.class);
+    public static final Logger LOG = LoggerFactory.getLogger(ProductGroupBottomPanel.class);
 
-    private ButtonPanelModel model;
+    private ProductGroupBottomPanelModel model;
 
 
-    public BottomPanel(ButtonPanelModel model) {
+    public ProductGroupBottomPanel(ProductGroupBottomPanelModel model) {
         this.model = model;
         setMargin(true);
         setSizeUndefined();
@@ -27,7 +27,7 @@ public class BottomPanel extends HorizontalLayout {
     }
 
     private void addDeleteButton() {
-        Button deleteButton = new Button("Удалить", new Button.ClickListener() {
+        Button deleteButton = new BeadsButton("Удалить", model.getDeleteButtonModel(),new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent event) {
                 LOG.debug("Click on delete item");
@@ -39,7 +39,7 @@ public class BottomPanel extends HorizontalLayout {
     }
 
     private void addNewButton() {
-        Button newButton = new Button("Добавить", new Button.ClickListener() {
+        Button newButton = new BeadsButton("Добавить", model.getNewButtonModel(), new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent event) {
                 LOG.debug("Click on new  item");

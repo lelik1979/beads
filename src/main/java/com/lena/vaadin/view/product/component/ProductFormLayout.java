@@ -2,10 +2,11 @@ package com.lena.vaadin.view.product.component;
 
 import com.lena.domain.Product;
 import com.lena.domain.ProductGroupView;
+import com.lena.vaadin.components.BeadsButton;
 import com.lena.vaadin.components.common.BeadsBeanFieldGroup;
-import com.lena.vaadin.components.common.BeadsComboBox;
-import com.lena.vaadin.components.common.BeadsTextArea;
-import com.lena.vaadin.components.common.BeadsTextField;
+import com.lena.vaadin.components.BeadsComboBox;
+import com.lena.vaadin.components.BeadsTextArea;
+import com.lena.vaadin.components.BeadsTextField;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.FieldGroup;
 import com.vaadin.event.ShortcutAction;
@@ -15,7 +16,7 @@ import com.vaadin.ui.*;
 /**
  * Created by alexey.dranchuk on 9/1/15.
  */
-public class ProductFormLayout extends FormLayout {
+public class ProductFormLayout extends FormLayout implements Button.ClickListener {
 
     private ProductWindowModel model;
 
@@ -52,18 +53,7 @@ public class ProductFormLayout extends FormLayout {
     }
 
     private void addSaveButton(HorizontalLayout layout) {
-        Button saveButton = new Button("Сохранить", new Button.ClickListener() {
-            @Override
-            public void buttonClick(Button.ClickEvent event) {
-                try {
-                    binder.commit();
-                    model.saveProduct();
-                    closeParentWindow();
-                } catch (FieldGroup.CommitException e) {
-                    Notification.show("Error", "Валидация не прошла", Notification.Type.ERROR_MESSAGE);
-                }
-            }
-        });
+        Button saveButton = new BeadsButton("Сохранить", model.getSaveButtonModel(), this);
         layout.addComponent(saveButton);
     }
 
@@ -111,5 +101,16 @@ public class ProductFormLayout extends FormLayout {
     private void bindId() {
         BeadsTextField id = (BeadsTextField) bindAndAddComponent("№", Product.ID, BeadsTextField.class);
         id.setEnabled(false);
+    }
+
+    @Override
+    public void buttonClick(Button.ClickEvent event) {
+        try {
+            binder.commit();
+            model.saveProduct();
+            closeParentWindow();
+        } catch (FieldGroup.CommitException e) {
+            Notification.show("Error", "Валидация не прошла", Notification.Type.ERROR_MESSAGE);
+        }
     }
 }

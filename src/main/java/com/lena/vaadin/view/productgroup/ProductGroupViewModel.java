@@ -5,16 +5,19 @@ import com.lena.vaadin.listener.EventBus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 
 /**
  * Created by alexey.dranchuk on 29/12/14.
  */
-@Component(ProductGroupViewModel.BEAN_NAME)
+@Component
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+@Lazy
 public class ProductGroupViewModel {
-
-    public static final String BEAN_NAME = "ProductGroupViewModel";
 
     public static final Logger LOG = LoggerFactory.getLogger(ProductGroupViewModel.class);
 
@@ -25,11 +28,10 @@ public class ProductGroupViewModel {
     private ProductGroupTableModel productGroupTableModel;
 
     @Autowired
-    private BottomPanelModel bottomPanelModel;
+    private ProductGroupBottomPanelModel bottomPanelModel;
 
     @Autowired
     private EventBus eventBus;
-
 
     @PostConstruct
     private void initListeners() {
@@ -44,7 +46,7 @@ public class ProductGroupViewModel {
         return productGroupTableModel;
     }
 
-    public BottomPanelModel getBottomPanelModel() {
+    public ProductGroupBottomPanelModel getBottomPanelModel() {
         return bottomPanelModel;
     }
 }

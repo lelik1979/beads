@@ -1,6 +1,7 @@
 package com.lena.vaadin.components.common;
 
 
+import com.lena.vaadin.components.BeadsComboBox;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.DefaultFieldGroupFieldFactory;
 import com.vaadin.ui.Field;

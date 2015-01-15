@@ -1,6 +1,6 @@
 package com.lena.domain;
 
-import com.lena.vaadin.components.common.BeadsComboBoxCaption;
+import com.lena.vaadin.components.BeadsComboBoxCaption;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import javax.persistence.*;
@@ -37,7 +37,7 @@ public class ProductGroup implements BeadsComboBoxCaption {
     @OneToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
     @JoinColumn(table = ProductGroup.TABLE_NAME, name = "parent_id")
-    private List<ProductGroup> childGroups = new ArrayList<ProductGroup>();
+    private List<ProductGroup> childGroups = new ArrayList<>();
 
     @ManyToOne
     @Fetch(FetchMode.JOIN)

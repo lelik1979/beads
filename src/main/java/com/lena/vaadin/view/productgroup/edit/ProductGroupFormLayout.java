@@ -1,9 +1,10 @@
 package com.lena.vaadin.view.productgroup.edit;
 
 import com.lena.domain.ProductGroup;
+import com.lena.vaadin.components.BeadsButton;
 import com.lena.vaadin.components.common.BeadsBeanFieldGroup;
-import com.lena.vaadin.components.common.BeadsComboBox;
-import com.lena.vaadin.components.common.BeadsTextField;
+import com.lena.vaadin.components.BeadsComboBox;
+import com.lena.vaadin.components.BeadsTextField;
 import com.vaadin.data.fieldgroup.FieldGroup;
 import com.vaadin.ui.*;
 import java.util.List;
@@ -51,7 +52,7 @@ public class ProductGroupFormLayout extends FormLayout implements Button.ClickLi
     }
 
     private void addSaveButton(Layout layout) {
-        Button saveButton = new Button("Сохранить", this);
+        Button saveButton = new BeadsButton("Сохранить", model.getProductGroupSaveButtonModel(),this);
         layout.addComponent(saveButton);
     }
 

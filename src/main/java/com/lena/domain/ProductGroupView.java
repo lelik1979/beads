@@ -1,6 +1,6 @@
 package com.lena.domain;
 
-import com.lena.vaadin.components.common.BeadsComboBoxCaption;
+import com.lena.vaadin.components.BeadsComboBoxCaption;
 import javax.persistence.*;
 import java.io.Serializable;
 

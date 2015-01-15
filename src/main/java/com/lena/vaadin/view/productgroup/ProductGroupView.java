@@ -24,13 +24,6 @@ public class ProductGroupView extends Panel implements View {
 
     private ProductGroupViewModel productGroupWindowModel;
 
-    public ProductGroupView() {
-        super("Группы товаров");
-        SpringContextHelper contextHelper = new SpringContextHelper(VaadinServlet.getCurrent().getServletContext());
-        this.productGroupWindowModel = (ProductGroupViewModel) contextHelper.getBean(ProductGroupViewModel.BEAN_NAME);
-        init();
-    }
-
     private void init() {
         initLayout();
         addComponents();
@@ -46,7 +39,7 @@ public class ProductGroupView extends Panel implements View {
     }
 
     private void addBottomPanel() {
-        BottomPanel bp = new BottomPanel(productGroupWindowModel.getBottomPanelModel());
+        ProductGroupBottomPanel bp = new ProductGroupBottomPanel(productGroupWindowModel.getBottomPanelModel());
         layout.addComponent(bp);
     }
 
@@ -58,6 +51,9 @@ public class ProductGroupView extends Panel implements View {
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
-
+        setCaption("Группы товаров");
+        SpringContextHelper contextHelper = new SpringContextHelper(VaadinServlet.getCurrent().getServletContext());
+        this.productGroupWindowModel = contextHelper.getBean(ProductGroupViewModel.class);
+        init();
     }
 }
