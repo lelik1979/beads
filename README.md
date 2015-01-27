@@ -47,5 +47,3 @@ unset TMOUT
 
 #setup 'env' property with value 'uat' in openshift application 'uat'
 rhc set-env env=uat --app uat
-
-
