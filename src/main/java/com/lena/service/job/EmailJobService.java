@@ -4,8 +4,6 @@ import com.lena.dao.OrderDao;
 import com.lena.domain.Order;
 import com.lena.domain.OrderStatus;
 import com.lena.service.email.EmailService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -21,8 +19,6 @@ import java.util.List;
 @Transactional
 public class EmailJobService {
 
-    private static final Logger LOG = LoggerFactory.getLogger(EmailJobService.class);
-
     @Autowired
     private OrderDao orderDao;
 
@@ -31,7 +27,6 @@ public class EmailJobService {
 
     @Scheduled(cron = "${email.job.schedule}")
     public void processPendingOrders() {
-        LOG.debug("EMail service started");
         List<Order> pendingOrders = orderDao.loadPendingOrders();
         for (Order order : pendingOrders) {
             if (emailService.sendEmail(order))
