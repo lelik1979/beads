@@ -1,19 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
     <changeSet author="adranchuk" id="20">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="order_product"/>
+            </not>
+        </preConditions>
+
         <createTable tableName="order_product">
             <column name="order_id" type="INT"/>
             <column name="product_id" type="INT"/>
         </createTable>
     </changeSet>
+
     <changeSet author="adranchuk" id="21">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FK_order_id" foreignKeyTableName="order_product"/>
+            </not>
+        </preConditions>
         <addForeignKeyConstraint baseColumnNames="order_id" baseTableName="order_product" constraintName="FK_order_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="`order`"/>
     </changeSet>
+
     <changeSet author="adranchuk" id="22">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FK_product_id" foreignKeyTableName="order_product"/>
+            </not>
+        </preConditions>
+
         <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="order_product" constraintName="FK_product_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ID" referencedTableName="product"/>
     </changeSet>
 </databaseChangeLog>

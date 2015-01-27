@@ -1,5 +1,5 @@
-/.idea
-/*.iml
-/*.log
-/target
-atlassian-ide-plugin.xml
+**/.idea
+**/*.iml
+**/*.log
+**/target
+keystore

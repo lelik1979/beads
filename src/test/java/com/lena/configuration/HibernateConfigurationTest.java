@@ -14,11 +14,12 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 
 /**
- * Created by Administrator on 28.09.14.
+ * Created by alexey.dranchuk on 28.09.14.
+ *
  */
 @Configuration
 @ComponentScan(basePackages = {"com.lena.dao"})
-@PropertySource("classpath:/env/${env:dev}.properties")
+@PropertySource("classpath:/env/${env:db_dev}.properties")
 @EnableTransactionManagement(proxyTargetClass = true)
 public class HibernateConfigurationTest {
 
@@ -29,9 +30,9 @@ public class HibernateConfigurationTest {
     public DataSource beadDSTest() {
         DriverManagerDataSource ds = new org.springframework.jdbc.datasource.DriverManagerDataSource();
         ds.setDriverClassName(env.getProperty("driver", "com.mysql.jdbc.Driver"));
-        ds.setUsername(env.getProperty("username", "beads3"));
-        ds.setPassword(env.getProperty("password", "beads3"));
-        ds.setUrl(env.getProperty("url", "jdbc:log4jdbc:mysql://localhost:3306/beads3"));
+        ds.setUsername(env.getProperty("username", "beads"));
+        ds.setPassword(env.getProperty("password", "beads"));
+        ds.setUrl(env.getProperty("url", "jdbc:mysql://localhost:3306/beads3"));
         return ds;
     }
 

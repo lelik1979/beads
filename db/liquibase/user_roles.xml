@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
     <changeSet author="adranchuk" id="35">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <changeSetExecuted id="35" author="adranchuk" changeLogFile="user_roles.xml"/>
+            </not>
+        </preConditions>
+
         <createTable tableName="user_roles">
             <column autoIncrement="true" name="user_role_id" type="INT(10)">
                 <constraints primaryKey="true"/>
@@ -19,9 +24,22 @@
     </changeSet>
 
     <changeSet author="adranchuk" id="36">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <changeSetExecuted id="36" author="adranchuk" changeLogFile="user_roles.xml"/>
+            </not>
+        </preConditions>
+
         <addForeignKeyConstraint baseColumnNames="username" baseTableName="user_roles" constraintName="fk_username" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="username" referencedTableName="users"/>
     </changeSet>
+
     <changeSet author="adranchuk" id="37">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <changeSetExecuted id="37" author="adranchuk" changeLogFile="user_roles.xml"/>
+            </not>
+        </preConditions>
+
         <createIndex indexName="uni_username_role" tableName="user_roles" unique="true">
             <column name="ROLE"/>
             <column name="username"/>
@@ -29,6 +47,12 @@
     </changeSet>
 
     <changeSet id="38" author="adranchuk" >
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <changeSetExecuted id="38" author="adranchuk" changeLogFile="user_roles.xml"/>
+            </not>
+        </preConditions>
+
         <sql>
             insert into user_roles(username, role) values('admin', 'ROLE_ADMIN')
         </sql>
