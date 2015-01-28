@@ -6,9 +6,11 @@ http://openshift.github.io/documentation/oo_cartridge_guide.html#tomcat
 
 MySQL 5.5 database added.  Please make note of these credentials:
 
-       Root User: adminjWtFQq8
-   Root Password: 9cvX9c2QjfIF
-   Database Name: beads3
+   `Root User: adminjWtFQq8`
+
+   `Root Password: 9cvX9c2QjfIF`
+
+   `Database Name: beads3`
 
 Connection URL: mysql://$OPENSHIFT_MYSQL_DB_HOST:$OPENSHIFT_MYSQL_DB_PORT/
 

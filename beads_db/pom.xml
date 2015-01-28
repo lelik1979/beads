@@ -11,6 +11,8 @@
 
     <artifactId>beads_db</artifactId>
 
+    <packaging>jar</packaging>
+
     <version>1.0</version>
 
     <dependencies>

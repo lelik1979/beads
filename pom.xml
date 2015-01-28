@@ -19,6 +19,7 @@
     <modules>
         <module>beads_db</module>
         <module>beads_model</module>
+        <module>beads_email</module>
         <module>beads_web</module>
     </modules>
 
@@ -40,7 +41,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
-            <version>1.7.7</version>
+            <version>1.7.8</version>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
