@@ -11,7 +11,9 @@ import javax.sql.DataSource;
 
 /**
  * Created by alexey.dranchuk on 12/1/15.
+ *
  */
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true )
@@ -25,7 +27,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication().dataSource(dataSource)
                 .usersByUsernameQuery("select username,password, enabled from users where username=?")
                 .authoritiesByUsernameQuery("select username, role from user_roles where username=?");
-//        auth.inMemoryAuthentication().withUser("admin").password("123456").roles("ADMIN");
     }
 
     @Override

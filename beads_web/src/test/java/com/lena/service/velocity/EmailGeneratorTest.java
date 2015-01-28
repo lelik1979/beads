@@ -2,8 +2,8 @@ package com.lena.service.velocity;
 
 import com.lena.configuration.EmailConfiguration;
 import com.lena.configuration.HibernateConfigurationTest;
-import com.lena.domain.Order;
-import com.lena.domain.Product;
+import com.beads.model.domain.Order;
+import com.beads.model.domain.Product;
 import com.lena.service.job.EmailServiceConfigurationTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,7 +1,7 @@
 package com.lena.vaadin.view.product.component;
 
-import com.lena.domain.Product;
-import com.lena.domain.ProductGroupView;
+import com.beads.model.domain.Product;
+import com.beads.model.domain.ProductGroupView;
 import com.lena.vaadin.components.BeadsButton;
 import com.lena.vaadin.components.common.BeadsBeanFieldGroup;
 import com.lena.vaadin.components.BeadsComboBox;
@@ -15,6 +15,7 @@ import com.vaadin.ui.*;
 
 /**
  * Created by alexey.dranchuk on 9/1/15.
+ *
  */
 public class ProductFormLayout extends FormLayout implements Button.ClickListener {
 
@@ -89,6 +90,7 @@ public class ProductFormLayout extends FormLayout implements Button.ClickListene
         bindAndAddComponent("Код продукта", Product.PRODUCT_CODE, BeadsTextField.class);
     }
 
+    @SuppressWarnings("unchecked")
     private void bindParentGroup() {
         BeadsComboBox parent = (BeadsComboBox<ProductGroupView>) bindAndAddComponent("Группа товара", Product.PRODUCT_GROUP_VIEW, BeadsComboBox.class);
         parent.addItems(model.loadProductGroupViews());

@@ -1,6 +1,6 @@
 package com.lena.vaadin.view.productgroup.edit;
 
-import com.lena.domain.ProductGroup;
+import com.beads.model.domain.ProductGroup;
 import com.lena.vaadin.components.BeadsButton;
 import com.lena.vaadin.components.common.BeadsBeanFieldGroup;
 import com.lena.vaadin.components.BeadsComboBox;
@@ -12,6 +12,7 @@ import java.util.List;
 
 /**
  * Created by alexey.dranchuk on 7/1/15.
+ *
  */
 public class ProductGroupFormLayout extends FormLayout implements Button.ClickListener{
 

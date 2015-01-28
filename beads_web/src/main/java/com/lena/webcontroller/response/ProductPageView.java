@@ -1,17 +1,17 @@
 package com.lena.webcontroller.response;
 
-import com.lena.domain.Product;
-import com.lena.domain.ProductGroup;
-
+import com.beads.model.domain.Product;
+import com.beads.model.domain.ProductGroup;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by Administrator on 30.09.14.
+ * Created by alexey.dranchuk on 30.09.14.
+ *
  */
 public class ProductPageView {
 
-    private List<Product> products = new LinkedList<Product>();
+    private List<Product> products = new LinkedList<>();
 
     private String searchString;
 

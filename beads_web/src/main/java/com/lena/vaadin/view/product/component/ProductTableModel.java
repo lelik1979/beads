@@ -1,7 +1,7 @@
 package com.lena.vaadin.view.product.component;
 
-import com.lena.dao.ProductDao;
-import com.lena.domain.Product;
+import com.beads.model.dao.ProductDao;
+import com.beads.model.domain.Product;
 import com.lena.vaadin.listener.EventBus;
 import com.lena.vaadin.view.product.listener.ProductChangeEvent;
 import com.lena.vaadin.view.product.listener.ProductSearchEvent;

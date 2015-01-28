@@ -1,7 +1,7 @@
 package com.lena.vaadin.view.productgroup.edit;
 
-import com.lena.dao.ProductGroupDao;
-import com.lena.domain.ProductGroup;
+import com.beads.model.dao.ProductGroupDao;
+import com.beads.model.domain.ProductGroup;
 import com.lena.vaadin.components.BeadsButtonModel;
 import com.lena.vaadin.view.productgroup.ProductGroupTableModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * Created by alexey.dranchuk on 29/12/14.
+ *
  */
 @Component
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)

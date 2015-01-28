@@ -1,7 +1,7 @@
 package com.lena.webcontroller;
 
-import com.lena.dao.OrderDao;
-import com.lena.domain.Order;
+import com.beads.model.dao.OrderDao;
+import com.beads.model.domain.Order;
 import com.lena.domain.ShoppingCard;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * Created by Administrator on 28.09.14.
+ * Created by alexey.dranchuk on 28.09.14.
+ *
  */
 @Controller
 public class SubmitOrderController {

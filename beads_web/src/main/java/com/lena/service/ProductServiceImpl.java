@@ -1,17 +1,15 @@
 package com.lena.service;
 
-import com.lena.dao.ProductDao;
-import com.lena.domain.Product;
+import com.beads.model.dao.ProductDao;
+import com.beads.model.domain.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Administrator on 12.09.14.
+ * Created by alexey.dranchuk on 12.09.14.
+ *
  */
 @Service
 @Transactional

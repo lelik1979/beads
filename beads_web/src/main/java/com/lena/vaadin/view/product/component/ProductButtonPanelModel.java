@@ -1,6 +1,6 @@
 package com.lena.vaadin.view.product.component;
 
-import com.lena.domain.Product;
+import com.beads.model.domain.Product;
 import com.lena.vaadin.components.BeadsButtonModel;
 import com.vaadin.ui.UI;
 import org.slf4j.Logger;

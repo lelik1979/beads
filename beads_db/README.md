@@ -1,3 +1,6 @@
+#check what will be applied
+mvn liquibase:status -Denv=dev|uat|prod
+
 #deploy database done via liquibase and can be deployed using this command
 mvn liquibase:update -Denv=dev|prod|uat
 

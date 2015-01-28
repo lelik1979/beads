@@ -10,7 +10,8 @@ import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
 /**
- * Created by Administrator on 14.11.14.
+ * Created by alexey.dranchuk on 14.11.14.
+ *
  */
 @Configuration
 public class ThymeleafConfig {

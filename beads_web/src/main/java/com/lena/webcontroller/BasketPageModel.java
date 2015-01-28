@@ -1,12 +1,12 @@
 package com.lena.webcontroller;
 
-import com.lena.domain.Product;
-
+import com.beads.model.domain.Product;
 import java.math.BigDecimal;
 import java.util.List;
 
 /**
- * Created by Administrator on 10.11.14.
+ * Created by alexey.dranchuk on 10.11.14.
+ *
  */
 public class BasketPageModel {
 
@@ -32,10 +32,6 @@ public class BasketPageModel {
             total = total.add(p.getPrice());
         }
         return total;
-    }
-
-    public void setTotalPrice(BigDecimal totalPrice) {
-
     }
 
     public List<Product> getProducts() {

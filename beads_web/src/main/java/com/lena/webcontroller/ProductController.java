@@ -1,7 +1,7 @@
 package com.lena.webcontroller;
 
-import com.lena.dao.ProductGroupDao;
-import com.lena.domain.Product;
+import com.beads.model.dao.ProductGroupDao;
+import com.beads.model.domain.Product;
 import com.lena.domain.ShoppingCard;
 import com.lena.service.ProductService;
 import com.lena.webcontroller.response.ProductPageView;
@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import java.util.List;
 
 /**
- * Created by Administrator on 25.08.14.
+ * Created by alexey.dranchuk on 25.08.14.
+ *
  */
 @Controller
 public class ProductController {

@@ -2,10 +2,11 @@ package com.lena.vaadin.view.product.listener;
 
 import com.github.wolfie.blackboard.Event;
 import com.github.wolfie.blackboard.Listener;
-import com.lena.domain.Product;
+import com.beads.model.domain.Product;
 
 /**
  * Created by alexey.dranchuk on 10/1/15.
+ *
  */
 public class ProductChangeEvent implements Event {
 

@@ -9,8 +9,10 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 import javax.servlet.*;
 
 /**
- * Created by Administrator on 12.09.14.
+ * Created by alexey.dranchuk on 12.09.14.
+ *
  */
+
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override

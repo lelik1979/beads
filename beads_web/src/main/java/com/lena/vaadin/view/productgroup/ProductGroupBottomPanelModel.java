@@ -1,6 +1,6 @@
 package com.lena.vaadin.view.productgroup;
 
-import com.lena.domain.ProductGroup;
+import com.beads.model.domain.ProductGroup;
 import com.lena.vaadin.components.BeadsButtonModel;
 import com.lena.vaadin.view.productgroup.edit.ProductGroupWindow;
 import com.lena.vaadin.view.productgroup.edit.ProductGroupWindowModel;

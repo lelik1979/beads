@@ -1,16 +1,13 @@
 package com.lena.vaadin.view.productgroup;
 
-import com.lena.domain.ProductGroup;
-import com.vaadin.data.Item;
-import com.vaadin.ui.Tree;
+import com.beads.model.domain.ProductGroup;
 import com.vaadin.ui.TreeTable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
-
 /**
  * Created by alexey.dranchuk on 26/12/14.
+ *
  */
 public class ProductGroupTreeTable extends TreeTable {
 

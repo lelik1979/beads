@@ -1,12 +1,13 @@
 package com.lena.vaadin.view.product.component;
 
-import com.lena.domain.Product;
+import com.beads.model.domain.Product;
 import com.vaadin.ui.Table;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * Created by alexey.dranchuk on 8/1/15.
+ *
  */
 public class ProductTable extends Table {
 

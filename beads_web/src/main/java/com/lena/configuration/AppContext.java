@@ -6,18 +6,29 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
-
+import javax.annotation.Resource;
+import javax.sql.DataSource;
 import java.util.Locale;
 
 /**
- * Created by Administrator on 15.11.14.
+ * Created by alexey.dranchuk on 15.11.14.
+ *
  */
+
 @Configuration
 @EnableScheduling
-@ComponentScan(basePackages = { "com.lena.*"})
+@ComponentScan(basePackages = { "com.lena.*", "com.beads.model"})
 public class AppContext {
+
+    @Resource(mappedName = "jdbc/MySQLDS")
+    private DataSource dataSource;
+
+    @Bean
+    public DataSource dataSource() throws Exception {
+        return  dataSource;
+    }
+
 
     @Bean
     public ResourceBundleMessageSource messageSource() {

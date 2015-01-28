@@ -1,8 +1,8 @@
 package com.lena.service.job;
 
-import com.lena.dao.OrderDao;
-import com.lena.domain.Order;
-import com.lena.domain.OrderStatus;
+import com.beads.model.dao.OrderDao;
+import com.beads.model.domain.Order;
+import com.beads.model.domain.OrderStatus;
 import com.lena.service.email.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;

@@ -9,11 +9,11 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.util.ClassUtils;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
-
 import java.util.List;
 
 /**
- * Created by Administrator on 12.09.14.
+ * Created by alexey.dranchuk on 12.09.14.
+ *
  */
 @Configuration
 @EnableWebMvc

@@ -1,8 +1,8 @@
 package com.lena.webcontroller;
 
-import com.lena.domain.Order;
+import com.beads.model.domain.Order;
 import com.lena.domain.ShoppingCard;
-import com.lena.domain.Product;
+import com.beads.model.domain.Product;
 import com.lena.event.AddItemToOrderEvent;
 import com.lena.event.RemoveItemToOrderEvent;
 import com.lena.service.ProductService;
@@ -14,7 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * Created by Administrator on 25.08.14.
+ * Created by alexey.dranchuk on 25.08.14.
+ *
  */
 @Controller
 public class OrderController {
