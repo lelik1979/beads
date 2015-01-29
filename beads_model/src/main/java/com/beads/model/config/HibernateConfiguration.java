@@ -4,6 +4,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.orm.hibernate4.HibernateExceptionTranslator;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
@@ -19,20 +20,23 @@ import javax.sql.DataSource;
 @EnableTransactionManagement
 public class HibernateConfiguration {
 
+    public static final String TRANSACTION_MANAGER_NAME = "hibernateTransactionManager";
+
     @Autowired
     private DataSource dataSource;
 
 
     @Bean
-    public LocalSessionFactoryBean getHibernateSessionFactory() throws Exception {
+    public LocalSessionFactoryBean hibernateSessionFactory() throws Exception {
         LocalSessionFactoryBean lsfb = new LocalSessionFactoryBean();
         lsfb.setDataSource(dataSource);
         lsfb.setPackagesToScan("com.beads.model.domain");
         return lsfb;
     }
 
-    @Bean
-    public HibernateTransactionManager getTransactionManager(SessionFactory sf) throws Exception {
+    @Bean(name=TRANSACTION_MANAGER_NAME)
+    @Primary
+    public HibernateTransactionManager hibernateTransactionManager(SessionFactory sf) throws Exception {
         return  new HibernateTransactionManager(sf);
     }
 

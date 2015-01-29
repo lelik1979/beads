@@ -12,13 +12,15 @@ import java.util.List;
  */
 @Entity
 @Table(name = "`order`")
-@NamedQueries({ @NamedQuery(name = "LOAD_PENDING_ORDERS",
-        query = "from Order o where status = :status") })
 public class Order {
+
+    public static final String ID = "id";
+
+    public static final String STATUS = "status";
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = ID)
     private Integer id;
 
     @NotNull(message = "email can't be empty or null")
@@ -29,7 +31,7 @@ public class Order {
     @Type(type="text")
     private String orderDetails;
 
-    @Column(name = "status")
+    @Column(name = STATUS)
     @Enumerated(EnumType.STRING)
     private OrderStatus status = OrderStatus.PENDING;
 
@@ -37,7 +39,9 @@ public class Order {
     private String phoneNumber;
 
     @ManyToMany
-    @JoinTable(name = "order_product", joinColumns = { @JoinColumn(name = "order_id") }, inverseJoinColumns = { @JoinColumn(name = "product_id") })
+    @JoinTable(name = "order_product",
+            joinColumns = { @JoinColumn(name = "order_id") },
+            inverseJoinColumns = { @JoinColumn(name = "product_id") })
     private List<Product> products;
 
     public Order(List<Product> products) {

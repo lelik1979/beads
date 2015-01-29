@@ -1,21 +1,10 @@
 package com.beads.email.config;
 
-import com.beads.email.service.OrderEmailProcessor;
-import com.beads.email.service.OrderItemReader;
-import com.beads.model.domain.Order;
-import org.springframework.batch.core.Job;
-import org.springframework.batch.core.Step;
-import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
-import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
-import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
-import org.springframework.batch.core.launch.support.RunIdIncrementer;
-import org.springframework.batch.item.ItemProcessor;
-import org.springframework.batch.item.ItemReader;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.*;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 
 /**
  * Created by alexey.dranchuk on 28/1/15.
@@ -24,42 +13,30 @@ import org.springframework.context.annotation.Configuration;
 
 @ComponentScan(basePackages = {"com.beads.model", "com.beads.email"})
 @Configuration
-@EnableAutoConfiguration
-@EnableBatchProcessing
+@EnableScheduling
+@PropertySource("email/${env}.properties")
 public class EmailConfiguration {
 
-    @Autowired
-    private OrderItemReader orderItemReader;
-
-    @Autowired
-    private OrderEmailProcessor orderEmailProcessor;
-
     @Bean
-    public ItemReader<Order> reader() {
-        return orderItemReader;
+    public ThreadPoolTaskExecutor threadPoolTaskExecutor() {
+        ThreadPoolTaskExecutor poolTaskExecutor = new ThreadPoolTaskExecutor();
+        poolTaskExecutor.setCorePoolSize(10);
+        poolTaskExecutor.setMaxPoolSize(10);
+        poolTaskExecutor.setWaitForTasksToCompleteOnShutdown(true);
+        poolTaskExecutor.setThreadNamePrefix("emailSenderThreadPoolTaskExecutor-");
+        return poolTaskExecutor;
     }
 
     @Bean
-    public ItemProcessor<Order, Order> processor() {
-        return orderEmailProcessor;
+    public ThreadPoolTaskScheduler threadPoolTaskScheduler() {
+        ThreadPoolTaskScheduler taskScheduler = new ThreadPoolTaskScheduler();
+        taskScheduler.setThreadNamePrefix("emailSenderThreadPoolTaskScheduler-");
+        taskScheduler.setWaitForTasksToCompleteOnShutdown(true);
+        return new ThreadPoolTaskScheduler();
     }
 
     @Bean
-    public Job importUserJob(JobBuilderFactory jobs, Step s1) {
-        return jobs.get("sendOrderEmails")
-                .incrementer(new RunIdIncrementer())
-                .flow(s1)
-                .end()
-                .build();
-    }
-
-    @Bean
-    public Step step1(StepBuilderFactory stepBuilderFactory) {
-        return stepBuilderFactory.get("sendEmail")
-                .<Order, Order> chunk(10)
-                .reader(orderItemReader)
-                .processor(orderEmailProcessor)
-//                .writer(writer)
-                .build();
+    public PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+        return new PropertySourcesPlaceholderConfigurer();
     }
 }
