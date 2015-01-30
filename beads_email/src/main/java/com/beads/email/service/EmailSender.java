@@ -1,7 +1,6 @@
-package com.lena.service.email;
+package com.beads.email.service;
 
 import com.beads.model.domain.Order;
-import com.lena.service.velocity.EmailGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +12,14 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 /**
- * Created by alexey.dranchuk on 29.09.14.
+ * Created by alexey.dranchuk on 29/1/15.
  *
  */
-@Service
-public class EmailService {
 
-    public static final Logger LOG = LoggerFactory.getLogger(EmailService.class);
+@Service
+public class EmailSender {
+
+    public static final Logger LOG = LoggerFactory.getLogger(EmailSender.class);
 
     @Autowired
     private JavaMailSender mailSender;

@@ -2,6 +2,7 @@ package com.beads.email.service;
 
 import com.beads.email.config.Constant;
 import com.beads.email.util.Batch;
+import com.beads.model.dao.BaseDao;
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class BatchSpliter {
     }
 
     public Integer getMaxQuerySize() {
-        return env.getProperty(Constant.MAX_QUERY_SIZE, Integer.class, 10000);
+        return env.getProperty(Constant.MAX_QUERY_SIZE, Integer.class, BaseDao.MAX_ROW_RESULT);
     }
 
     public Integer getBatchSize() {

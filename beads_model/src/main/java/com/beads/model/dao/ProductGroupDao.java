@@ -3,7 +3,8 @@ package com.beads.model.dao;
 import com.beads.model.constant.Constant;
 import com.beads.model.domain.ProductGroup;
 import org.springframework.security.access.prepost.PreAuthorize;
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 /**

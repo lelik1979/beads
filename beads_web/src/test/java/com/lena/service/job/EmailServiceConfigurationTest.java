@@ -4,6 +4,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.test.context.ContextConfiguration;
+
 import java.util.Properties;
 
 /**
@@ -12,6 +14,7 @@ import java.util.Properties;
 
 @Configuration
 @ComponentScan(basePackages = {"com.lena.service"})
+//@ContextConfiguration(classes = com.beads.email.config.EmailConfiguration.class)
 public class EmailServiceConfigurationTest {
 
     @Bean

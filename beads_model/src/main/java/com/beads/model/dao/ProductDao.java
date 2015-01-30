@@ -4,7 +4,8 @@ import com.beads.model.constant.Constant;
 import com.beads.model.domain.Product;
 import com.beads.model.domain.ProductGroupView;
 import org.springframework.security.access.prepost.PreAuthorize;
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 /**

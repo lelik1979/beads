@@ -1,4 +1,4 @@
-package com.lena.service.velocity;
+package com.beads.email.service;
 
 import com.beads.model.domain.Order;
 import org.apache.velocity.app.VelocityEngine;
@@ -11,9 +11,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by alexey.dranchuk on 11.11.14.
+ * Created by alexey.dranchuk on 29/1/15.
  *
  */
+
 @Service
 public class EmailGenerator {
 

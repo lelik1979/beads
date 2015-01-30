@@ -2,6 +2,7 @@ package com.beads.email.dao;
 
 import com.beads.model.domain.Order;
 import com.beads.model.domain.OrderStatus;
+import org.hibernate.Hibernate;
 import org.hibernate.SQLQuery;
 import org.hibernate.type.IntegerType;
 import org.springframework.context.annotation.Primary;
@@ -33,8 +34,10 @@ public class OrderDaoImpl extends com.beads.model.dao.OrderDaoImpl implements Or
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public int saveOrUpdate(Order order) {
-        return super.saveOrUpdate(order);
+    public Order loadOrderById(int orderId) {
+        Order order = super.loadOrderById(orderId);
+        Hibernate.initialize(order.getProducts());
+        getSession().evict(order);
+        return order;
     }
 }

@@ -1,0 +1,62 @@
+package com.beads.email.config;
+
+import org.apache.velocity.app.VelocityEngine;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.core.env.Environment;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.ui.velocity.VelocityEngineFactoryBean;
+import java.io.IOException;
+import java.util.Properties;
+
+/**
+ * Created by alexey.dranchuk on 29/1/15.
+ *
+ */
+
+@Configuration
+@PropertySource("email/${env:dev}.properties")
+public class EmailSenderConfig {
+
+    @Autowired
+    private Environment env;
+
+    @Bean
+    public VelocityEngine buildVelocityEngine() throws IOException {
+        VelocityEngineFactoryBean velocityEngine = new VelocityEngineFactoryBean();
+        Properties prop = new Properties();
+        prop.setProperty("resource.loader", "class");
+        prop.setProperty("class.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
+        velocityEngine.setVelocityProperties(prop);
+        return velocityEngine.createVelocityEngine();
+    }
+
+    @Bean
+    public JavaMailSender javaMailSender() {
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost(getStringProperty("smtp.host"));
+        mailSender.setPort(env.getProperty("smtp.port", Integer.class));
+        mailSender.setUsername(getStringProperty("smtp.user"));
+        mailSender.setPassword(getStringProperty("smtp.password"));
+        Properties props = new Properties();
+        props.put("mail.smtp.starttls.enable", true);
+        props.put("mail.smtps.auth", true);
+        mailSender.setJavaMailProperties(props);
+        return mailSender;
+    }
+
+
+    private String getStringProperty(String propertyName) {
+        return env.getProperty(propertyName);
+    }
+
+    @Bean
+    public PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+        return new PropertySourcesPlaceholderConfigurer();
+    }
+
+}
