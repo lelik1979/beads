@@ -17,7 +17,7 @@ import java.util.Properties;
  */
 
 @Configuration
-@PropertySource("${env}.properties")
+@PropertySource("${env:dev}.properties")
 @Import(HibernateConfiguration.class)
 public class DbConfig {
 
@@ -37,6 +37,8 @@ public class DbConfig {
         prop.setProperty("username", environment.getProperty("username"));
         prop.setProperty("password", environment.getProperty("password"));
         prop.setProperty("defaultAutoCommit", "false");
+        prop.setProperty("characterEncoding", "utf8");
+        prop.setProperty("autoReconnect", "true");
         return prop;
     }
 
