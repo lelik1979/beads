@@ -31,7 +31,7 @@ public class BatchSpliter {
     }
 
     public Integer getBatchSize() {
-        return env.getProperty(Constant.BATCH_SIZE, Integer.class, 1000);
+        return env.getProperty(Constant.BATCH_SIZE, Integer.class, 100);
     }
 
     public List<Batch> splitByBatches(List<Integer> orders) {

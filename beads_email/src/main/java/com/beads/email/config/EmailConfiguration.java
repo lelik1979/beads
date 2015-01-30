@@ -13,8 +13,6 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 
 @ComponentScan(basePackages = {"com.beads.model", "com.beads.email"})
 @Configuration
-@EnableScheduling
-@PropertySource("email/${env}.properties")
 public class EmailConfiguration {
 
     @Bean

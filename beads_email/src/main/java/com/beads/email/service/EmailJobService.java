@@ -32,7 +32,6 @@ public class EmailJobService {
     @Autowired
     private EmailSenderService emailSenderService;
 
-    @Scheduled(cron = "${email.job.schedule}")
     public void processPendingOrders() throws InterruptedException {
         LOG.debug("email job");
         List<Integer> orders;
@@ -40,7 +39,7 @@ public class EmailJobService {
             orders = orderDao.loadPendingOrderIds();
             processRows(orders);
         } while (orders.size() == batchSpliter.getMaxQuerySize());
-
+        executor.shutdown();
     }
 
     private void processRows(List<Integer> orders) throws InterruptedException {
@@ -48,7 +47,7 @@ public class EmailJobService {
             executor.execute(new EmailSenderTask(batch, emailSenderService));
         }
         while (executor.getActiveCount() != 0) {
-            Thread.sleep(5000);
+            Thread.sleep(3000);
         }
     }
 }
