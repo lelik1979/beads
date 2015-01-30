@@ -33,8 +33,4 @@ public class EmailConfiguration {
         return new ThreadPoolTaskScheduler();
     }
 
-    @Bean
-    public PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-        return new PropertySourcesPlaceholderConfigurer();
-    }
 }
