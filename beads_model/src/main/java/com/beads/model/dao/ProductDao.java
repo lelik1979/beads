@@ -1,11 +1,8 @@
 package com.beads.model.dao;
 
-import com.beads.model.constant.Constant;
 import com.beads.model.domain.Product;
 import com.beads.model.domain.ProductGroupView;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 /**
@@ -15,7 +12,7 @@ import java.util.List;
 @Transactional
 public interface ProductDao {
 
-    List<Product> findAllProducts();
+    List<Product> loadProducts();
 
     Product loadProductById(Integer id);
 
@@ -25,9 +22,7 @@ public interface ProductDao {
 
     List<ProductGroupView> loadAllProductGroupView();
 
-    @PreAuthorize(Constant.HAS_ROLE_ADMIN)
     void saveOrUpdate(Product product);
 
-    @PreAuthorize(Constant.HAS_ROLE_ADMIN)
     void removeProduct(Product product);
 }

@@ -31,7 +31,7 @@
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>3.0.5</version>
                 <configuration>
-                    <propertyFile>${project.parent.basedir}/src/main/resources/env/${env}.properties</propertyFile>
+                    <propertyFile>${project.parent.basedir}/env/${env}_db.properties</propertyFile>
                     <propertyFileWillOverride>true</propertyFileWillOverride>
                     <changeLogFile>liquibase/changelog-master.xml</changeLogFile>
                     <logging>INFO</logging>

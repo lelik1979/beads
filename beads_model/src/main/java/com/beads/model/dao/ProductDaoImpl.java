@@ -17,7 +17,7 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<Product> findAllProducts() {
+    public List<Product> loadProducts() {
         Criteria crt = getSession().createCriteria(Product.class);
         crt.addOrder(Order.desc(Product.ID));
         crt.setMaxResults(MAX_ROW_RESULT);

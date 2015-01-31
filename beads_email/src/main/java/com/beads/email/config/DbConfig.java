@@ -17,7 +17,7 @@ import java.util.Properties;
  */
 
 @Configuration
-@PropertySource("${env:dev}.properties")
+@PropertySource("${env:dev}_db.properties")
 @Import(HibernateConfiguration.class)
 public class DbConfig {
 
@@ -32,7 +32,7 @@ public class DbConfig {
 
     private Properties getProperties() {
         Properties prop = new Properties();
-        prop.setProperty("driverClassName", environment.getProperty("driverClassName", "com.mysql.jdbc.Driver"));
+        prop.setProperty("driverClassName", environment.getProperty("driver", "com.mysql.jdbc.Driver"));
         prop.setProperty("url", environment.getProperty("url", "jdbc:mysql://localhost:3306/beads3"));
         prop.setProperty("username", environment.getProperty("username"));
         prop.setProperty("password", environment.getProperty("password"));
