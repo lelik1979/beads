@@ -7,9 +7,6 @@ import org.hibernate.SQLQuery;
 import org.hibernate.type.IntegerType;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 /**
