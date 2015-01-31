@@ -30,6 +30,7 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<Product> searchProductBySearchString(String searchString) {
         Criteria crt = getSession().createCriteria(Product.class);
         crt.add(buildSearchRestriction(searchString));
@@ -39,6 +40,7 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<Product> loadProductByGroupId(Integer groupId) {
         Criteria crt = getSession().createCriteria(Product.class);
         crt.add(Restrictions.eq(Product.GROUP_ID, groupId));
@@ -47,6 +49,7 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<ProductGroupView> loadAllProductGroupView() {
         Criteria crt = getSession().createCriteria(ProductGroupView.class);
         crt.add(Restrictions.isNotNull(ProductGroupView.PARENT_ID));
