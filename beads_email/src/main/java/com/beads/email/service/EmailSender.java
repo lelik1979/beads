@@ -37,7 +37,7 @@ public class EmailSender {
         try {
             prepareAndSendMailToManager(order);
             return true;
-        } catch (MessagingException ex) {
+        } catch (Exception ex) {
             LOG.warn("There was a problem during sending email", ex);
             return false;
         }

@@ -1,5 +1,6 @@
 package com.beads.model.dao;
 
+import com.beads.model.builder.OrderBuilder;
 import com.beads.model.domain.Order;
 import com.beads.model.domain.Product;
 import org.junit.Assert;
@@ -24,9 +25,16 @@ public class OrderDaoTest extends CommonDaoIT {
     private ProductDao productDao;
 
     @Test
+    public void loadOrderByIdFromDB() {
+        Order order = orderDao.loadOrderById(65);
+    }
+
+    @Test
+    @Rollback(true)
     public void loadOrderById() {
-        Order order = new Order();
-        order.setEmail("email3");
+        Order order = new OrderBuilder()
+                .withProducts(buildProducts())
+                .build();
         orderDao.saveOrUpdate(order);
         Integer orderId = order.getId();
         order = orderDao.loadOrderById(orderId);
@@ -36,17 +44,16 @@ public class OrderDaoTest extends CommonDaoIT {
     @Test
     @Rollback(true)
     public void saveOrder() {
-        Order order = new Order();
-        order.setEmail("email3");
-        order.setOrderDetails("detail3");
-        order.setProducts(buildProducts());
+        Order order = new OrderBuilder()
+                .withProducts(buildProducts())
+                .build();
         orderDao.saveOrUpdate(order);
     }
 
     private List<Product> buildProducts() {
         List<Product> products = new LinkedList<>();
-        products.add(productDao.loadProductById(3));
-        products.add(productDao.loadProductById(4));
+        products.add(productDao.loadProductById(13));
+        products.add(productDao.loadProductById(14));
         return products;
     }
 }

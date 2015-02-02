@@ -1,6 +1,7 @@
 package com.beads.model.domain;
 
 import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
@@ -38,11 +39,15 @@ public class Order {
     @Column(name="phone_number")
     private String phoneNumber;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "order_product",
             joinColumns = { @JoinColumn(name = "order_id") },
             inverseJoinColumns = { @JoinColumn(name = "product_id") })
     private List<Product> products;
+
+    @Column(name = "modified_date")
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    private DateTime modifyDate = DateTime.now();
 
     public Order(List<Product> products) {
         this.products = products;
@@ -111,4 +116,11 @@ public class Order {
         return total;
     }
 
+    public void setModifyDate(DateTime modifyDate) {
+        this.modifyDate = modifyDate;
+    }
+
+    public DateTime getModifyDate() {
+        return modifyDate;
+    }
 }

@@ -3,6 +3,7 @@ package com.beads.model.builder;
 import com.beads.model.domain.Order;
 import com.beads.model.domain.OrderStatus;
 import com.beads.model.domain.Product;
+import org.joda.time.DateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,12 +24,18 @@ public class OrderBuilder {
 
     private void initDefault() {
         order = new Order();
-        withId(1);
+//        withId(1);
         withEmail("fakeEmail@dot.com");
         withOrderDetails("orderDetails");
         withStatus(OrderStatus.PENDING);
         withPhoneNumber("1234567890");
+        withModifiedDate(DateTime.now());
         withProducts(buildDefaultProducts());
+    }
+
+    private OrderBuilder withModifiedDate(DateTime modifiedDate) {
+        order.setModifyDate(modifiedDate);
+        return this;
     }
 
     public List<Product> buildDefaultProducts() {

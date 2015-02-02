@@ -30,11 +30,4 @@ public class OrderDaoImpl extends com.beads.model.dao.OrderDaoImpl implements Or
         return query.list();
     }
 
-    @Override
-    public Order loadOrderById(int orderId) {
-        Order order = super.loadOrderById(orderId);
-        Hibernate.initialize(order.getProducts());
-        getSession().evict(order);
-        return order;
-    }
 }

@@ -15,9 +15,9 @@ import java.util.List;
  */
 
 @Service
-public class EmailJobService {
+public class EmailJob {
 
-    public static final Logger LOG = LoggerFactory.getLogger(EmailJobService.class);
+    public static final Logger LOG = LoggerFactory.getLogger(EmailJob.class);
 
     @Autowired
     private OrderDao orderDao;

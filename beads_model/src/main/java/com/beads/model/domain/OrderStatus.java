@@ -8,6 +8,7 @@ package com.beads.model.domain;
 public enum OrderStatus {
 
     PENDING("PENDING"),
+    ERROR("ERROR"),
     COMPLETE("COMPLETE");
 
     private String dbValue;
