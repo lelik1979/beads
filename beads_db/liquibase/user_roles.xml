@@ -17,7 +17,7 @@
             <column name="username" type="VARCHAR(45)">
                 <constraints nullable="false"/>
             </column>
-            <column name="ROLE" type="VARCHAR(45)">
+            <column name="role" type="VARCHAR(45)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -41,8 +41,8 @@
         </preConditions>
 
         <createIndex indexName="uni_username_role" tableName="user_roles" unique="true">
-            <column name="ROLE"/>
             <column name="username"/>
+            <column name="role"/>
         </createIndex>
     </changeSet>
 
