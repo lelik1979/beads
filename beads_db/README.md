@@ -1,7 +1,7 @@
 #check what will be applied
 mvn clean compile liquibase:status -Denv=dev|uat|prod
 
-#generate sql which will be applied.  migrationSql.sql will be populated
+#generate sql which will be applied.  target/migrationSql.sql will be populated
 mvn clean compile  liquibase:updateSQL -Denv=dev
 
 #deploy database done via liquibase and can be deployed using this command
