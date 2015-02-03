@@ -15,11 +15,15 @@
 
     <version>1.0</version>
 
+    <properties>
+        <liquibase.version>3.3.2</liquibase.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
-            <version>3.3.0</version>
+            <version>${liquibase.version}</version>
         </dependency>
     </dependencies>
 
@@ -35,7 +39,7 @@
             <plugin>
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-maven-plugin</artifactId>
-                <version>3.3.2</version>
+                <version>${liquibase.version}</version>
                 <configuration>
                     <propertyFile>${project.build.directory}/classes/${env}_db.properties</propertyFile>
                     <propertyFileWillOverride>true</propertyFileWillOverride>
