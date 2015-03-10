@@ -31,7 +31,7 @@ public class ProductTable extends Table {
     private void setColumnNames() {
         setColumnHeader(Product.ID, "№");
         setColumnWidth(Product.ID, 30);
-        setColumnHeader(Product.PRODUCT_CODE, "Код продукта");
+        setColumnHeader(Product.PRODUCT_CODE, "Артикул");
         setColumnWidth(Product.PRODUCT_CODE, 80);
         setColumnHeader(Product.PRICE, "Цена (грн)");
         setColumnWidth(Product.PRICE, 80);

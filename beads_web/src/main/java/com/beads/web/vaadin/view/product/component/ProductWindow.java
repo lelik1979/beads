@@ -12,7 +12,7 @@ public class ProductWindow extends Window {
     public ProductWindow(ProductWindowModel model) {
         setCaption("Товар " + model.getProduct().getName());
         setModal(true);
-        setHeight(400, Unit.POINTS);
+        setHeight(440, Unit.POINTS);
         setWidth(620, Unit.POINTS);
         setImmediate(true);
         center();
