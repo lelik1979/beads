@@ -9,10 +9,12 @@
               password="beads"
               driverClassName="com.mysql.jdbc.Driver"
               factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
-              url="jdbc:mysql://localhost:3306/beads3"
-              connectionProperties="characterEncoding=utf8;autoReconnect=true"
+              url="jdbc:mysql://localhost:3306/beads3?characterEncoding=utf8"
               maxActive="15"
               maxIdle="7"
+              testOnBorrow="true"
+              removeAbandoned="true"
+              testWhileIdle="true"
               defaultTransactionIsolation="READ_COMMITTED"
               validationQuery="Select 1" />
 

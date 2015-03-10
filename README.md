@@ -52,3 +52,13 @@ rhc set-env env=uat --app uat
 
 #change deployment branch
 rhc app-configure [app_name] --deployment-branch [branch_name]
+
+
+#clean up space
+rhc app-tidy uat
+
+#show 50 biggest files/directories
+du -h * | sort -rh | head -50
+
+#show quota limits
+$ quota -s

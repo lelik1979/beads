@@ -37,11 +37,14 @@
               driverClassName="com.mysql.jdbc.Driver"
               username="${OPENSHIFT_MYSQL_DB_USERNAME}"
               password="${OPENSHIFT_MYSQL_DB_PASSWORD}"
-              connectionProperties="characterEncoding=utf8;autoReconnect=true"
+              connectionProperties="characterEncoding=utf8"
               auth="Container"
               type="javax.sql.DataSource"
               maxActive="20"
               maxIdle="5"
+              testOnBorrow="true"
+              removeAbandoned="true"
+              testWhileIdle="true"
               maxWait="10000"
               />
 
