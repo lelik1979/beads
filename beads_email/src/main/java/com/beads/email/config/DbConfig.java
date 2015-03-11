@@ -17,7 +17,7 @@ import java.util.Properties;
  */
 
 @Configuration
-@PropertySource("${env:dev}_db.properties")
+@PropertySource("${db_prop:db}.properties")
 @Import(HibernateConfiguration.class)
 public class DbConfig {
 

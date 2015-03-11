@@ -14,10 +14,6 @@
             <outputDirectory>/config</outputDirectory>
         </fileSet>
         <fileSet>
-            <directory>../env</directory>
-            <outputDirectory>/config</outputDirectory>
-        </fileSet>
-        <fileSet>
             <directory>${basedir}/src/main/bin</directory>
             <outputDirectory>/bin</outputDirectory>
             <fileMode>0755</fileMode>
