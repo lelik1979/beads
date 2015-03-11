@@ -10,7 +10,7 @@
             </not>
         </preConditions>
 
-        <createTable tableName="`order`">
+        <createTable tableName="order">
             <column autoIncrement="true" name="id" type="INT">
                 <constraints primaryKey="true" primaryKeyName="PK_ORDER"/>
             </column>

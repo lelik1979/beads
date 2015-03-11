@@ -8,9 +8,9 @@ mvn clean compile  liquibase:updateSQL -Denv=dev
 mvn clean compile liquibase:update -Denv=dev|prod|uat
 
 #setup ssh tunel to mysql on UAT
-ssh -X -L3307:127.7.245.2:3306  548c34854382ec18600000a9@uat-igle.rhcloud.com
+ssh -L3307:127.8.30.2:3306  55005f124382ec4a6a00014d@uat1-igle.rhcloud.com
 
 #setup ssh tunel to mysql on PROD
-ssh -X -L3308:127.6.110.130:3306  54889dd8e0b8cdfdb500002e@na-igle.rhcloud.com
+ssh -L3308:127.6.110.130:3306  54889dd8e0b8cdfdb500002e@na-igle.rhcloud.com
 
 DB customization done via env/[dev|prod|uat]_db.properties file
