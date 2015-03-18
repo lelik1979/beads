@@ -1,7 +1,6 @@
 package com.beads.web.configuration;
 
-import com.github.dandelion.datatables.thymeleaf.dialect.DataTablesDialect;
-import com.github.dandelion.thymeleaf.dialect.DandelionDialect;
+import net.sourceforge.pagesdialect.PagesDialect;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
@@ -32,8 +31,7 @@ public class ThymeleafConfig {
     public SpringTemplateEngine templateEngine() {
         SpringTemplateEngine engine = new SpringTemplateEngine();
         engine.setTemplateResolver(templateResolver());
-        engine.addDialect(new DandelionDialect());
-        engine.addDialect(new DataTablesDialect());
+        engine.addDialect(new PagesDialect());
         return engine;
     }
 

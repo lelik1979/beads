@@ -1,40 +1,40 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:dt="dandelion/datatables">
-
-<head>
-
-</head>
-
-<body>
+      xmlns:th="http://www.thymeleaf.org">
 
 <div th:fragment="main">
-    <table id="Tableproducts" class="table table-striped"
-            dt:table="true" dt:filterable="false" dt:pageable="true" dt:paginationType="four_button" dt:sortable="false"
-           >
-        <thead>
-        <tr>
-            <th></th>
-            <th></th>
-        </tr>
-        </thead>
-        <tr th:each="item : ${pv.products}">
-            <td>
-                <img class="img-zoom" th:src="@{getPhoto?id=}+${item.id}" width="130" style="float:left; padding: 10px" alt="no image">
-<!--                <a th:href="@{/showProduct?id=}+${item.id}"> -->
-                <div th:inline="text">
-                    <p><b>артикул</b> : [[${item.productCode}]]</p>
-                    <p><b>Название</b> : [[${item.name}]]</p>
-                    <p><b>Описание</b> : [[${item.description}]]</p>
-                    <p><b>Цена : [[${item.price}]] грн.</b></p>
+    <table id="Tableproducts" class="table table-striped">
+        <tr th:each="rowItem : ${pv.ProductTableList}" pages:paginate="10">
+            <td th:each="item : ${rowItem}" align="center">
+                <div class="center">
+                    <a th:href="@{/showProduct?id=}+${item.id}">
+                        <div th:text="${item.name}">
+                            Название продукта
+                        </div>
+                    </a>
+                    <div th:text="${item.productCode}" style="font-weight: bold;">
+                        Артикул
+                    </div>
+                    <div class="center">
+                        <a th:href="@{/showProduct?id=}+${item.id}">
+                            <img th:src="@{getPhoto?id=}+${item.id}" alt="no image" class="picture">
+                            </img>
+                        </a>
+                    </div>
+                    <div style="min-height: 20px">
+                        &nbsp;
+                    </div>
+                    <div style="display: block">
+                        <span th:text="${item.price}">
+
+                        </span>
+                         грн
+                        <button class="btn" th:id="${item.id}" onclick="addToBasket($(this))">
+                            Добавить в заказ
+                        </button>
+                    </div>
+
                 </div>
-<!--                </a> -->
-                </img>
-            </td>
-            <td  style="vertical-align: middle;">
-                <button class="btn" th:id="${item.id}" style="float: right" onclick="addToBasket($(this))">Добавить в заказ
-                </button>
             </td>
         </tr>
     </table>
@@ -49,7 +49,8 @@
                 <div>
                     <ul>
                         <li th:each="subCat : ${category.childGroups}"><a th:text="${subCat.name}"
-                                                                          th:href="@{/loadProductsByGroupId?(groupId=${subCat.id})}"></a></li>
+                                                                          th:href="@{/loadProductsByGroupId?(groupId=${subCat.id})}"></a>
+                        </li>
                     </ul>
                 </div>
             </li>
@@ -64,7 +65,9 @@
         <input type="search" class="form-control" name="searchString" th:field="${pv.searchString}" style="width:500px"/>
         <button id="btnSearch" type="submit" class="btn btn-default" style="margin-top: -10px">Поиск</button>
     </form>
-    <div th:if="${pv.size == 0}" style="text-align: center; margin-left: -200px" class="alert alert-error">По вашему запросу ничего не найдено</div>
+    <div th:if="${pv.size == 0}" style="text-align: center; margin-left: -200px" class="alert alert-error">По вашему запросу
+        ничего не найдено
+    </div>
 </div>
 
 <div th:fragment="head">
@@ -75,7 +78,9 @@
 
                 <div class="nav-collapse collapse">
                     <ul class="nav">
-                        <a class="btn btn-primary" th:href="@{/showBasket}">Показать содержимое корзины</a>
+                        <a class="btn btn-primary" th:href="@{/showBasket}">
+                            Показать содержимое корзины
+                        </a>
                     </ul>
                 </div>
             </div>
@@ -83,7 +88,5 @@
     </div>
 
 </div>
-
-</body>
 
 </html>

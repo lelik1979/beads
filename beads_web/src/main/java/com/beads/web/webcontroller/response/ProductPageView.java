@@ -2,6 +2,8 @@ package com.beads.web.webcontroller.response;
 
 import com.beads.model.domain.Product;
 import com.beads.model.domain.ProductGroup;
+import com.google.gwt.thirdparty.guava.common.collect.Lists;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -10,6 +12,8 @@ import java.util.List;
  *
  */
 public class ProductPageView {
+
+    public static final int COLUMN_COUNT = 3;
 
     private List<Product> products = new LinkedList<>();
 
@@ -43,5 +47,9 @@ public class ProductPageView {
 
     public void setProducts(List<Product> products) {
         this.products = products;
+    }
+
+    public List<List<Product>> getProductTableList() {
+        return Lists.partition(products, COLUMN_COUNT);
     }
 }
