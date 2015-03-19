@@ -2,6 +2,8 @@ package com.beads.web.webcontroller;
 
 import com.beads.model.dao.ProductDao;
 import com.beads.model.domain.Product;
+import com.beads.web.webcontroller.response.PageViewBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,10 +20,13 @@ public class ProductDetailController {
     @Resource
     private ProductDao productDao;
 
+    @Autowired
+    private PageViewBuilder pageViewBuilder;
+
     @RequestMapping(value = "/showProduct", method = RequestMethod.GET)
     public String getMainData(Model model, @RequestParam("id")int productId) {
-        Product product = productDao.loadProductById(productId);
-        model.addAttribute("product", product);
+        pageViewBuilder.populateProductDetailView(model, productId);
         return "/productView";
     }
+
 }

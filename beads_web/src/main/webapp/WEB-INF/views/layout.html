@@ -4,7 +4,7 @@
 
 <div th:fragment="main">
     <table id="Tableproducts" class="table table-striped">
-        <tr th:each="rowItem : ${pv.ProductTableList}" pages:paginate="10">
+        <tr th:each="rowItem : ${pv.ProductTableList}" pages:paginate="5">
             <td th:each="item : ${rowItem}" align="center">
                 <div class="center">
                     <a th:href="@{/showProduct?id=}+${item.id}">
@@ -12,8 +12,9 @@
                             Название продукта
                         </div>
                     </a>
-                    <div th:text="${item.productCode}" style="font-weight: bold;">
-                        Артикул
+                    <div class="vertical">
+                        Артикул:
+                        <span th:text="${item.productCode}" style="font-weight: bold"/>
                     </div>
                     <div class="center">
                         <a th:href="@{/showProduct?id=}+${item.id}">
@@ -21,13 +22,8 @@
                             </img>
                         </a>
                     </div>
-                    <div style="min-height: 20px">
-                        &nbsp;
-                    </div>
-                    <div style="display: block">
-                        <span th:text="${item.price}">
-
-                        </span>
+                    <div class="vertical" style="display: block; font-weight: bold">
+                        <span th:text="${item.price}"/>
                          грн
                         <button class="btn" th:id="${item.id}" onclick="addToBasket($(this))">
                             Добавить в заказ
@@ -65,8 +61,8 @@
         <input type="search" class="form-control" name="searchString" th:field="${pv.searchString}" style="width:500px"/>
         <button id="btnSearch" type="submit" class="btn btn-default" style="margin-top: -10px">Поиск</button>
     </form>
-    <div th:if="${pv.size == 0}" style="text-align: center; margin-left: -200px" class="alert alert-error">По вашему запросу
-        ничего не найдено
+    <div th:if="${pv.size == 0}" style="text-align: center; margin-left: -200px" class="alert alert-error">
+        По вашему запросу ничего не найдено
     </div>
 </div>
 

@@ -11,32 +11,13 @@ import java.util.List;
  * Created by alexey.dranchuk on 30.09.14.
  *
  */
-public class ProductPageView {
+public class ProductPageView extends BasePageView {
 
     public static final int COLUMN_COUNT = 3;
 
     private List<Product> products = new LinkedList<>();
 
-    private String searchString;
-
-    private List<ProductGroup> categories;
-
-    public List<ProductGroup> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(List<ProductGroup> categories) {
-        this.categories = categories;
-    }
-
-    public String getSearchString() {
-        return searchString;
-    }
-
-    public void setSearchString(String searchString) {
-        this.searchString = searchString;
-    }
-
+    @Override
     public int getSize() {
         return products.size();
     }
