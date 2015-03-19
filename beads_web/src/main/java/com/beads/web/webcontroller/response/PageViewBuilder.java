@@ -2,7 +2,6 @@ package com.beads.web.webcontroller.response;
 
 import com.beads.model.dao.ProductDao;
 import com.beads.model.dao.ProductGroupDao;
-import com.beads.model.domain.Product;
 import com.beads.web.dao.ProductDaoImpl;
 import com.beads.web.dao.ProductGroupDaoImpl;
 import org.springframework.stereotype.Service;

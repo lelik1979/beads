@@ -14,15 +14,15 @@
                                 </img>
                             </a>
                         </div>
-                        <div class="vertical" th:text="${item.name}">
+                        <div class="vertical bold" th:text="${item.name}">
                             Название продукта
                         </div>
                     </a>
                     <div>
                         Артикул:
-                        <span th:text="${item.productCode}" style="font-weight: bold"/>
+                        <span class="bold" th:text="${item.productCode}"/>
                     </div>
-                    <div class="vertical" style="display: block; font-weight: bold">
+                    <div class="vertical bold" style="display: block;">
                         <span th:text="${item.price}"/>
                          грн
                         <button class="btn" th:id="${item.id}" onclick="addToBasket($(this))">
