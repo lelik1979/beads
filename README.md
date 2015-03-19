@@ -34,3 +34,8 @@ du -h * | sort -rh | head -50
 
 #show quota limits
 $ quota -s
+
+#clean up some space
+rm -rf ~/app-deployments/2015-03-19_15-25-53.921/*
+rm -rf ~/app-root/runtime/repo/.m2/repository/*
+rm -rf ~/app-root/runtime/repo/*
