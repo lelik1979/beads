@@ -24,6 +24,8 @@ rhc set-env env=uat --app uat
 
 #change deployment branch
 rhc app-configure [app_name] --deployment-branch [branch_name]
+#full list of features
+rhc app-configure --help
 
 
 #clean up space

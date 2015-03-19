@@ -36,9 +36,9 @@ public class HttpsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html");
+        response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
-        out.println("<h1>I am running</h1>");
+        out.println("<h1>I am running. Запущен</h1>");
         checkDataSource(out);
     }
 
