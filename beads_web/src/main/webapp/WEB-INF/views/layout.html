@@ -8,19 +8,19 @@
             <td th:each="item : ${rowItem}" align="center">
                 <div class="center">
                     <a th:href="@{/showProduct?id=}+${item.id}">
-                        <div th:text="${item.name}">
+                        <div class="center">
+                            <a th:href="@{/showProduct?id=}+${item.id}">
+                                <img th:src="@{getPhoto?id=}+${item.id}" alt="no image" class="picture">
+                                </img>
+                            </a>
+                        </div>
+                        <div class="vertical" th:text="${item.name}">
                             Название продукта
                         </div>
                     </a>
-                    <div class="vertical">
+                    <div>
                         Артикул:
                         <span th:text="${item.productCode}" style="font-weight: bold"/>
-                    </div>
-                    <div class="center">
-                        <a th:href="@{/showProduct?id=}+${item.id}">
-                            <img th:src="@{getPhoto?id=}+${item.id}" alt="no image" class="picture">
-                            </img>
-                        </a>
                     </div>
                     <div class="vertical" style="display: block; font-weight: bold">
                         <span th:text="${item.price}"/>
