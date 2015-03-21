@@ -11,7 +11,7 @@ public class BeadsTextArea extends TextArea {
 
     public BeadsTextArea() {
         setWidth(DefaultComponentSize.WIDTH, Unit.POINTS);
-        setHeight(DefaultComponentSize.WIDTH, Unit.POINTS);
+        setHeight(210, Unit.POINTS);
         setNullRepresentation("");
     }
 }

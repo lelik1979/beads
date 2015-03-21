@@ -19,11 +19,11 @@ public class ProductBuilder {
         product = new Product(1, "productName");
         withDescription("product description");
         withPrice(BigDecimal.valueOf(123.32));
-        withProductCode("ZSKD");
+        withArticul("ZSKD");
     }
 
-    public ProductBuilder withProductCode(String productCode) {
-        product.setProductCode(productCode);
+    public ProductBuilder withArticul(String articul) {
+        product.setArticul(articul);
         return this;
     }
 

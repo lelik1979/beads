@@ -36,7 +36,7 @@ public class ProductFormLayout extends FormLayout implements Button.ClickListene
         HorizontalLayout hl = new HorizontalLayout();
         hl.setDefaultComponentAlignment(Alignment.MIDDLE_LEFT);
         hl.setSpacing(true);
-        hl.setMargin(true);
+        hl.setMargin(false);
         addSaveButton(hl);
         addCloseButton(hl);
         addComponent(hl);
@@ -87,7 +87,7 @@ public class ProductFormLayout extends FormLayout implements Button.ClickListene
     }
 
     private void bindProductCode() {
-        bindAndAddComponent("Артикул", Product.PRODUCT_CODE, BeadsTextField.class);
+        bindAndAddComponent("Артикул", Product.АРТИКУЛ, BeadsTextField.class);
     }
 
     @SuppressWarnings("unchecked")
