@@ -29,7 +29,7 @@ rhc app-configure --help
 
 
 #clean up space
-rhc app-tidy uat
+rhc app-tidy uat1
 
 #show 50 biggest files/directories
 du -h * | sort -rh | head -50
