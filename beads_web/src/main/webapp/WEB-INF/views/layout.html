@@ -2,40 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 
-<div th:fragment="main">
-    <table id="Tableproducts" class="table table-striped">
-        <tr th:each="rowItem : ${pv.ProductTableList}" pages:paginate="5">
-            <td th:each="item : ${rowItem}" align="center">
-                <div class="center">
-                    <a th:href="@{/showProduct?id=}+${item.id}">
-                        <div class="center">
-                            <a th:href="@{/showProduct?id=}+${item.id}">
-                                <img th:src="@{getPhoto?id=}+${item.id}" alt="no image" class="picture">
-                                </img>
-                            </a>
-                        </div>
-                        <div class="vertical bold" th:text="${item.name}">
-                            Название продукта
-                        </div>
-                    </a>
-                    <div>
-                        Артикул:
-                        <span class="bold" th:text="${item.articul}"/>
-                    </div>
-                    <div class="vertical bold" style="display: block;">
-                        <span th:text="${item.price}"/>
-                         грн
-                        <button class="btn" th:id="${item.id}" onclick="addToBasket($(this))">
-                            Добавить в заказ
-                        </button>
-                    </div>
 
-                </div>
-            </td>
-        </tr>
-    </table>
-
-</div>
 
 <div th:fragment="productGroup">
     <nav class="vertical">
@@ -54,26 +21,35 @@
     </nav>
 </div>
 
-<div th:fragment="search1">
 
+
+
+<div th:fragment="search">
     <form th:action="@{/searchProducts}" method="get" role="search">
-
         <input type="search" class="form-control" name="searchString" th:field="${pv.searchString}" style="width:500px"/>
         <button id="btnSearch" type="submit" class="btn btn-default" style="margin-top: -10px">Поиск</button>
     </form>
-    <div th:if="${pv.size == 0}" style="text-align: center; margin-left: -200px" class="alert alert-error">
+    <div th:if="${pv.size == 0}" style="text-align: center; margin-left: -200px" class="alert alert-error center">
         По вашему запросу ничего не найдено
     </div>
 </div>
 
-<div th:fragment="head">
+
+
+
+<div th:fragment="header">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container-fluid">
-                <a class="brand" href="/">Список товара</a>
-
+                <a class="brand" href="/">Главная</a>
                 <div class="nav-collapse collapse">
                     <ul class="nav">
+                        <a class="brand" th:href="@{/}">
+                            Оплата и доставка
+                        </a>
+                        <a class="brand" th:href="@{/}">
+                            Контакты
+                        </a>
                         <a class="btn btn-primary" th:href="@{/showBasket}">
                             Показать содержимое корзины
                         </a>
