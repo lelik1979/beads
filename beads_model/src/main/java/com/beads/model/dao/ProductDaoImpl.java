@@ -72,23 +72,9 @@ public class ProductDaoImpl extends BaseDao implements ProductDao {
 
     private Criterion buildSearchRestriction(String searchString) {
         Disjunction dj = Restrictions.disjunction();
-        Integer id = parseToInteger(searchString);
-        if (id != null) {
-            dj.add(Restrictions.eq(Product.ID, id));
-        }
         dj.add(Restrictions.ilike(Product.NAME, searchString, MatchMode.ANYWHERE));
         dj.add(Restrictions.ilike(Product.DESCRIPTION, searchString, MatchMode.ANYWHERE));
         dj.add(Restrictions.ilike(Product.АРТИКУЛ, searchString, MatchMode.ANYWHERE));
         return dj;
     }
-
-    private Integer parseToInteger(String searchString) {
-        try {
-            return Integer.valueOf(searchString);
-        } catch (NumberFormatException e) {
-            return null;
-        }
-    }
-
-
 }

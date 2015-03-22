@@ -8,7 +8,7 @@ mvn clean compile  liquibase:updateSQL -Denv=dev
 mvn clean compile liquibase:update -Denv=dev|prod|uat
 
 #setup ssh tunel to mysql on UAT
-ssh -L3307:127.8.30.2:3306  55005f124382ec4a6a00014d@uat1-igle.rhcloud.com
+ssh -L3307:127.5.25.130:3306  550e00b84382ec927f0001e1@uat-igle.rhcloud.com
 
 #setup ssh tunel to mysql on PROD
 ssh -L3308:127.6.110.130:3306  54889dd8e0b8cdfdb500002e@na-igle.rhcloud.com
