@@ -37,7 +37,6 @@ public class ProductGroup implements ComboBoxCaption {
     private String name;
 
     @OneToMany(fetch = FetchType.EAGER)
-    @Fetch(FetchMode.SUBSELECT)
     @JoinColumn(table = ProductGroup.TABLE_NAME, name = "parent_id")
     private List<ProductGroup> childGroups = new ArrayList<>();
 
@@ -115,5 +114,9 @@ public class ProductGroup implements ComboBoxCaption {
     @Override
     public String getComboBoxCaption() {
         return NullRepresentor.getStringValue(name);
+    }
+
+    public boolean isNewProductGroup() {
+        return id == null;
     }
 }

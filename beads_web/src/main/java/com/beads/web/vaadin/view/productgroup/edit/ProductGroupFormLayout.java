@@ -62,7 +62,7 @@ public class ProductGroupFormLayout extends FormLayout implements Button.ClickLi
     }
 
     private void bindParentGroup() {
-        List<ProductGroup> parentGroups = model.getProductGroupDao().findAllProductGroup();
+        List<ProductGroup> parentGroups = model.getProductGroupDao().loadProductGroupsExcludeCurrent(model.getProductGroup());
         BeadsComboBox parent = binder.buildAndBind("Родительская группа", ProductGroup.PARENT_PRODUCT_GROUP, BeadsComboBox.class);
         parent.addItems(parentGroups);
         addComponent(parent);

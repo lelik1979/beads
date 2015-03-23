@@ -12,6 +12,8 @@ import java.util.List;
 @Transactional
 public interface ProductGroupDao {
 
+    List<ProductGroup> loadProductGroupsExcludeCurrent(ProductGroup productGroup);
+
     List<ProductGroup> findAllProductGroup();
 
     void saveOrUpdate(ProductGroup productGroup);

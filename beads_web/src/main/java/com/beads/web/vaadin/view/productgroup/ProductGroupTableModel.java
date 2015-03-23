@@ -79,9 +79,12 @@ public class ProductGroupTableModel implements ItemClickEvent.ItemClickListener,
         for (ProductGroup pg : childGroups) {
             BeanItem<ProductGroup> item = new BeanItem<>(pg);
             container.addItem(item);
-            container.setChildrenAllowed(item, false);
+            container.setChildrenAllowed(item, pg.isChildrenAllowed());
             propagatePropertyValues(item);
             container.setParent(item, parentGroup);
+            if (pg.isChildrenAllowed()) {
+                addChilds(pg.getChildGroups(), item);
+            }
 
         }
     }
@@ -133,5 +136,9 @@ public class ProductGroupTableModel implements ItemClickEvent.ItemClickListener,
     public void fireSearch(ProductGroupSearchEvent event) {
         List<ProductGroup> productGroups = productGroupDao.findProductGroupsByName(event.getSearchString());
         populateContainer(productGroups);
+    }
+
+    public ProductGroup getSelectedProductGroup() {
+        return selectedProductGroup.getBean();
     }
 }

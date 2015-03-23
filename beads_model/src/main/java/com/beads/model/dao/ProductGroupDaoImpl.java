@@ -25,6 +25,12 @@ public class ProductGroupDaoImpl extends BaseDao implements ProductGroupDao {
     }
 
     @Override
+    public List<ProductGroup> loadProductGroupsExcludeCurrent(ProductGroup productGroup) {
+        int productId = productGroup.isNewProductGroup() ? 0 : productGroup.getId();
+        return baseQuerySearch(Restrictions.ne(ProductGroup.ID, productId));
+    }
+
+    @Override
     public void saveOrUpdate(ProductGroup productGroup) {
         getSession().saveOrUpdate(productGroup);
     }

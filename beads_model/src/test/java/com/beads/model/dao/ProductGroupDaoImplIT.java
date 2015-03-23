@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
-public class ProductGroupDaoImplTest extends CommonDaoIT {
+public class ProductGroupDaoImplIT extends CommonDaoIT {
 
     @Autowired
     private ProductGroupDao productGroupDao;
@@ -17,7 +17,7 @@ public class ProductGroupDaoImplTest extends CommonDaoIT {
 
     @Test
     public void loadProductGroupById() {
-        ProductGroup pg = productGroupDao.loadProductGroupById(2);
+        ProductGroup pg = productGroupDao.loadProductGroupById(29);
     }
 
     @Test
