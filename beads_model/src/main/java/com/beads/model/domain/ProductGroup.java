@@ -37,11 +37,11 @@ public class ProductGroup implements ComboBoxCaption {
     private String name;
 
     @OneToMany(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SELECT)
     @JoinColumn(table = ProductGroup.TABLE_NAME, name = "parent_id")
     private List<ProductGroup> childGroups = new ArrayList<>();
 
     @ManyToOne
-    @Fetch(FetchMode.JOIN)
     @JoinColumn(table = ProductGroup.TABLE_NAME, name = "parent_id")
     private ProductGroup parentProductGroup;
 
