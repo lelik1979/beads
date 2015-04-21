@@ -10,13 +10,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 
-public class ContactController {
+public class PaymentController {
 
-    public static final String CONTACT_URL = "/contact";
+    public static final String PAYMENT_PAGE = "payment";
 
-    @RequestMapping(value = CONTACT_URL, method = RequestMethod.GET)
+    public static final String PAYMENT_URL = "/" + PAYMENT_PAGE;
+
+    @RequestMapping(value = PAYMENT_URL, method = RequestMethod.GET)
     public String getMainData(Model model) {
-        return CONTACT_URL;
+        return PAYMENT_PAGE;
     }
 
 }
