@@ -38,13 +38,10 @@ du -h * | sort -rh | head -50
 $ quota -s
 
 #clean up some space
-webapps -> /var/lib/openshift/55005f124382ec4a6a00014d/app-root/runtime/dependencies/jbossews/webapps
-Building war: /var/lib/openshift/55005f124382ec4a6a00014d/app-root/runtime/repo/webapps/ROOT.war
-rm -rf ~/app-root/runtime/repo/.m2/repository/*
-rm -rf ~/app-root/runtime/build-dependencies/*
+gear stop jbossews
 
 rm -rf ~/app-deployments/2015-03-19_15-25-53.921/*
-rm -rf ~/jbossews/webapps
+rm -rf ~/jbossews/webapps/*
 cp ~/app-root/runtime/repo/webapps/ROOT.war ~/jbossews/webapps
 
-gear stop/start jbossews
+gear start jbossews
