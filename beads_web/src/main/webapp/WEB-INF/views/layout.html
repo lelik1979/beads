@@ -3,16 +3,15 @@
       xmlns:th="http://www.thymeleaf.org">
 
 
-
 <div th:fragment="productGroup">
     <nav class="vertical">
         <ul class="nav">
-            <li th:each="category : ${pv.categories}"><a th:text="${category.name}"></a>
-
+            <li th:each="category : ${pv.categories}">
+                <a th:text="${category.name}"></a>
                 <div>
                     <ul>
-                        <li th:each="subCat : ${category.childGroups}"><a th:text="${subCat.name}"
-                                                                          th:href="@{/loadProductsByGroupId?(groupId=${subCat.id})}"></a>
+                        <li th:each="subCat : ${category.childGroups}">
+                            <a th:text="${subCat.name}" th:href="@{/loadProductsByGroupId?(groupId=${subCat.id})}"></a>
                         </li>
                     </ul>
                 </div>
@@ -22,40 +21,60 @@
 </div>
 
 
-
-
 <div th:fragment="search">
-    <form th:action="@{/searchProducts}" method="get" role="search">
-        <input type="search" class="form-control" name="searchString" th:field="${pv.searchString}" style="width:500px"/>
-        <button id="btnSearch" type="submit" class="btn btn-default" style="margin-top: -10px">Поиск</button>
-    </form>
+    <table>
+        <tbody>
+        <tr>
+            <td width="25%" height="80%">
+                <img src="/resources/img/na-igle-round.jpg"/>
+
+                <div class="center" style="padding-top: 10px">
+                    <form th:action="@{/searchProducts}" method="get" role="search" style="margin: 0 0 0 0">
+                        <input type="search" name="searchString" th:field="${pv.searchString}"/>
+                        <button id="btnSearch" type="submit" class="btn btn-default" style="margin-top: -10px">Поиск</button>
+                    </form>
+                </div>
+            </td>
+            <td width="50%" style="vertical-align: top">
+                <img src="/resources/img/roza.jpg"/>
+            </td>
+            <td width="20%" align="center" valign="top">
+                <img class="vertical" src="/resources/img/basket.jpg"/>
+                <a class="btn btn-primary" th:href="@{/showBasket}">
+                    Показать содержимое корзины
+                </a>
+
+                <div class="vertical">
+                    <a class="bold" href="mailto:elenachobanu@gmail.com">elenachobanu@gmail.com</a>
+                </div>
+                <div>
+                    <a href="callto:+380682561577">+38(068)256-15-77</a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
     <div th:if="${pv.size == 0}" style="text-align: center; margin-left: -200px" class="alert alert-error center">
         По вашему запросу ничего не найдено
     </div>
 </div>
 
 
-
-
 <div th:fragment="header">
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container-fluid">
-                <a class="brand" href="/">Главная</a>
-                <div class="nav-collapse collapse">
-                    <ul class="nav">
-                        <a class="brand" th:href="@{/payment}">
-                            Оплата и доставка
-                        </a>
-                        <a class="brand" th:href="@{/contact}">
-                            Контакты
-                        </a>
-                        <a class="btn btn-primary" th:href="@{/showBasket}">
-                            Показать содержимое корзины
-                        </a>
-                    </ul>
-                </div>
-            </div>
+    <div class="navbar navbar-fixed-top">
+        <div class="container-fluid" style="background-color: #ff84e4">
+            <ul class="nav">
+                <a class="brand" th:href="@{/}">
+                    Главная
+                </a>
+                <a class="brand" th:href="@{/payment}">
+                    Оплата и доставка
+                </a>
+                <a class="brand" th:href="@{/contact}">
+                    Контакты
+                </a>
+            </ul>
         </div>
     </div>
 

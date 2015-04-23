@@ -1,3 +1,17 @@
+.navbar .container-fluid {
+    text-align: center;
+}
+
+.navbar .brand {
+    font: 20px bold sans-serif;
+    text-shadow: 0 0 0 black;
+}
+
+.navbar .container-fluid .nav {
+    float: none;
+    display:inline-block;
+}
+
 .vertical {
     padding: 10px 0 10px 0;
 }
