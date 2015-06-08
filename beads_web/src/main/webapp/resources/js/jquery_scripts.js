@@ -1,12 +1,13 @@
 function addToBasket(button) {
     var id = button.attr('id');
-    console.log("send /addItemToOrder with id=" + id);
+    var quantity = $("#quantity").val();
+    console.log("send /addItemToOrder with id=" + quantity);
 
     $.ajax({
         url: "/addItemToOrder",
         type: "PUT",
         contentType: "application/json; charset=utf-8",
-        data: '{"productId":' + id + '}',
+        data: '{"productId":' + id + ',"quantity":' + quantity +'}',
         success: function () {
             console.log("Success add to basket");
             button.attr('disabled', 'true');

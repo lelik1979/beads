@@ -1,6 +1,6 @@
 package com.beads.web.webcontroller;
 
-import com.beads.model.domain.Product;
+import com.beads.web.domain.ShoppingCardItem;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class BasketPageModel {
 
-    private List<Product> products;
+    private List<ShoppingCardItem> items;
 
     private Integer basketSize;
 
@@ -23,22 +23,19 @@ public class BasketPageModel {
     }
 
     public BigDecimal getTotalPrice() {
-        return calculateTotalPrice();
-    }
-
-    protected BigDecimal calculateTotalPrice() {
-        BigDecimal total = BigDecimal.valueOf(0);
-        for (Product p : getProducts()) {
-            total = total.add(p.getPrice());
+        BigDecimal result = BigDecimal.ZERO;
+        for (ShoppingCardItem item : items) {
+            result = result.add(item.getItemPrice());
         }
-        return total;
+        return result;
     }
 
-    public List<Product> getProducts() {
-        return products;
+
+    public List<ShoppingCardItem> getItems() {
+        return items;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setProducts(List<ShoppingCardItem> products) {
+        this.items = products;
     }
 }

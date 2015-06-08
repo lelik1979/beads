@@ -24,6 +24,8 @@ public class OrderController {
 
     public static final Logger LOG = LoggerFactory.getLogger(OrderController.class);
 
+    public static final String OK = "ok";
+
     @Autowired
     private ShoppingCard shoppingCard;
 
@@ -34,16 +36,16 @@ public class OrderController {
     @ResponseBody
     public String  addItemToOrder(@RequestBody AddItemToOrderEvent event) {
         Product product = productDao.loadProductById(event.getProductId());
-        shoppingCard.addProduct(product);
-        LOG.debug("Product = {} has been added to basket", product);
-        return "ok";
+        shoppingCard.addItem(product, event.getQuantity());
+        LOG.debug("Product [{}] with quantity [{}] has been added to basket", product, event.getQuantity());
+        return OK;
     }
 
     @RequestMapping(value = "/deleteItemFromBasket", method = RequestMethod.PUT)
     @ResponseBody
     public String  deleteItemFromBasket(@RequestBody RemoveItemToOrderEvent event) {
         Product product = productDao.loadProductById(event.getProductId());
-        shoppingCard.deleteProduct(product);
+        shoppingCard.deleteItem(product);
         LOG.debug("Product {} has been removed from the basket", product);
         return "ok";
     }
@@ -58,7 +60,7 @@ public class OrderController {
     public String getMainData(Model model) {
         LOG.trace("showBasketState");
         BasketPageModel bpm = new BasketPageModel();
-        bpm.setProducts(shoppingCard.getProducts());
+        bpm.setProducts(shoppingCard.getItems());
         bpm.setBasketSize(shoppingCard.getSize());
         model.addAttribute("model", bpm);
         return "/basket";

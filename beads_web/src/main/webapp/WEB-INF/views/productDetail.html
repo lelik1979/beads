@@ -12,6 +12,7 @@
             </td>
             <td class="left" style="vertical-align: top">
                 <div class="vertical bold">
+                    <div>Название:</div>
                     <span th:text="${pv.product.name}"/>
                 </div>
                 <div class="vertical">
@@ -21,8 +22,13 @@
                 <div class="vertical" style="display: block">
                     <span th:text="${pv.product.description}"/>
                 </div>
+                <div>
+                    <b>Количество:</b>
+                    <input id="quantity" type="number"/>
+                </div>
                 <div class="vertical" >
-                    <span class="alert" th:inline="text" style="font: italic">
+                    <b>Цена:</b>
+                    <span class="alert" th:inline="text">
                         [[${pv.product.price}]] грн
                     </span>
                 </div>
@@ -30,9 +36,7 @@
                     <button class="btn" th:id="${pv.product.id}" onclick="addToBasket($(this))">
                         Добавить в заказ
                     </button>
-
                 </div>
-
             </td>
         </tr>
     </table>

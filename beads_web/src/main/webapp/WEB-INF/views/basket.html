@@ -18,25 +18,35 @@
             <tr>
                 <th>№</th>
                 <th>Товар</th>
+                <th>Количество</th>
+                <th>Сумма</th>
                 <th>Удалить из корзины</th>
             </tr>
             </thead>
             <tbody>
 
-            <tr th:each="item,status : ${model.products}" th:for="${status.index}">
+            <tr th:each="item,status : ${model.items}" th:for="${status.index}">
 
                 <td th:text="${status.index}+1"></td>
                 <td>
-                    <img th:src="@{getPhoto?id=}+${item.id}" height="100" width="100" style="float:left" alt="no image">
+                    <img th:src="@{getPhoto?id=}+${item.product.id}" height="100" width="100" style="float:left" alt="no image">
                     <div th:inline="text" style="margin-left:130px">
-                        <b>Код продукта</b> : [[${item.id}]]
-                        <br><b>Описание</b> : [[${item.name}]]</br>
-                        <b>Цена</b> : [[${item.price}]]
+                        <b>Код продукта</b> : [[${item.product.id}]]
+                        <br><b>Описание</b> : [[${item.product.name}]]</br>
+                        <b>Цена</b> : [[${item.product.price}]]
                     </div>
                     </img>
                 </td>
+                <td>
+                    <input id="quantity" readonly="true" type="number" size="3" th:value="${item.quantity}"/>
+                </td>
+                <td>
+                    <div th:inline="text">
+                        <b>[[${item.itemPrice}]] грн.</b>
+                    </div>
+                </td>
                 <td style="vertical-align: middle;">
-                    <button id="deleteButton" th:attr="productId=${item.id}" class="btn btn-default" onclick="deleteProduct($(this))">Удалить</button>
+                    <button id="deleteButton" th:attr="productId=${item.product.id}" class="btn btn-default" onclick="deleteProduct($(this))">Удалить</button>
                 </td>
             </tr>
             </tbody>
