@@ -39,18 +39,22 @@ public class Order {
     @Column(name="phone_number")
     private String phoneNumber;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "order_product",
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "order_order_items",
             joinColumns = { @JoinColumn(name = "order_id") },
-            inverseJoinColumns = { @JoinColumn(name = "product_id") })
-    private List<Product> products;
+            inverseJoinColumns = { @JoinColumn(name = "item_id") })
+    private List<OrderItem> orderItems;
 
     @Column(name = "modified_date")
     @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     private DateTime modifyDate = DateTime.now();
 
-    public Order(List<Product> products) {
-        this.products = products;
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 
     public Order() {
@@ -62,14 +66,6 @@ public class Order {
 
     public void setStatus(OrderStatus status) {
         this.status = status;
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
     }
 
     public Integer getId() {
@@ -110,8 +106,8 @@ public class Order {
 
     protected BigDecimal calculateTotalPrice() {
         BigDecimal total = BigDecimal.valueOf(0);
-        for (Product p : getProducts()) {
-            total = total.add(p.getPrice());
+        for (OrderItem orderItem : getOrderItems()) {
+            total = total.add(orderItem.calculateCost());
         }
         return total;
     }

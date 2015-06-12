@@ -30,7 +30,7 @@ public class SubmitOrderController {
 
     @RequestMapping(value = "/submitOrder", method = RequestMethod.POST)
     public String submitOrder(Order order, Model model) {
-//        order.setProducts(shoppingCard.getItems());
+        order.setOrderItems(shoppingCard.getItems());
         orderDao.saveOrUpdate(order);
         LOG.debug("Order with id={} has been submitted", order.getId());
         resetShoppingCard();

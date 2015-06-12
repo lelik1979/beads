@@ -31,7 +31,7 @@
                 <td>
                     <img th:src="@{getPhoto?id=}+${item.product.id}" height="100" width="100" style="float:left" alt="no image">
                     <div th:inline="text" style="margin-left:130px">
-                        <b>Код продукта</b> : [[${item.product.id}]]
+                        <b>Код продукта</b> : [[${item.product.articul}]]
                         <br><b>Описание</b> : [[${item.product.name}]]</br>
                         <b>Цена</b> : [[${item.product.price}]]
                     </div>

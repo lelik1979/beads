@@ -60,7 +60,7 @@ public class OrderController {
     public String getMainData(Model model) {
         LOG.trace("showBasketState");
         BasketPageModel bpm = new BasketPageModel();
-        bpm.setProducts(shoppingCard.getItems());
+        bpm.setItems(shoppingCard.getItems());
         bpm.setBasketSize(shoppingCard.getSize());
         model.addAttribute("model", bpm);
         return "/basket";

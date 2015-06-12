@@ -25,7 +25,7 @@
                     <div class="vertical bold" style="display: block;">
                         <span th:text="${item.price}"/>
                         грн
-                        <div id="quantity" hidden="true">1</div>
+                        <input id="quantity" type="hidden" value="1" />
                         <button class="btn" th:id="${item.id}" onclick="addToBasket($(this))">
                             Добавить в заказ
                         </button>

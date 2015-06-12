@@ -1,5 +1,6 @@
 package com.beads.web.domain;
 
+import com.beads.model.domain.OrderItem;
 import com.beads.model.domain.Product;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
@@ -20,16 +21,16 @@ import java.util.List;
 @Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class ShoppingCard implements Serializable {
 
-    private List<ShoppingCardItem> items = new LinkedList<>();
+    private List<OrderItem> items = new LinkedList<>();
 
-    public void addItem(ShoppingCardItem item) {
+    public void addItem(OrderItem item) {
         items.add(item);
     }
 
     public void deleteItem(final Product product) {
-        Iterables.removeIf(items, new Predicate<ShoppingCardItem>() {
+        Iterables.removeIf(items, new Predicate<OrderItem>() {
             @Override
-            public boolean apply(ShoppingCardItem input) {
+            public boolean apply(OrderItem input) {
                 return input.getProduct().equals(product);
             }
         });
@@ -39,22 +40,22 @@ public class ShoppingCard implements Serializable {
         return items.size();
     }
 
-    public List<ShoppingCardItem> getItems() {
+    public List<OrderItem> getItems() {
         return items;
     }
 
-    public void setItems(List<ShoppingCardItem> items) {
+    public void setItems(List<OrderItem> items) {
         this.items = items;
     }
 
     public void addItem(Product product, Integer quantity) {
-        items.add(new ShoppingCardItem(product, quantity));
+        items.add(new OrderItem(quantity, product));
     }
 
     protected BigDecimal calculateShopingCardPrice() {
         BigDecimal result = BigDecimal.ZERO;
-        for(ShoppingCardItem item : items) {
-            result = result.add(item.calculateItemPrice());
+        for(OrderItem item : items) {
+            result = result.add(item.calculateCost());
         }
         return result;
     }

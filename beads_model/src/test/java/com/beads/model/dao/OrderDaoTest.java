@@ -1,13 +1,13 @@
 package com.beads.model.dao;
 
 import com.beads.model.builder.OrderBuilder;
+import com.beads.model.builder.OrderItemBuilder;
 import com.beads.model.domain.Order;
-import com.beads.model.domain.Product;
+import com.beads.model.domain.OrderItem;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -24,16 +24,18 @@ public class OrderDaoTest extends CommonDaoIT {
     @Autowired
     private ProductDao productDao;
 
+    private OrderItemBuilder orderItemBuilder = new OrderItemBuilder();
+
     @Test
     public void loadOrderByIdFromDB() {
-        Order order = orderDao.loadOrderById(65);
+        Order order = orderDao.loadOrderById(21);
     }
 
     @Test
     @Rollback(true)
     public void loadOrderById() {
         Order order = new OrderBuilder()
-                .withProducts(buildProducts())
+                .withOrderItems(buildOrderItems())
                 .build();
         orderDao.saveOrUpdate(order);
         Integer orderId = order.getId();
@@ -42,18 +44,21 @@ public class OrderDaoTest extends CommonDaoIT {
     }
 
     @Test
-    @Rollback(true)
+    @Rollback(false)
     public void saveOrder() {
         Order order = new OrderBuilder()
-                .withProducts(buildProducts())
+                .withOrderItems(buildOrderItems(6))
                 .build();
         orderDao.saveOrUpdate(order);
     }
 
-    private List<Product> buildProducts() {
-        List<Product> products = new LinkedList<>();
-        products.add(productDao.loadProductById(13));
-        products.add(productDao.loadProductById(14));
-        return products;
+    private List<OrderItem> buildOrderItems(int ... productIds) {
+        List<OrderItem> orderItems = new LinkedList<>();
+        for (int productId : productIds) {
+            orderItems.add(orderItemBuilder.withProduct(productDao.loadProductById(productId)).build());
+            orderItemBuilder.reset();
+        }
+        return orderItems;
     }
+
 }
