@@ -1,3 +1,6 @@
+#clear check sum errors
+mvn liquibase:clearCheckSums  -Denv=dev
+
 #check what will be applied
 mvn clean compile liquibase:status -Denv=dev|uat|prod
 
