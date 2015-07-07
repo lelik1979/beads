@@ -15,7 +15,7 @@
     </changeSet>
 
     <changeSet author="adranchuk" id="52">
-        <addForeignKeyConstraint baseColumnNames="order_id" baseTableName="order_order_items" constraintName="fk_order_id" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="order"/>
+        <addForeignKeyConstraint baseColumnNames="order_id" baseTableName="order_order_items" constraintName="fk_order_id1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="order"/>
     </changeSet>
 
     <changeSet author="adranchuk" id="53" failOnError="false">

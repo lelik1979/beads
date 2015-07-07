@@ -13,11 +13,19 @@
 </div>
 
 <table>
-    #foreach( $product in $order.products )
+    #foreach( $orderItem in $order.orderItems )
         <tr>
-            <td>$product.id</td>
-            <td>$product.name</td>
-            <td>$product.price</td>
+            <th>Ид</th>
+            <th>Кол-во</th>
+            <th>Продукт</th>
+            <th>Цена</th>
+        </tr>
+        </thead>
+        <tr>
+            <td>$orderItem.id</td>
+            <td>$orderItem.quantity</td>
+            <td>$orderItem.product.name</td>
+            <td>$orderItem.itemPrice</td>
         </tr>
     #end
 </table>

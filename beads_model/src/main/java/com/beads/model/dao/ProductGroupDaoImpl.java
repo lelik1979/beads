@@ -61,7 +61,7 @@ public class ProductGroupDaoImpl extends BaseDao implements ProductGroupDao {
     private List<ProductGroup> baseQuerySearch(Criterion criterion) {
         Criteria crt = getSession().createCriteria(ProductGroup.class);
         crt.add(criterion);
-        crt.addOrder(Order.asc(ProductGroup.ORDER_ID)
+        crt.addOrder(Order.desc(ProductGroup.ORDER_ID)
                           .nulls(NullPrecedence.LAST));
         crt.setMaxResults(MAX_ROW_RESULT);
         return crt.list();
