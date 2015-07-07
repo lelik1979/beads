@@ -3,6 +3,7 @@ package com.beads.model.dao;
 import com.beads.model.domain.ProductGroup;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
+import org.hibernate.NullPrecedence;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
@@ -60,7 +61,8 @@ public class ProductGroupDaoImpl extends BaseDao implements ProductGroupDao {
     private List<ProductGroup> baseQuerySearch(Criterion criterion) {
         Criteria crt = getSession().createCriteria(ProductGroup.class);
         crt.add(criterion);
-        crt.addOrder(Order.desc(ProductGroup.ID));
+        crt.addOrder(Order.asc(ProductGroup.ORDER_ID)
+                          .nulls(NullPrecedence.LAST));
         crt.setMaxResults(MAX_ROW_RESULT);
         return crt.list();
     }

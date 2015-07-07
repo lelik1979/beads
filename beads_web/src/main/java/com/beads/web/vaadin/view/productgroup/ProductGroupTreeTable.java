@@ -28,6 +28,7 @@ public class ProductGroupTreeTable extends TreeTable {
     }
 
     private void setColumnNames() {
+        setColumnHeader(ProductGroup.ORDER_ID, "Порядок в списке");
         setColumnHeader(ProductGroup.PARENT_PRODUCT_NAME, "Родительская группа");
         setColumnHeader(ProductGroup.NAME, "Имя группы");
         setColumnHeader(ProductGroup.ID, "№");

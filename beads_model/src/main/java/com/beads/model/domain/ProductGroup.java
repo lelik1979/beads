@@ -27,6 +27,8 @@ public class ProductGroup implements ComboBoxCaption {
 
     public static final String PARENT_PRODUCT_NAME = "parentName";
 
+    public static final String ORDER_ID = "orderId";
+
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = ID)
@@ -39,11 +41,15 @@ public class ProductGroup implements ComboBoxCaption {
     @OneToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SELECT)
     @JoinColumn(table = ProductGroup.TABLE_NAME, name = "parent_id")
+    @OrderBy(ORDER_ID + " DESC")
     private List<ProductGroup> childGroups = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(table = ProductGroup.TABLE_NAME, name = "parent_id")
     private ProductGroup parentProductGroup;
+
+    @Column(name = "order_id")
+    private Integer orderId;
 
 
     public Integer getId() {
@@ -80,6 +86,14 @@ public class ProductGroup implements ComboBoxCaption {
 
     public void setParentProductGroup(ProductGroup parentProductGroup) {
         this.parentProductGroup = parentProductGroup;
+    }
+
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
 
     @Override

@@ -22,8 +22,16 @@
             </column>
             <column name="PARENT_ID" type="INT"/>
         </createTable>
+
         <addForeignKeyConstraint baseColumnNames="PARENT_ID" baseTableName="productgroup" constraintName="FK_PRD_GRP_ID"
                                  deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
                                  referencedColumnNames="ID" referencedTableName="productgroup"/>
     </changeSet>
+
+    <changeSet id="1.1" author="adranchuk">
+        <addColumn tableName="productgroup">
+            <column name="order_id" type="INT" />
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>

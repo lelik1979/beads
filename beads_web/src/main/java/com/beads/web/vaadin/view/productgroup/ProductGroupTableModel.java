@@ -33,7 +33,7 @@ public class ProductGroupTableModel implements ItemClickEvent.ItemClickListener,
 
     private HierarchicalContainer container = new HierarchicalContainer();
 
-    private Object[] visibleColumns = new Object[]{ProductGroup.ID, ProductGroup.NAME, ProductGroup.PARENT_PRODUCT_NAME};
+    private Object[] visibleColumns = new Object[]{ProductGroup.ID, ProductGroup.NAME, ProductGroup.PARENT_PRODUCT_NAME, ProductGroup.ORDER_ID};
 
     @Resource(name = ProductGroupDaoImpl.BEAN_NAME)
     private ProductGroupDao productGroupDao;
@@ -48,6 +48,7 @@ public class ProductGroupTableModel implements ItemClickEvent.ItemClickListener,
         container.addContainerProperty(ProductGroup.ID, Integer.class, null);
         container.addContainerProperty(ProductGroup.NAME, String.class, null);
         container.addContainerProperty(ProductGroup.PARENT_PRODUCT_NAME, String.class, null);
+        container.addContainerProperty(ProductGroup.ORDER_ID, Integer.class, null);
         populateContainerWithFullList();
     }
 

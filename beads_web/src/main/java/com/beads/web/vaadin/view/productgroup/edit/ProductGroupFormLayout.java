@@ -29,7 +29,13 @@ public class ProductGroupFormLayout extends FormLayout implements Button.ClickLi
         bindId();
         bindName();
         bindParentGroup();
+        bindOrderId();
         addButtons();
+    }
+
+    private void bindOrderId() {
+        BeadsTextField name = binder.buildAndBind("Номер сортировки", ProductGroup.ORDER_ID, BeadsTextField.class);
+        addComponent(name);
     }
 
     private void addButtons() {
