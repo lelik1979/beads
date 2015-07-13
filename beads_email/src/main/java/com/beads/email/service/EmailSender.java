@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
@@ -17,6 +19,7 @@ import javax.mail.internet.MimeMessage;
  */
 
 @Service
+@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 public class EmailSender {
 
     public static final Logger LOG = LoggerFactory.getLogger(EmailSender.class);

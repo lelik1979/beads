@@ -18,6 +18,7 @@ import javax.annotation.Resource;
  */
 
 @Service
+@Transactional
 public class EmailSenderService {
 
     @Resource(name = OrderDaoImpl.BEAN_NAME)
