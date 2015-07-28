@@ -4,7 +4,7 @@
 
 <div th:fragment="items">
     <table id="Tableproducts" class="table table-striped">
-        <tr th:each="rowItem : ${pv.ProductTableList}" pages:paginate="5">
+        <tr th:each="rowItem : ${pv.ProductTableList}" pages:paginate="10">
             <td th:each="item : ${rowItem}" align="center">
                 <div class="center">
                     <a th:href="@{/showProduct?id=}+${item.id}">
