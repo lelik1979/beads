@@ -1,4 +1,7 @@
 <html>
+<head>
+    <meta charset="UTF-8">
+</head>
 <body>
 
 <div>
@@ -12,7 +15,7 @@
     email клиента : ${order.email}
 </div>
 
-<table>
+<table border="1">
     #foreach( $orderItem in $order.orderItems )
         <tr>
             <th>Ид</th>
@@ -33,6 +36,10 @@
 </table>
 <div>
 <b>Cумма заказа : $order.totalPrice</b>
+</div>
+<div>
+    Адрес доставки :
+    $order.deliveryAddress
 </div>
 <div>
 Коментарий клиента :

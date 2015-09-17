@@ -49,6 +49,9 @@ public class Order {
     @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     private DateTime modifyDate = DateTime.now();
 
+    @Column(name = "delivery_address")
+    private String deliveryAddress;
+
     public List<OrderItem> getOrderItems() {
         return orderItems;
     }
@@ -118,5 +121,13 @@ public class Order {
 
     public DateTime getModifyDate() {
         return modifyDate;
+    }
+
+    public String getDeliveryAddress() {
+        return deliveryAddress;
+    }
+
+    public void setDeliveryAddress(String deliveryAddress) {
+        this.deliveryAddress = deliveryAddress;
     }
 }

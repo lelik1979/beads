@@ -62,19 +62,23 @@
             <form action="#" th:action="@{/submitOrder}" th:object="${order}" method="post">
                 <table class="center">
                     <tr>
-                        <td>email</td>
+                        <td class="content">email</td>
                         <td>
                             <div id="email_error" style="display: none; color: #b94a48;">not correct email</div>
-                            <input id="email_field" onkeypress="removeEmailError()" onfocusout="checkEmail()" type="text" th:field="*{email}" />
+                            <input class="center" id="email_field" onkeypress="removeEmailError()" onfocusout="checkEmail()" type="text" th:field="*{email}" />
                         </td>
                     </tr>
                     <tr>
-                        <td>телефон</td>
+                        <td class="content">телефон</td>
                         <td><input type="text" th:field="*{phoneNumber}"/></td>
                     </tr>
                     <tr>
-                        <td>Коментарий</td>
-                        <td><textarea cols="50" rows="5"  th:field="*{orderDetails}"></textarea></td>
+                        <td class="content">Адрес доставки</td>
+                        <td><textarea cols="50" rows="3"  th:field="*{deliveryAddress}"/></td>
+                    </tr>
+                    <tr>
+                        <td class="content">Коментарий</td>
+                        <td><textarea cols="50" rows="5"  th:field="*{orderDetails}"/></td>
                     </tr>
                 </table>
                 <input id="Order_button" type="submit" value="Заказать"/>

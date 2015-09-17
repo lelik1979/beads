@@ -24,13 +24,19 @@ public class OrderBuilder {
 
     private void initDefault() {
         order = new Order();
-//        withId(1);
+        withId(1);
         withEmail("fakeEmail@dot.com");
+        withDeliveryAddress("deliveryAddress");
         withOrderDetails("orderDetails");
         withStatus(OrderStatus.PENDING);
         withPhoneNumber("1234567890");
         withModifiedDate(DateTime.now());
         withOrderItems(buildOrderItems());
+    }
+
+    private OrderBuilder withDeliveryAddress(String deliveryAddress) {
+        order.setDeliveryAddress(deliveryAddress);
+        return this;
     }
 
     private OrderBuilder withModifiedDate(DateTime modifiedDate) {

@@ -27,4 +27,10 @@
             </column>
         </createTable>
     </changeSet>
+    <changeSet author="adranchuk" id="20">
+        <addColumn tableName="order">
+            <column name="delivery_address" type="varchar(1024)"/>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>
