@@ -16,6 +16,7 @@
     #foreach( $orderItem in $order.orderItems )
         <tr>
             <th>Ид</th>
+            <th>Артикул</th>
             <th>Кол-во</th>
             <th>Продукт</th>
             <th>Цена</th>
@@ -23,6 +24,7 @@
         </thead>
         <tr>
             <td>$orderItem.id</td>
+            <td>$orderItem.articul</td>
             <td>$orderItem.quantity</td>
             <td>$orderItem.product.name</td>
             <td>$orderItem.itemPrice</td>

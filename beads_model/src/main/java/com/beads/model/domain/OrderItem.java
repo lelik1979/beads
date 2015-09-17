@@ -70,6 +70,10 @@ public class OrderItem {
         return calculateCost();
     }
 
+    public String getArticul() {
+        return product.getArticul();
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(quantity, product);
