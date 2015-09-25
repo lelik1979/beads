@@ -54,6 +54,6 @@ public class EmailSender {
         message.setSubject("Новый заказ");
         message.setText(emailGenerator.getEmailBody(order), true);
         mailSender.send(mimeMessage);
-        LOG.info("Email has been to {} for order.id={}", order.getEmail(), order.getId());
+        LOG.info("Email has been sent to {} for order.id={}", managerEmail, order.getId());
     }
 }
