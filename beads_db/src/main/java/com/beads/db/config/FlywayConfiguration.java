@@ -1,4 +1,4 @@
-package com.beads.model.config;
+package com.beads.db.config;
 
 import javax.sql.DataSource;
 import org.flywaydb.core.Flyway;

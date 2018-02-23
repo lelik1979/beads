@@ -16,7 +16,7 @@ import javax.sql.DataSource;
  */
 
 @Configuration
-@ComponentScan(basePackages = {"com.beads.model"})
+@ComponentScan(basePackages = {"com.beads.model", "com.beads.db"})
 @PropertySource("classpath:/env/${env:dev}_db.properties")
 @EnableTransactionManagement(proxyTargetClass = true)
 public class HibernateConfigurationTest {

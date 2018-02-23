@@ -1,6 +1,6 @@
 package com.beads.model.config;
 
-import static com.beads.model.config.FlywayConfiguration.FLYWAY_BEAN;
+import static com.beads.db.config.FlywayConfiguration.FLYWAY_BEAN;
 import javax.sql.DataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

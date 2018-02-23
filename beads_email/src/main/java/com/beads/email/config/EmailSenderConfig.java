@@ -19,7 +19,7 @@ import java.util.Properties;
  */
 
 @Configuration
-@PropertySource("email/${env:dev}.properties")
+@PropertySource("email/${env:dev}_email.properties")
 public class EmailSenderConfig {
 
     @Autowired
@@ -58,5 +58,4 @@ public class EmailSenderConfig {
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();
     }
-
 }

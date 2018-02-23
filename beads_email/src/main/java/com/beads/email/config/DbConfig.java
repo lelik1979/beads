@@ -1,6 +1,6 @@
 package com.beads.email.config;
 
-import com.beads.model.config.FlywayConfiguration;
+import com.beads.db.config.FlywayConfiguration;
 import com.beads.model.config.HibernateConfiguration;
 import org.apache.tomcat.jdbc.pool.DataSourceFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +42,4 @@ public class DbConfig {
         prop.setProperty("autoReconnect", "true");
         return prop;
     }
-
 }
