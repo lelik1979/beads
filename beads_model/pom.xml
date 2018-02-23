@@ -68,6 +68,18 @@
             <version>3.3.2</version>
         </dependency>
 
+        <!--db migration-->
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>5.0.7</version>
+        </dependency>
+        <dependency>
+            <groupId>beads</groupId>
+            <artifactId>beads_db</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>

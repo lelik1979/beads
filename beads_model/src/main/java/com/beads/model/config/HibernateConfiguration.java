@@ -1,15 +1,17 @@
 package com.beads.model.config;
 
+import static com.beads.model.config.FlywayConfiguration.FLYWAY_BEAN;
+import javax.sql.DataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Primary;
 import org.springframework.orm.hibernate4.HibernateExceptionTranslator;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import javax.sql.DataSource;
 
 /**
  * Created by alexey.dranchuk on 13.09.14.
@@ -25,7 +27,7 @@ public class HibernateConfiguration {
     @Autowired
     private DataSource dataSource;
 
-
+    @DependsOn(FLYWAY_BEAN)
     @Bean
     public LocalSessionFactoryBean hibernateSessionFactory() throws Exception {
         LocalSessionFactoryBean lsfb = new LocalSessionFactoryBean();
