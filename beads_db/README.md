@@ -1,19 +1,18 @@
-#clear check sum errors
-mvn liquibase:clearCheckSums  -Denv=dev
+Module beads_db provide database creation using flyway.
 
-#check what will be applied
-mvn clean compile liquibase:status -Denv=dev|uat|prod
+Flyway is an open-source database migration tool.
+It is based around just 7 basic commands: Migrate, Clean, Info, Validate, Undo, Baseline and Repair.
 
-#generate sql which will be applied.  target/migrationSql.sql will be populated
-mvn clean compile  liquibase:updateSQL -Denv=dev
+If you want change command you need added changes in FlywayConfiguration class.
+In FLYWAY_BEAN change initMethod variable (initMethod = "YOUR_COMMAND").
 
-#deploy database done via liquibase and can be deployed using this command
-mvn clean compile liquibase:update -Denv=dev|prod|uat
+If you want create some changes in database you need create new sql script
+and put it in resources/db_scripts.
 
-#setup ssh tunel to mysql on UAT
-ssh -L3307:127.5.25.130:3306  550e00b84382ec927f0001e1@uat-igle.rhcloud.com
+The file name prefix for versioned SQL migrations. (default: V)
+Versioned SQL migrations have the following file name structure: prefixVERSIONseparatorDESCRIPTIONsuffix ,
+which using the defaults translates to V1_1__My_description.sql
 
-#setup ssh tunel to mysql on PROD
-ssh -L3308:127.6.110.130:3306  54889dd8e0b8cdfdb500002e@na-igle.rhcloud.com
+#####################################################################
 
-DB customization done via env/[dev|prod|uat]_db.properties file
+WHEN APPLICATION START ALL SCRIPTS APPLIED AUTOMATICALLY
