@@ -34,7 +34,7 @@ public class Product implements Serializable {
     public static final String GROUP_NAME = "productGroupName";
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "ID")
     private Integer id;
 

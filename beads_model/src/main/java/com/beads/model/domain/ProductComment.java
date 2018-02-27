@@ -1,8 +1,9 @@
 package com.beads.model.domain;
 
 import com.beads.model.constant.CommentStatus;
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Objects;
 import java.time.LocalDateTime;
-import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -19,8 +20,10 @@ import javax.persistence.Table;
 @Table(name="product_comment")
 public class ProductComment {
 
+  public static final String STATUS = "status";
+
   @Id
-  @GeneratedValue(strategy= GenerationType.AUTO)
+  @GeneratedValue(strategy= GenerationType.IDENTITY)
   @Column(name = "id")
   private Integer id;
 
@@ -44,7 +47,7 @@ public class ProductComment {
   @Column(name = "status", columnDefinition = "ENUM('VISIBLE', 'INVISIBLE')")
   private CommentStatus status = CommentStatus.INVISIBLE;
 
-  @Column(name = "rating")
+  @Column(name = "rating", columnDefinition = "tinyint")
   private Integer rating;
 
   public Integer getId() {
@@ -116,11 +119,25 @@ public class ProductComment {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ProductComment that = (ProductComment) o;
-    return Objects.equals(id, that.id);
+    return Objects.equal(id, that.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id);
+    return Objects.hashCode(id);
+  }
+
+  @Override
+  public String toString() {
+    return MoreObjects.toStringHelper(this)
+        .add("id", id)
+        .add("product", product)
+        .add("comment", comment)
+        .add("disadvantages", disadvantages)
+        .add("advantages", advantages)
+        .add("createDate", createDate)
+        .add("status", status)
+        .add("rating", rating)
+        .toString();
   }
 }

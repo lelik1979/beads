@@ -3,7 +3,7 @@ CREATE TABLE `product_comment` (
   `product_id` INT NOT NULL,
   `comment` VARCHAR(4000) NOT NULL,
   `disadvantages` VARCHAR(400) NULL DEFAULT NULL,
-  `advantage` VARCHAR(400) NULL DEFAULT NULL,
+  `advantages` VARCHAR(400) NULL DEFAULT NULL,
   `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status` ENUM('VISIBLE', 'INVISIBLE') NOT NULL DEFAULT 'INVISIBLE',
   `rating` TINYINT NOT NULL DEFAULT 0,

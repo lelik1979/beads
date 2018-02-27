@@ -30,7 +30,7 @@ public class ProductGroup implements ComboBoxCaption {
     public static final String ORDER_ID = "orderId";
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = ID)
     private Integer id;
 
