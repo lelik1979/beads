@@ -5,6 +5,6 @@ CREATE TABLE `product_group` (
   `order_id` INT(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_prd_grp_id` (`parent_id`),
-  CONSTRAINT `fk_prd_grp_id` FOREIGN KEY (`parent_id`) REFERENCES `productgroup` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_prd_grp_id` FOREIGN KEY (`parent_id`) REFERENCES `product_group` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 )
 
