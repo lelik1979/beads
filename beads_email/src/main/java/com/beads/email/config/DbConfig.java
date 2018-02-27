@@ -1,5 +1,6 @@
 package com.beads.email.config;
 
+import com.beads.db.config.FlywayConfiguration;
 import com.beads.model.config.HibernateConfiguration;
 import org.apache.tomcat.jdbc.pool.DataSourceFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,8 @@ import java.util.Properties;
  */
 
 @Configuration
-@PropertySource("${db_prop:db}.properties")
-@Import(HibernateConfiguration.class)
+@PropertySource("classpath:/env/${env:dev}_db.properties")
+@Import({FlywayConfiguration.class, HibernateConfiguration.class})
 public class DbConfig {
 
     @Autowired
@@ -41,5 +42,4 @@ public class DbConfig {
         prop.setProperty("autoReconnect", "true");
         return prop;
     }
-
 }
