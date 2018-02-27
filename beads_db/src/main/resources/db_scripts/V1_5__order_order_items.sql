@@ -5,4 +5,4 @@ CREATE TABLE `order_order_items` (
   KEY `fk_order_id1` (`order_id`),
   CONSTRAINT `fk_order_id1` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_order_items_id` FOREIGN KEY (`item_id`) REFERENCES `order_item` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+)

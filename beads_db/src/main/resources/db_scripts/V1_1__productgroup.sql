@@ -1,9 +1,10 @@
-CREATE TABLE `productgroup` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `product_group` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
-  `PARENT_ID` int(11) DEFAULT NULL,
+  `parent_id` int(11) DEFAULT NULL,
   `order_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `FK_PRD_GRP_ID` (`PARENT_ID`),
-  CONSTRAINT `FK_PRD_GRP_ID` FOREIGN KEY (`PARENT_ID`) REFERENCES `productgroup` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8
+  PRIMARY KEY (`id`),
+  KEY `fk_prd_grp_id` (`parent_id`),
+  CONSTRAINT `fk_prd_grp_id` FOREIGN KEY (`parent_id`) REFERENCES `productgroup` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+)
+

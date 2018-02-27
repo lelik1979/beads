@@ -5,4 +5,4 @@ CREATE TABLE `user_roles` (
   PRIMARY KEY (`user_role_id`),
   UNIQUE KEY `uni_username_role` (`username`,`role`),
   CONSTRAINT `fk_username` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8
+)

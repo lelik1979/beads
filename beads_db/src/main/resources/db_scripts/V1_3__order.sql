@@ -7,4 +7,4 @@ CREATE TABLE `order` (
   `modified_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `delivery_address` varchar(1024) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8
+)

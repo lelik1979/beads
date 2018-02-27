@@ -3,4 +3,4 @@ CREATE TABLE `users` (
   `password` varchar(45) NOT NULL,
   `enabled` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+)

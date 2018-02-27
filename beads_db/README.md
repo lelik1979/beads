@@ -12,3 +12,7 @@ and put it in resources/db_scripts.
 The file name prefix for versioned SQL migrations. (default: V)
 Versioned SQL migrations have the following file name structure: prefixVERSIONseparatorDESCRIPTIONsuffix ,
 which using the defaults translates to V1_1__My_description.sql
+
+#####################################################################
+
+WHEN APPLICATION START ALL SCRIPTS APPLIED AUTOMATICALLY
