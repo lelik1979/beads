@@ -1,6 +1,6 @@
 CREATE TABLE `users` (
-  `username` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL,
-  `enabled` tinyint(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`username`)
+  `user_name` VARCHAR (45) NOT NULL,
+  `password` VARCHAR (45) NOT NULL,
+  `enabled` TINYINT(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`user_name`)
 )
