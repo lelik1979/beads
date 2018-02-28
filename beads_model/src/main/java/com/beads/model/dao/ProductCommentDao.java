@@ -1,5 +1,6 @@
 package com.beads.model.dao;
 
+import com.beads.model.domain.Product;
 import com.beads.model.domain.ProductComment;
 import java.util.List;
 
@@ -9,7 +10,7 @@ public interface ProductCommentDao {
 
   ProductComment loadCommentById(Integer id);
 
-  List<ProductComment> getAllComments();
+  List<ProductComment> loadVisibleCommentsForProduct(Product product);
 
   List<ProductComment> getAllInvisibleComments();
 

@@ -23,7 +23,7 @@ public class ProductGroupView implements Serializable, ComboBoxCaption {
     @Column(name = ProductGroup.NAME)
     private String name;
 
-    @Column(name = "PARENT_ID")
+    @Column(name = "parent_id")
     private Integer parentId;
 
     public Integer getId() {

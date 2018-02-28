@@ -17,7 +17,7 @@ import java.util.List;
 @Table(name = ProductGroup.TABLE_NAME)
 public class ProductGroup implements ComboBoxCaption {
 
-    public static final String TABLE_NAME = "productgroup";
+    public static final String TABLE_NAME = "product_group";
 
     public static final String ID = "id";
 
@@ -34,7 +34,7 @@ public class ProductGroup implements ComboBoxCaption {
     @Column(name = ID)
     private Integer id;
 
-    @NotNull(message = "productgroup.name can't be empty or null")
+    @NotNull(message = "product_group.name can't be empty or null")
     @Column(name = NAME, length = 100)
     private String name;
 
