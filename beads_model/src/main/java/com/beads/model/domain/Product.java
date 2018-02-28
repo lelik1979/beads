@@ -34,15 +34,15 @@ public class Product implements Serializable {
     public static final String GROUP_NAME = "productGroupName";
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "ID")
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
-    @Column(name = "NAME")
+    @Column(name = "name")
     @NotNull(message = "Product name can't be empty")
     private String name;
 
-    @Column(name = "DESCRIPTION", length = 4000)
+    @Column(name = "description", length = 4000)
     private String description;
 
     @ManyToOne

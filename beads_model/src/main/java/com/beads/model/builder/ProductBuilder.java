@@ -16,7 +16,8 @@ public class ProductBuilder {
     }
 
     private void initDefault() {
-        product = new Product(1, "productName");
+        product = new Product();
+        product.setName("productName1");
         withDescription("product description");
         withPrice(BigDecimal.valueOf(123.32));
         withArticul("ZSKD");
