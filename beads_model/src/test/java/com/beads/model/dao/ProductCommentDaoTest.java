@@ -34,7 +34,7 @@ public class ProductCommentDaoTest extends CommonDaoIT {
     ProductComment expectedProductComment = productCommentBuilder.withProduct(product).build();
     productCommentDao.saveOrUpdateComment(expectedProductComment);
 
-    ProductComment actualProductComment = productCommentDao.loadCommentById(expectedProductComment.getId());
+    ProductComment actualProductComment = productCommentDao.getCommentById(expectedProductComment.getId());
 
     Assert.assertEquals("Actual result must be expected", actualProductComment, expectedProductComment);
   }
@@ -62,7 +62,7 @@ public class ProductCommentDaoTest extends CommonDaoIT {
     ProductComment productComment = createAndSaveComment(product, CommentStatus.INVISIBLE);
     productCommentDao.removeComment(productComment);
 
-    ProductComment actualComment = productCommentDao.loadCommentById(productComment.getId());
+    ProductComment actualComment = productCommentDao.getCommentById(productComment.getId());
 
     Assert.assertTrue("Actual comment must be null", actualComment == null);
   }

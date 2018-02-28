@@ -3,6 +3,7 @@ package com.beads.model.dao;
 import com.beads.model.builder.ProductBuilder;
 import com.beads.model.domain.Product;
 import java.util.List;
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -34,11 +35,15 @@ public class ProductDaoImplTest extends CommonDaoIT {
         Product pr =productDao.loadProductById(1);
     }
 
-//    @Rollback(false)
     @Test
     public void testSaveProduct() {
         productBuilder = new ProductBuilder();
-        Product product = productBuilder.build();
-        productDao.saveOrUpdate(product);
+        Product expectedProduct = productBuilder.build();
+        productDao.saveOrUpdate(expectedProduct);
+
+        Product actualProduct = productDao.loadProductById(expectedProduct.getId());
+
+        Assert.assertEquals("Actual result must be expected",
+            actualProduct, expectedProduct);
     }
 }

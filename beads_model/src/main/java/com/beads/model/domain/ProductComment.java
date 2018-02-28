@@ -20,8 +20,6 @@ import javax.persistence.Table;
 @Table(name="product_comment")
 public class ProductComment {
 
-  public static final String STATUS = "status";
-
   @Id
   @GeneratedValue(strategy= GenerationType.IDENTITY)
   @Column(name = "id")
@@ -44,8 +42,9 @@ public class ProductComment {
   private LocalDateTime createDate = LocalDateTime.now();
 
   @Enumerated(EnumType.STRING)
-  @Column(name = "status", columnDefinition = "ENUM('VISIBLE', 'INVISIBLE')")
+  @Column(name = STATUS, columnDefinition = "ENUM('VISIBLE', 'INVISIBLE')")
   private CommentStatus status = CommentStatus.INVISIBLE;
+  public static final String STATUS = "status";
 
   @Column(name = "rating", columnDefinition = "tinyint")
   private Integer rating;
