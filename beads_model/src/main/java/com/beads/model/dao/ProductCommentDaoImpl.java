@@ -1,7 +1,6 @@
 package com.beads.model.dao;
 
 import com.beads.model.constant.CommentStatus;
-import com.beads.model.domain.Product;
 import com.beads.model.domain.ProductComment;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -24,13 +23,13 @@ public class ProductCommentDaoImpl extends BaseDao implements ProductCommentDao 
   }
 
   @Override
-  public List<ProductComment> loadVisibleCommentsForProduct(Product product) {
+  public List<ProductComment> loadVisibleCommentsForProduct(Integer productId) {
     CriteriaBuilder criteriaBuilder = getSession().getCriteriaBuilder();
     CriteriaQuery<ProductComment> query = criteriaBuilder.createQuery(ProductComment.class);
     Root<ProductComment> productCommentRoot = query.from(ProductComment.class);
     query
         .select(productCommentRoot)
-        .where(criteriaBuilder.equal(productCommentRoot.get("product"), product),
+        .where(criteriaBuilder.equal(productCommentRoot.get("product"), productId),
             criteriaBuilder.equal(productCommentRoot.get(ProductComment.STATUS), CommentStatus.VISIBLE));
     return getSession().createQuery(query).setMaxResults(MAX_ROW_RESULT).list();
   }
