@@ -1,32 +1,26 @@
 package com.beads.email.service;
 
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 import com.beads.email.util.Batch;
+import com.beads.model.domain.Order;
 import java.util.Arrays;
-import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InjectMocks;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.Rollback;
+import org.mockito.Mockito;
 
-public class EmailSenderServiceIntTest extends BaseIT{
+public class EmailSenderServiceIntTest {
 
-    @Autowired
-    @InjectMocks
-    private EmailSenderService emailSenderService;
-
-//    private EmailSender emailSenderMock = mock(EmailSender.class);
-
-    @Before
-    public void setUp() throws Exception {
-//        MockitoAnnotations.initMocks(this);
-    }
+    private EmailSender emailSenderMock = mock(EmailSender.class);
+    private EmailSenderService emailSenderService = mock(EmailSenderService.class);
 
     @Test
-    @Rollback(true)
     public void testSendEmail() throws Exception {
-//        when(emailSenderMock.sendEmail(any(Order.class))).thenReturn(true);
+        when(emailSenderMock.sendEmail(any(Order.class))).thenReturn(true);
 
         Batch testBatch = new Batch(Arrays.asList(1));
         emailSenderService.sendEmail(testBatch);
+
+        Mockito.verify(emailSenderService, Mockito.times(1)).sendEmail(testBatch);
     }
 }

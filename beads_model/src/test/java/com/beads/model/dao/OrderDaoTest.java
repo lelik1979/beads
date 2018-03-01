@@ -4,12 +4,12 @@ import com.beads.model.builder.OrderBuilder;
 import com.beads.model.builder.OrderItemBuilder;
 import com.beads.model.domain.Order;
 import com.beads.model.domain.OrderItem;
-import org.junit.Assert;
-import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.Rollback;
 import java.util.LinkedList;
 import java.util.List;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Created by alexey.dranchuk on 28.09.14.
@@ -24,11 +24,25 @@ public class OrderDaoTest extends CommonDaoIT {
     @Autowired
     private ProductDao productDao;
 
-    private OrderItemBuilder orderItemBuilder = new OrderItemBuilder();
+    private OrderItemBuilder orderItemBuilder;
+
+    private OrderBuilder orderBuilder;
+
+    @Before
+    public void init() {
+        orderItemBuilder = new OrderItemBuilder();
+        orderBuilder = new OrderBuilder();
+    }
 
     @Test
     public void loadOrderByIdFromDB() {
-        Order order = orderDao.loadOrderById(21);
+        Order expectedOrder = orderBuilder.build();
+        orderDao.saveOrUpdate(expectedOrder);
+
+        Order actualOrder = orderDao.loadOrderById(expectedOrder.getId());
+
+        Assert.assertEquals("Actual result must be expected ",
+            actualOrder, expectedOrder);
     }
 
     @Test
