@@ -13,8 +13,6 @@
 
     <packaging>war</packaging>
 
-    <version>1.0</version>
-
     <name>beads_web</name>
 
     <repositories>
@@ -36,14 +34,9 @@
             <version>2.1.6</version>
         </dependency>
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>18.0</version>
-        </dependency>
-        <dependency>
             <groupId>beads</groupId>
             <artifactId>beads_model</artifactId>
-            <version>1.0</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
@@ -147,12 +140,6 @@
     </dependencies>
 
     <build>
-        <testResources>
-            <testResource>
-                <directory>../env</directory>
-                <filtering>true</filtering>
-            </testResource>
-        </testResources>
         <plugins>
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>

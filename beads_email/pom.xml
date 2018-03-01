@@ -13,13 +13,21 @@
 
     <packaging>jar</packaging>
 
-    <version>1.0</version>
-
     <properties>
-        <spring.boot.version>1.2.1.RELEASE</spring.boot.version>
+        <spring.boot.version>1.4.0.RELEASE</spring.boot.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>beads</groupId>
+            <artifactId>beads_model</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity</artifactId>
@@ -36,37 +44,24 @@
             <version>1.4.7</version>
         </dependency>
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>18.0</version>
-        </dependency>
-        <dependency>
-            <groupId>beads</groupId>
-            <artifactId>beads_model</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
             <version>${spring.boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jdbc</artifactId>
+            <version>${tomcat-jdbc.version}</version>
         </dependency>
     </dependencies>
 
     <build>
         <finalName>beads_email</finalName>
-
         <resources>
-            <resource>
-                <directory>../env</directory>
-                <includes>
-                    <include>**/*.properties</include>
-                </includes>
-            </resource>
             <resource>
                 <directory>src/main/resources</directory>
             </resource>
         </resources>
-
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

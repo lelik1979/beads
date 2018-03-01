@@ -13,8 +13,6 @@
 
     <packaging>jar</packaging>
 
-    <version>1.0</version>
-
     <properties>
         <flyway.version>5.0.7</flyway.version>
     </properties>

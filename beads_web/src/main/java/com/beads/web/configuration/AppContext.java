@@ -18,14 +18,14 @@ import java.util.Locale;
 
 @Configuration
 @EnableScheduling
-@ComponentScan(basePackages = { "com.beads.web", "com.beads.model"})
+@ComponentScan(basePackages = { "com.beads.web", "com.beads.model", "com.beads.db"})
 public class AppContext {
 
     @Resource(mappedName = "jdbc/MySQLDS")
     private DataSource dataSource;
 
     @Bean
-    public DataSource dataSource() throws Exception {
+    public DataSource dataSource() {
         return  dataSource;
     }
 
