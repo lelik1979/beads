@@ -32,7 +32,6 @@ public class OrderDaoTest extends CommonDaoIT {
     }
 
     @Test
-    @Rollback(true)
     public void loadOrderById() {
         Order order = new OrderBuilder()
                 .withOrderItems(buildOrderItems())

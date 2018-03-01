@@ -1,6 +1,7 @@
 package com.beads.model.domain;
 
 
+import com.google.common.base.MoreObjects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -95,10 +96,10 @@ public class OrderItem {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(Objects.toString(id, "id is null"));
-        sb.append(Objects.toString(quantity, "quantity is null"));
-        sb.append(Objects.toString(product, "product is null"));
-        return sb.toString();
+        return MoreObjects.toStringHelper(this)
+                .add("id", id)
+                .add("quantity", quantity)
+                .add("product", product)
+                .toString();
     }
 }
