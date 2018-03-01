@@ -43,7 +43,6 @@ public class OrderDaoTest extends CommonDaoIT {
     }
 
     @Test
-    @Rollback(false)
     public void saveOrder() {
         Order order = new OrderBuilder()
                 .withOrderItems(buildOrderItems(6))

@@ -1,12 +1,12 @@
 package com.beads.email.service;
 
 import com.beads.email.util.Batch;
+import java.util.Arrays;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
-import java.util.Arrays;
 
 public class EmailSenderServiceIntTest extends BaseIT{
 

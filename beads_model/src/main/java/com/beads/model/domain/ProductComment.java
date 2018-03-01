@@ -1,6 +1,7 @@
 package com.beads.model.domain;
 
 import com.beads.model.constant.CommentStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import java.time.LocalDateTime;
@@ -25,6 +26,7 @@ public class ProductComment {
   @Column(name = "id")
   private Integer id;
 
+  @JsonIgnore
   @OneToOne(fetch= FetchType.LAZY)
   @JoinColumn(name = "product_id")
   private Product product;
