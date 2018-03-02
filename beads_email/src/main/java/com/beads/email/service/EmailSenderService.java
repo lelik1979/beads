@@ -7,10 +7,10 @@ import com.beads.model.domain.Order;
 import com.beads.model.domain.OrderStatus;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import javax.annotation.Resource;
 
 /**
  * Created by alexey.dranchuk on 26/1/15.
@@ -21,17 +21,20 @@ import javax.annotation.Resource;
 @Transactional
 public class EmailSenderService {
 
-    @Resource(name = OrderDaoImpl.BEAN_NAME)
     private OrderDao orderDao;
+    private EmailSender emailSender;
 
     @Autowired
-    private EmailSender emailSender;
+    public EmailSenderService(EmailSender emailSender,
+                              @Qualifier(value = OrderDaoImpl.BEAN_NAME) OrderDao orderDao) {
+        this.emailSender = emailSender;
+        this.orderDao = orderDao;
+    }
 
     public void sendEmail(Batch batch) {
         for(Integer orderId : batch.getIds()) {
             Order order = processOrder(orderId);
             updateOrder(order);
-
         }
     }
 
@@ -50,5 +53,4 @@ public class EmailSenderService {
         order.setModifyDate(new DateTime());
         orderDao.saveOrUpdate(order);
     }
-
 }
