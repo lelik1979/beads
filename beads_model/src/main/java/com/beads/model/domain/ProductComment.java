@@ -1,6 +1,7 @@
 package com.beads.model.domain;
 
 import com.beads.model.constant.CommentStatus;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
@@ -41,6 +42,7 @@ public class ProductComment {
   private String advantages;
 
   @Column(name = "create_date", columnDefinition = "timestamp")
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
   private LocalDateTime createDate = LocalDateTime.now();
 
   @Enumerated(EnumType.STRING)
