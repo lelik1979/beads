@@ -32,7 +32,7 @@ public class EmailSenderServiceTest {
      * For this we need mocks EmailSender & OrderDaoImpl.
      */
     @Test
-    public void testSendEmail()  {
+    public void testSendEmailWithOrderStatusPending()  {
         Order order = orderBuilder.build();
         when(emailSenderMock.sendEmail(any(Order.class))).thenReturn(false);
         when(orderDaoMock.loadOrderById(order.getId())).thenReturn(order);
@@ -42,6 +42,7 @@ public class EmailSenderServiceTest {
 
         Mockito.verify(emailSenderMock, Mockito.times(1)).sendEmail(order);
         Mockito.verify(orderDaoMock, Mockito.times(1)).saveOrUpdate(order);
+        
         Assert.assertEquals("Order status must be changed on ERROR",
             order.getStatus(), OrderStatus.ERROR);
     }

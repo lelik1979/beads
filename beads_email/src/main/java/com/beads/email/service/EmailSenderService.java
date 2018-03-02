@@ -1,5 +1,6 @@
 package com.beads.email.service;
 
+import static java.util.Objects.requireNonNull;
 import com.beads.email.dao.OrderDao;
 import com.beads.email.dao.OrderDaoImpl;
 import com.beads.email.util.Batch;
@@ -27,8 +28,8 @@ public class EmailSenderService {
     @Autowired
     public EmailSenderService(EmailSender emailSender,
                               @Qualifier(value = OrderDaoImpl.BEAN_NAME) OrderDao orderDao) {
-        this.emailSender = emailSender;
-        this.orderDao = orderDao;
+        this.emailSender = requireNonNull(emailSender, "emailSender can't be null");
+        this.orderDao = requireNonNull(orderDao, "orderDao can't be null");
     }
 
     public void sendEmail(Batch batch) {
