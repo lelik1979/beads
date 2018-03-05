@@ -6,7 +6,7 @@ import com.beads.email.dao.OrderDaoImpl;
 import com.beads.email.util.Batch;
 import com.beads.model.domain.Order;
 import com.beads.model.domain.OrderStatus;
-import org.joda.time.DateTime;
+import java.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -51,7 +51,7 @@ public class EmailSenderService {
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     private void updateOrder(Order order) {
-        order.setModifyDate(new DateTime());
+        order.setModifyDate(LocalDateTime.now());
         orderDao.saveOrUpdate(order);
     }
 }

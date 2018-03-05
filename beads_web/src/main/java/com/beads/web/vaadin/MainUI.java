@@ -1,8 +1,9 @@
 package com.beads.web.vaadin;
 
 import com.beads.web.vaadin.components.ContextPanel;
-import com.beads.web.vaadin.view.product.ProductView;
 import com.beads.web.vaadin.components.MenuPanel;
+import com.beads.web.vaadin.view.order.OrderView;
+import com.beads.web.vaadin.view.product.ProductView;
 import com.beads.web.vaadin.view.productgroup.ProductGroupView;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
@@ -10,7 +11,8 @@ import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
-import com.vaadin.ui.*;
+import com.vaadin.ui.HorizontalSplitPanel;
+import com.vaadin.ui.UI;
 import javax.servlet.annotation.HttpConstraint;
 import javax.servlet.annotation.ServletSecurity;
 import javax.servlet.annotation.WebServlet;
@@ -46,8 +48,7 @@ public class MainUI extends UI {
         Navigator navigator = new Navigator(this, cp);
         navigator.addView(ProductGroupView.VIEW_NAME, ProductGroupView.class);
         navigator.addView(ProductView.VIEW_NAME, ProductView.class);
+        navigator.addView(OrderView.VIEW_NAME, OrderView.class);
         navigator.addView("", ContextPanel.class);
     }
-
-
 }

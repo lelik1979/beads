@@ -3,7 +3,7 @@ package com.beads.model.builder;
 import com.beads.model.domain.Order;
 import com.beads.model.domain.OrderItem;
 import com.beads.model.domain.OrderStatus;
-import org.joda.time.DateTime;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -30,7 +30,7 @@ public class OrderBuilder {
         withOrderDetails("orderDetails");
         withStatus(OrderStatus.PENDING);
         withPhoneNumber("1234567890");
-        withModifiedDate(DateTime.now());
+        withModifiedDate(LocalDateTime.now());
         withOrderItems(buildOrderItems());
     }
 
@@ -39,7 +39,7 @@ public class OrderBuilder {
         return this;
     }
 
-    private OrderBuilder withModifiedDate(DateTime modifiedDate) {
+    private OrderBuilder withModifiedDate(LocalDateTime modifiedDate) {
         order.setModifyDate(modifiedDate);
         return this;
     }
