@@ -8,4 +8,6 @@ public interface OrderDao extends com.beads.model.dao.OrderDao {
 
   List<Order> getAllOrderByStatus(OrderStatus orderStatus);
 
+  List<Order> getAllOrder();
+
 }

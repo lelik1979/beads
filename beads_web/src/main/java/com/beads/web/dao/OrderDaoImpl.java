@@ -1,9 +1,13 @@
 package com.beads.web.dao;
 
 import com.beads.model.domain.Order;
+import com.beads.model.domain.OrderItem;
 import com.beads.model.domain.OrderStatus;
 import java.util.List;
-import org.hibernate.query.NativeQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Fetch;
+import javax.persistence.criteria.Root;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
@@ -15,10 +19,21 @@ public class OrderDaoImpl extends com.beads.model.dao.OrderDaoImpl implements Or
 
   @Override
   public List<Order> getAllOrderByStatus(OrderStatus orderStatus) {
-    String query = "select * from `order` where status = :status_param order by modified_date asc";
-    NativeQuery<Order> nativeQuery = getSession().createNativeQuery(query, Order.class);
-    nativeQuery.setParameter("status_param", orderStatus.getDbValue());
-    nativeQuery.setMaxResults(MAX_ROW_RESULT);
-    return nativeQuery.list();
+    CriteriaBuilder criteriaBuilder = getSession().getCriteriaBuilder();
+    CriteriaQuery<Order> criteriaQuery = criteriaBuilder.createQuery(Order.class);
+    Root<Order> root = criteriaQuery.from(Order.class);
+    Fetch<Order, OrderItem> fetch = root.fetch("orderItems");
+    criteriaQuery.where(criteriaBuilder.equal(root.get("status"), orderStatus));
+    return getSession().createQuery(criteriaQuery).setMaxResults(MAX_ROW_RESULT).list();
+  }
+
+  @Override
+  public List<Order> getAllOrder() {
+    CriteriaBuilder criteriaBuilder = getSession().getCriteriaBuilder();
+    CriteriaQuery<Order> criteriaQuery = criteriaBuilder.createQuery(Order.class);
+    Root<Order> root = criteriaQuery.from(Order.class);
+    root.fetch("orderItems");
+    criteriaQuery.select(root);
+    return getSession().createQuery(criteriaQuery).setMaxResults(MAX_ROW_RESULT).list();
   }
 }
