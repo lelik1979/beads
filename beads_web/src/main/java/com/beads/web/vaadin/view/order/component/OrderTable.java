@@ -14,6 +14,7 @@ public class OrderTable extends Table {
     setHeight(400, Unit.POINTS);
     setSelectable(true);
     setImmediate(true);
+    addListeners();
   }
 
   private void setColumnNames() {
@@ -30,5 +31,10 @@ public class OrderTable extends Table {
     setColumnWidth(Order.MODIFIED_DATE, 120);
     setColumnHeader(Order.DELIVERY_ADDRESS, "Адресс доставки");
     setColumnWidth(Order.DELIVERY_ADDRESS, 220);
+    setColumnWidth(Order.DELIVERY_ADDRESS, 220);
+  }
+
+  private void addListeners() {
+    addItemClickListener(orderTableModel);
   }
 }

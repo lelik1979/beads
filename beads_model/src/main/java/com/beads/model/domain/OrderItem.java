@@ -20,6 +20,16 @@ import java.util.Objects;
 @Table(name = "order_item")
 public class OrderItem {
 
+    public static final String ID = "id";
+
+    public static final String QUANTITY = "quantity";
+
+    public static final String PRODUCT_NAME = "product.name";
+
+    public static final String PRODUCT_PRICE = "product.price";
+
+    public static final String PRODUCT_ARTICUL = "product.articul";
+
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "id")
