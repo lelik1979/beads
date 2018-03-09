@@ -20,6 +20,7 @@ public class OrderItemBuilder {
 
     private void initDefault() {
         orderItem = new OrderItem(1, productBuilder.build());
+        withId(1);
     }
 
     public OrderItemBuilder withQuantity(int quantity) {
@@ -29,6 +30,11 @@ public class OrderItemBuilder {
 
     public OrderItemBuilder withProduct(Product product) {
         orderItem.setProduct(product);
+        return this;
+    }
+
+    public OrderItemBuilder withId(Integer id) {
+        orderItem.setId(1);
         return this;
     }
 

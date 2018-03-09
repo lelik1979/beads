@@ -19,8 +19,8 @@
         <guava.version>23.0</guava.version>
     </properties>
 
-
     <dependencies>
+
         <dependency>
             <groupId>beads</groupId>
             <artifactId>beads_db</artifactId>
@@ -81,6 +81,13 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.3.2</version>
+        </dependency>
+
+        <!--JACKSON-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.9.2</version>
         </dependency>
     </dependencies>
 

@@ -1,6 +1,5 @@
 package com.beads.model.dao;
 
-import com.beads.model.domain.Product;
 import com.beads.model.domain.ProductComment;
 import java.util.List;
 
@@ -28,11 +27,11 @@ public interface ProductCommentDao {
   /**
    * This method load all VISIBLE comment for product which passed to parameters.
    *
-   * @param product for which need to load comments
+   * @param productId for which need to load comments
    *
    * @return list visible comments for product;
    */
-  List<ProductComment> loadVisibleCommentsForProduct(Product product);
+  List<ProductComment> loadVisibleCommentsForProduct(Integer productId);
 
   /**
    * This method load all comments with status INVISIBLE.
