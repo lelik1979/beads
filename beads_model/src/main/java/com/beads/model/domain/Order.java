@@ -1,11 +1,23 @@
 package com.beads.model.domain;
 
-import org.hibernate.annotations.Type;
-import org.joda.time.DateTime;
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import org.hibernate.annotations.Type;
 
 /**
  * Created by alexey.dranchuk on 28.09.14.
@@ -17,7 +29,19 @@ public class Order {
 
     public static final String ID = "id";
 
+    public static final String EMAIL = "email";
+
+    public static final String ORDER_DETAILS = "orderDetails";
+
     public static final String STATUS = "status";
+
+    public static final String PHONE_NUMBER = "phoneNumber";
+
+    public static final String MODIFIED_DATE = "modifyDate";
+
+    public static final String DELIVERY_ADDRESS = "deliveryAddress";
+
+    public static final String ORDER_ITEMS = "orderItems";
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -45,9 +69,9 @@ public class Order {
             inverseJoinColumns = { @JoinColumn(name = "item_id") })
     private List<OrderItem> orderItems;
 
-    @Column(name = "modified_date")
-    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    private DateTime modifyDate = DateTime.now();
+    @Column(name = "modified_date", columnDefinition = "timestamp")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime modifyDate = LocalDateTime.now();
 
     @Column(name = "delivery_address")
     private String deliveryAddress;
@@ -115,11 +139,11 @@ public class Order {
         return total;
     }
 
-    public void setModifyDate(DateTime modifyDate) {
+    public void setModifyDate(LocalDateTime modifyDate) {
         this.modifyDate = modifyDate;
     }
 
-    public DateTime getModifyDate() {
+    public LocalDateTime getModifyDate() {
         return modifyDate;
     }
 

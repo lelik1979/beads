@@ -21,10 +21,11 @@
     </appender>
 
     <logger name="com.lena" level="DEBUG"/>
+    <logger name="org.hibernate" level="debug"/>
     <!--
         <logger name="org.thymeleaf" level="DEBUG" />
         <logger name="org.springframework" level="debug"/>
-        <logger name="org.hibernate" level="info"/>
+
     -->
 
     <root level="INFO">
