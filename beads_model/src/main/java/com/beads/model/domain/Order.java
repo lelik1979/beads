@@ -41,6 +41,8 @@ public class Order {
 
     public static final String DELIVERY_ADDRESS = "deliveryAddress";
 
+    public static final String ORDER_ITEMS = "orderItems";
+
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = ID)
