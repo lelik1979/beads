@@ -3,7 +3,9 @@ package com.beads.web.vaadin.view.order.component;
 import com.beads.model.domain.Order;
 import com.beads.web.dao.OrderDao;
 import com.beads.web.dao.OrderDaoImpl;
+import com.beads.web.dao.SearchCriteria;
 import com.vaadin.data.util.BeanItemContainer;
+import java.time.LocalDateTime;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -37,7 +39,9 @@ public class OrderTableModel extends BeanItemContainer<Order> {
   }
 
   private void populateContainerFullList() {
-    populateContainer(orderDao.getAllOrder());
+    SearchCriteria searchCriteria = new SearchCriteria();
+    searchCriteria.setDateOfOrder(LocalDateTime.now());
+    populateContainer(orderDao.getOrdersBySearchCriteria(searchCriteria));
   }
 
   private void populateContainer(List<Order> orders) {
@@ -49,4 +53,7 @@ public class OrderTableModel extends BeanItemContainer<Order> {
     return visibleColumns;
   }
 
+  public void fireTableDataChange(SearchCriteria searchCriteria) {
+      populateContainer(orderDao.getOrdersBySearchCriteria(searchCriteria));
+  }
 }

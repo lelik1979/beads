@@ -2,6 +2,7 @@ package com.beads.web.vaadin.view.order;
 
 import com.beads.web.vaadin.SpringContextHelper;
 import com.beads.web.vaadin.view.order.component.OrderTable;
+import com.beads.web.vaadin.view.order.component.SearchOrderPanel;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.VaadinServlet;
@@ -17,6 +18,9 @@ public class OrderView extends Panel implements View {
  private Layout layout;
 
  private void addComponents() {
+   SearchOrderPanel searchOrderPanel = new SearchOrderPanel(orderViewModel.getOrderSearchModel());
+   searchOrderPanel.setCaption("Введите необходимые парамерры для поиска :");
+   layout.addComponent(searchOrderPanel);
    OrderTable orderTable = new OrderTable(orderViewModel.getOrderTableModel());
    layout.addComponent(orderTable);
  }
