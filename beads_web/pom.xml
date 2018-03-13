@@ -137,6 +137,13 @@
             <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>beads</groupId>
+            <artifactId>beads_model</artifactId>
+            <type>test-jar</type>
+            <version>1.0</version>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
 

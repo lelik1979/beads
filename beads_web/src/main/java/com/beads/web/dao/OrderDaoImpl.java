@@ -33,24 +33,32 @@ public class OrderDaoImpl extends com.beads.model.dao.OrderDaoImpl implements Or
     return getSession().createQuery(criteriaQuery).setMaxResults(MAX_ROW_RESULT).list();
   }
 
-  private List<Predicate> buildSearchPredicate(CriteriaBuilder criteriaBuilder,Root<Order> root, SearchCriteria searchCriteria) {
+  private List<Predicate> buildSearchPredicate(CriteriaBuilder criteriaBuilder
+                           ,Root<Order> root, SearchCriteria searchCriteria) {
+
     predicates.clear();
     if (searchCriteria.isOrderIdNotNull()) {
       predicates.add(criteriaBuilder.equal(root.get(Order.ID), searchCriteria.getOrderId()));
     }
     if (searchCriteria.isEmailNotNull()) {
-      predicates.add(criteriaBuilder.like(root.get(Order.EMAIL), searchCriteria.getEmail() + "%"));
+      predicates.add(criteriaBuilder.like(root.get(Order.EMAIL),
+          searchCriteria.getEmail() + "%"));
     }
     if (searchCriteria.isStatusNotNull()) {
       predicates.add(criteriaBuilder.equal(root.get(Order.STATUS), searchCriteria.getStatus()));
     }
     if (searchCriteria.isPhoneNumberNotNull()) {
-      predicates.add(criteriaBuilder.like(root.get(Order.PHONE_NUMBER), searchCriteria.getPhoneNumber() + "%"));
+      predicates.add(criteriaBuilder.like(root.get(Order.PHONE_NUMBER),
+          searchCriteria.getPhoneNumber() + "%"));
     }
     if (searchCriteria.isAddressNotNull()) {
-      predicates.add(criteriaBuilder.like(root.get(Order.DELIVERY_ADDRESS), "%" + searchCriteria.getAddress() + "%"));
+      predicates.add(criteriaBuilder.like(root.get(Order.DELIVERY_ADDRESS),
+          "%" + searchCriteria.getAddress() + "%"));
     }
-    predicates.add(criteriaBuilder.lessThanOrEqualTo(root.get(Order.MODIFIED_DATE), searchCriteria.getDateOfOrder()));
+    if (searchCriteria.isDateOfOrderNotNull()) {
+      predicates.add(criteriaBuilder.lessThanOrEqualTo(root.get(Order.MODIFIED_DATE),
+          searchCriteria.getDateOfOrder()));
+    }
     return predicates;
   }
 }

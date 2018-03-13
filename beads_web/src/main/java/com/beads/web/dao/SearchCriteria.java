@@ -32,6 +32,10 @@ public class SearchCriteria {
     return address != null && !address.isEmpty();
   }
 
+  public boolean isDateOfOrderNotNull() {
+    return dateOfOrder != null;
+  }
+
   public String getAddress() {
     return address;
   }
