@@ -16,8 +16,6 @@ public class OrderDaoImpl extends com.beads.model.dao.OrderDaoImpl implements Or
 
   public static final String BEAN_NAME = "web.OrderDaoImpl";
 
-  private List<Predicate> predicates = new ArrayList<>();
-
   @Override
   public List<Order> getOrdersBySearchCriteria(SearchCriteria searchCriteria) {
     CriteriaBuilder criteriaBuilder = getSession().getCriteriaBuilder();
@@ -33,9 +31,12 @@ public class OrderDaoImpl extends com.beads.model.dao.OrderDaoImpl implements Or
     return getSession().createQuery(criteriaQuery).setMaxResults(MAX_ROW_RESULT).list();
   }
 
-  private List<Predicate> buildSearchPredicate(CriteriaBuilder criteriaBuilder
-                           ,Root<Order> root, SearchCriteria searchCriteria) {
+  private List<Predicate> buildSearchPredicate(
+      CriteriaBuilder criteriaBuilder,
+      Root<Order> root,
+      SearchCriteria searchCriteria) {
 
+    List<Predicate> predicates = new ArrayList<>();
     predicates.clear();
     if (searchCriteria.isOrderIdNotNull()) {
       predicates.add(criteriaBuilder.equal(root.get(Order.ID), searchCriteria.getOrderId()));
