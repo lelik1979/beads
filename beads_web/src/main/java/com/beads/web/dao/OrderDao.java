@@ -7,7 +7,7 @@ public interface OrderDao extends com.beads.model.dao.OrderDao {
 
 
   /**
-   * This method get all Orders with passed parameters, which contains in SearchCriteria.
+   * This method find orders matched {@link SearchCriteria}.
    *
    * @param searchCriteria criteria by search Order
    *

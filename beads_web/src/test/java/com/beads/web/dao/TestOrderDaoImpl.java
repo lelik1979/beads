@@ -37,8 +37,11 @@ public class TestOrderDaoImpl extends BaseIntegrationTest {
   public void testSearchCriteriaWithOrderIdAndEmail() {
     List<OrderItem> orderItems = createOrderItems();
     String email = "vovan@gmail.com";
-    Order expectedOrder = orderBuilder.withId(null)
-        .withEmail(email).withOrderItems(orderItems).build();
+    Order expectedOrder = orderBuilder
+        .withId(null)
+        .withEmail(email)
+        .withOrderItems(orderItems)
+        .build();
     orderDao.saveOrUpdate(expectedOrder);
 
     searchCriteria.setOrderId(expectedOrder.getId());
@@ -51,8 +54,12 @@ public class TestOrderDaoImpl extends BaseIntegrationTest {
   public void testSearchCriteriaWithOrderStatusAndAddress() {
     List<OrderItem> orderItems = createOrderItems();
     String address = "Odessa";
-    Order expectedOrder = orderBuilder.withId(null).withDeliveryAddress(address)
-        .withStatus(OrderStatus.ERROR).withOrderItems(orderItems).build();
+    Order expectedOrder = orderBuilder.
+        withId(null)
+        .withDeliveryAddress(address)
+        .withStatus(OrderStatus.ERROR)
+        .withOrderItems(orderItems)
+        .build();
     orderDao.saveOrUpdate(expectedOrder);
 
     searchCriteria.setAddress("Od");
@@ -65,8 +72,12 @@ public class TestOrderDaoImpl extends BaseIntegrationTest {
   public void testSearchCriteriaWithOrderStatusAndPhoneNumber() {
     List<OrderItem> orderItems = createOrderItems();
     String phoneNumber = "+38097324324";
-    Order expectedOrder = orderBuilder.withId(null).withPhoneNumber(phoneNumber)
-        .withStatus(OrderStatus.COMPLETE).withOrderItems(orderItems).build();
+    Order expectedOrder = orderBuilder
+        .withId(null)
+        .withPhoneNumber(phoneNumber)
+        .withStatus(OrderStatus.COMPLETE)
+        .withOrderItems(orderItems)
+        .build();
     orderDao.saveOrUpdate(expectedOrder);
 
     searchCriteria.setPhoneNumber("+3");
@@ -77,6 +88,7 @@ public class TestOrderDaoImpl extends BaseIntegrationTest {
 
   private void assertOrderBySearchCriteria(Order expectedOrder) {
     List<Order> orders = orderDao.getOrdersBySearchCriteria(searchCriteria);
+    Assert.assertTrue("List orders size must have only one element", orders.size() == 1);
     Order actualOrder = orders.get(0);
     Assert.assertEquals("Actual result must be expected", actualOrder, expectedOrder);
   }

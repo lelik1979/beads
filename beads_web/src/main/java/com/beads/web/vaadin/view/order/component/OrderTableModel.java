@@ -41,7 +41,7 @@ public class OrderTableModel extends BeanItemContainer<Order> {
   private void populateContainerFullList() {
     SearchCriteria searchCriteria = new SearchCriteria();
     searchCriteria.setDateOfOrder(LocalDateTime.now());
-    populateContainer(orderDao.getOrdersBySearchCriteria(searchCriteria));
+    fireTableDataChange(searchCriteria);
   }
 
   private void populateContainer(List<Order> orders) {

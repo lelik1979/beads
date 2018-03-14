@@ -38,7 +38,7 @@ public class SearchOrderPanel extends HorizontalLayout {
   }
 
   private void addSearchIdField() {
-    searchIdField = new TextField("№ заказа", orderSearchModel.getSearchIdProperty());
+    searchIdField = new TextField("№ заказа", orderSearchModel.getOrderIdProperty());
     searchIdField.addValidator(
         new RegexpValidator("[0-9]{1,10}", "In this field can input only number!"));
     searchIdField.setValidationVisible(true);
@@ -46,24 +46,24 @@ public class SearchOrderPanel extends HorizontalLayout {
   }
 
   private void addSearchEmailField() {
-    searchEmailField = new TextField("Емейл заказчика", orderSearchModel.getSearchEmailProperty());
+    searchEmailField = new TextField("Емейл заказчика", orderSearchModel.getEmailProperty());
     addComponent(searchEmailField);
   }
 
   private void addSearchStatusComboBox() {
     searchStatusComboBox = new ComboBox("Состояние");
     searchStatusComboBox.addItems(OrderStatus.COMPLETE, OrderStatus.ERROR, OrderStatus.PENDING);
-    searchStatusComboBox.setPropertyDataSource(orderSearchModel.getSearchStatusProperty());
+    searchStatusComboBox.setPropertyDataSource(orderSearchModel.getStatusProperty());
     addComponent(searchStatusComboBox);
   }
 
   private void addSearchPhoneNumberField() {
-    searchPhoneNumberField = new TextField("Номер телефона", orderSearchModel.getSearchPhoneNumberProperty());
+    searchPhoneNumberField = new TextField("Номер телефона", orderSearchModel.getPhoneNumberProperty());
     addComponent(searchPhoneNumberField);
   }
 
   private void addSearchDateDateField() {
-    searchDateField = new DateField("Дата заказа", orderSearchModel.getSearchDateProperty());
+    searchDateField = new DateField("Дата заказа", orderSearchModel.getDateProperty());
     searchDateField.setResolution(Resolution.SECOND);
     searchDateField.setDateFormat("yyyy-MM-dd HH:mm:ss");
     searchDateField.setRequired(true);
@@ -71,7 +71,7 @@ public class SearchOrderPanel extends HorizontalLayout {
   }
 
   private void addSearchAddressField() {
-    searchAddressField = new TextField("Адрес", orderSearchModel.getSearchAddressProperty());
+    searchAddressField = new TextField("Адрес", orderSearchModel.getAddressProperty());
     addComponent(searchAddressField);
   }
 

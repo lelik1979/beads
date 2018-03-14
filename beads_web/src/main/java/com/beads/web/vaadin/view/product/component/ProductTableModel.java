@@ -1,29 +1,31 @@
 package com.beads.web.vaadin.view.product.component;
 
+import static com.vaadin.event.ItemClickEvent.ItemClickListener;
 import com.beads.model.dao.ProductDao;
 import com.beads.model.domain.Product;
 import com.beads.web.vaadin.listener.EventBus;
-import com.beads.web.vaadin.view.product.listener.ProductSearchEvent;
 import com.beads.web.vaadin.view.product.listener.ProductChangeEvent;
+import com.beads.web.vaadin.view.product.listener.ProductSearchEvent;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.event.ItemClickEvent;
 import com.vaadin.ui.UI;
+import java.util.List;
+import javax.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import javax.annotation.PostConstruct;
-import java.util.List;
-
-import static com.vaadin.event.ItemClickEvent.*;
 
 /**
  * Created by alexey.dranchuk on 8/1/15.
  *
  */
 @Component
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @Lazy
 public class ProductTableModel extends BeanItemContainer<Product>
         implements ItemClickListener, ProductSearchEvent.ProductSearchListener, ProductChangeEvent.ProductChangeListner {

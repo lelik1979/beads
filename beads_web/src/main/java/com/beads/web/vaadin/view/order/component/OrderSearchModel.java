@@ -17,48 +17,48 @@ public class OrderSearchModel {
 
   public static final String ORDER_SEARCH_MODEL = "orderSearchModel";
 
-  private ObjectProperty<String> searchIdProperty = new ObjectProperty<>("");
-  private ObjectProperty<String> searchEmailProperty = new ObjectProperty<>("");
-  private ObjectProperty<OrderStatus> searchStatusProperty = new ObjectProperty<>(OrderStatus.COMPLETE);
-  private ObjectProperty<String> searchPhoneNumberProperty = new ObjectProperty<>("");
-  private ObjectProperty<Date> searchDateProperty = new ObjectProperty<>(new Date());
-  private ObjectProperty<String> searchAddressProperty = new ObjectProperty<>("");
+  private ObjectProperty<String> orderIdProperty = new ObjectProperty<>("");
+  private ObjectProperty<String> emailProperty = new ObjectProperty<>("");
+  private ObjectProperty<OrderStatus> statusProperty = new ObjectProperty<>(OrderStatus.COMPLETE);
+  private ObjectProperty<String> phoneNumberProperty = new ObjectProperty<>("");
+  private ObjectProperty<Date> dateProperty = new ObjectProperty<>(new Date());
+  private ObjectProperty<String> addressProperty = new ObjectProperty<>("");
 
   public void processClickEvent() {
     SearchCriteria searchCriteria = new SearchCriteria();
-    if (!searchIdProperty.getValue().trim().isEmpty()) {
-      searchCriteria.setOrderId(Integer.valueOf(searchIdProperty.getValue().trim()));
+    if (!orderIdProperty.getValue().trim().isEmpty()) {
+      searchCriteria.setOrderId(Integer.valueOf(orderIdProperty.getValue().trim()));
     }
-      searchCriteria.setEmail(searchEmailProperty.getValue().trim());
-      searchCriteria.setStatus(searchStatusProperty.getValue());
-      searchCriteria.setPhoneNumber(searchPhoneNumberProperty.getValue().trim());
-      Date input = searchDateProperty.getValue();
+      searchCriteria.setEmail(emailProperty.getValue().trim());
+      searchCriteria.setStatus(statusProperty.getValue());
+      searchCriteria.setPhoneNumber(phoneNumberProperty.getValue().trim());
+      Date input = dateProperty.getValue();
       searchCriteria.setDateOfOrder(LocalDateTime.ofInstant(input.toInstant(), ZoneId.systemDefault()).withNano(0));
-      searchCriteria.setAddress(searchAddressProperty.getValue().trim());
+      searchCriteria.setAddress(addressProperty.getValue().trim());
       orderTableModel.fireTableDataChange(searchCriteria);
   }
 
-  public ObjectProperty<String> getSearchIdProperty() {
-    return searchIdProperty;
+  public ObjectProperty<String> getOrderIdProperty() {
+    return orderIdProperty;
   }
 
-  public ObjectProperty<String> getSearchEmailProperty() {
-    return searchEmailProperty;
+  public ObjectProperty<String> getEmailProperty() {
+    return emailProperty;
   }
 
-  public ObjectProperty<OrderStatus> getSearchStatusProperty() {
-    return searchStatusProperty;
+  public ObjectProperty<OrderStatus> getStatusProperty() {
+    return statusProperty;
   }
 
-  public ObjectProperty<String> getSearchPhoneNumberProperty() {
-    return searchPhoneNumberProperty;
+  public ObjectProperty<String> getPhoneNumberProperty() {
+    return phoneNumberProperty;
   }
 
-  public ObjectProperty<Date> getSearchDateProperty() {
-    return searchDateProperty;
+  public ObjectProperty<Date> getDateProperty() {
+    return dateProperty;
   }
 
-  public ObjectProperty<String> getSearchAddressProperty() {
-    return searchAddressProperty;
+  public ObjectProperty<String> getAddressProperty() {
+    return addressProperty;
   }
 }

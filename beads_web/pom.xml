@@ -141,7 +141,7 @@
             <groupId>beads</groupId>
             <artifactId>beads_model</artifactId>
             <type>test-jar</type>
-            <version>1.0</version>
+            <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
 

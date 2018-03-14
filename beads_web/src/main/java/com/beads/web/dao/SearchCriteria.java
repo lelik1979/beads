@@ -21,7 +21,7 @@ public class SearchCriteria {
   }
 
   public boolean isStatusNotNull() {
-    return status != null && !status.getDbValue().isEmpty();
+    return status != null;
   }
 
   public boolean isPhoneNumberNotNull() {

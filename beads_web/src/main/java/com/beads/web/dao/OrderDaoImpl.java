@@ -22,9 +22,11 @@ public class OrderDaoImpl extends com.beads.model.dao.OrderDaoImpl implements Or
     CriteriaQuery<Order> criteriaQuery = criteriaBuilder.createQuery(Order.class);
     Root<Order> root = criteriaQuery.from(Order.class);
     root.fetch(Order.ORDER_ITEMS);
-    List<Predicate> predicates1 = buildSearchPredicate(criteriaBuilder, root, searchCriteria);
-    Predicate[] predicates = predicates1.toArray(new Predicate[predicates1.size()]);
-    criteriaQuery.select(root);
+    List<Predicate> predicatesOfSearchCriteria = buildSearchPredicate(criteriaBuilder, root, searchCriteria);
+    Predicate[] predicates = predicatesOfSearchCriteria.toArray(new Predicate[predicatesOfSearchCriteria.size()]);
+    criteriaQuery
+        .select(root)
+        .orderBy(criteriaBuilder.desc(root.get(Order.ID)));
     if (predicates.length != 0) {
       criteriaQuery.where(criteriaBuilder.and(predicates));
     }
@@ -37,20 +39,19 @@ public class OrderDaoImpl extends com.beads.model.dao.OrderDaoImpl implements Or
       SearchCriteria searchCriteria) {
 
     List<Predicate> predicates = new ArrayList<>();
-    predicates.clear();
     if (searchCriteria.isOrderIdNotNull()) {
       predicates.add(criteriaBuilder.equal(root.get(Order.ID), searchCriteria.getOrderId()));
     }
     if (searchCriteria.isEmailNotNull()) {
       predicates.add(criteriaBuilder.like(root.get(Order.EMAIL),
-          searchCriteria.getEmail() + "%"));
+          "%" + searchCriteria.getEmail() + "%"));
     }
     if (searchCriteria.isStatusNotNull()) {
       predicates.add(criteriaBuilder.equal(root.get(Order.STATUS), searchCriteria.getStatus()));
     }
     if (searchCriteria.isPhoneNumberNotNull()) {
       predicates.add(criteriaBuilder.like(root.get(Order.PHONE_NUMBER),
-          searchCriteria.getPhoneNumber() + "%"));
+          "%" + searchCriteria.getPhoneNumber() + "%"));
     }
     if (searchCriteria.isAddressNotNull()) {
       predicates.add(criteriaBuilder.like(root.get(Order.DELIVERY_ADDRESS),

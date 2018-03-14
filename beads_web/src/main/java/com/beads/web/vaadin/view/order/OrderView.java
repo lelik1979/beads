@@ -19,7 +19,7 @@ public class OrderView extends Panel implements View {
 
  private void addComponents() {
    SearchOrderPanel searchOrderPanel = new SearchOrderPanel(orderViewModel.getOrderSearchModel());
-   searchOrderPanel.setCaption("Введите необходимые парамерры для поиска :");
+   searchOrderPanel.setCaption("Введите необходимые параметры для поиска :");
    layout.addComponent(searchOrderPanel);
    OrderTable orderTable = new OrderTable(orderViewModel.getOrderTableModel());
    layout.addComponent(orderTable);
