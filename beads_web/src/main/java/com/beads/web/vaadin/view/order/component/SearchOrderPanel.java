@@ -76,8 +76,7 @@ public class SearchOrderPanel extends HorizontalLayout {
   }
 
   private void addSearchButton() {
-    searchButton = new Button("Поиск",
-        (Button.ClickListener) event -> orderSearchModel.processClickEvent());
+    searchButton = new Button("Поиск", event -> orderSearchModel.processClickEvent());
     addComponent(searchButton);
   }
 }

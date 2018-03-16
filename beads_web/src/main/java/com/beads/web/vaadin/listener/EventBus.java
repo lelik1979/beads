@@ -1,11 +1,12 @@
 package com.beads.web.vaadin.listener;
 
-import com.github.wolfie.blackboard.Blackboard;
-import com.github.wolfie.blackboard.Event;
-import com.github.wolfie.blackboard.Listener;
+import com.beads.web.vaadin.view.order.litener.OrderSearchEvent;
 import com.beads.web.vaadin.view.product.listener.ProductChangeEvent;
 import com.beads.web.vaadin.view.product.listener.ProductSearchEvent;
 import com.beads.web.vaadin.view.productgroup.listener.ProductGroupSearchEvent;
+import com.github.wolfie.blackboard.Blackboard;
+import com.github.wolfie.blackboard.Event;
+import com.github.wolfie.blackboard.Listener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -27,11 +28,13 @@ public class EventBus {
     }
 
     public void initEventBus() {
-        if (LOG.isDebugEnabled())
+        if (LOG.isDebugEnabled()) {
             blackboard.enableLogging();
+        }
         blackboard.register(ProductGroupSearchEvent.ProductGroupSearchListener.class, ProductGroupSearchEvent.class);
         blackboard.register(ProductSearchEvent.ProductSearchListener.class, ProductSearchEvent.class);
         blackboard.register(ProductChangeEvent.ProductChangeListner.class, ProductChangeEvent.class);
+        blackboard.register(OrderSearchEvent.OrderSearchListener.class, OrderSearchEvent.class);
     }
 
     public void addListener(Listener listener) {

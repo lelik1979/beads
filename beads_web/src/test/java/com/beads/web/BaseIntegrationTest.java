@@ -1,13 +1,13 @@
 package com.beads.web;
 
-import com.beads.web.configuration.IntegrationTestConfig;
+import com.beads.model.config.HibernateConfigurationTest;
 import org.junit.runner.RunWith;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {IntegrationTestConfig.class})
+@ComponentScan(basePackages = {"com.beads.web.dao", "com.beads.model.builder"})
 @Transactional
-public abstract class BaseIntegrationTest {
+public abstract class BaseIntegrationTest extends HibernateConfigurationTest {
 }

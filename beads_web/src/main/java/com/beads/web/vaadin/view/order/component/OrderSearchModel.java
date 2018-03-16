@@ -2,18 +2,24 @@ package com.beads.web.vaadin.view.order.component;
 
 import com.beads.model.domain.OrderStatus;
 import com.beads.web.dao.SearchCriteria;
+import com.beads.web.vaadin.listener.EventBus;
+import com.beads.web.vaadin.view.order.litener.OrderSearchEvent;
 import com.vaadin.data.util.ObjectProperty;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component(OrderSearchModel.ORDER_SEARCH_MODEL)
+@Scope("prototype")
+@Lazy
 public class OrderSearchModel {
 
   @Autowired
-  private OrderTableModel orderTableModel;
+  protected EventBus eventBus;
 
   public static final String ORDER_SEARCH_MODEL = "orderSearchModel";
 
@@ -35,7 +41,7 @@ public class OrderSearchModel {
       Date input = dateProperty.getValue();
       searchCriteria.setDateOfOrder(LocalDateTime.ofInstant(input.toInstant(), ZoneId.systemDefault()).withNano(0));
       searchCriteria.setAddress(addressProperty.getValue().trim());
-      orderTableModel.fireTableDataChange(searchCriteria);
+      eventBus.fireEvent(new OrderSearchEvent(searchCriteria));
   }
 
   public ObjectProperty<String> getOrderIdProperty() {

@@ -88,7 +88,7 @@ public class TestOrderDaoImpl extends BaseIntegrationTest {
 
   private void assertOrderBySearchCriteria(Order expectedOrder) {
     List<Order> orders = orderDao.getOrdersBySearchCriteria(searchCriteria);
-    Assert.assertTrue("List orders size must have only one element", orders.size() == 1);
+    Assert.assertEquals("List orders size must be as expected", 1, orders.size());
     Order actualOrder = orders.get(0);
     Assert.assertEquals("Actual result must be expected", actualOrder, expectedOrder);
   }
