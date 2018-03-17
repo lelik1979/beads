@@ -5,10 +5,7 @@ import com.vaadin.ui.Table;
 
 public class OrderTable extends Table {
 
-  private OrderTableModel orderTableModel;
-
-  public OrderTable(OrderTableModel orderTableModel) {
-    this.orderTableModel = orderTableModel;
+  public OrderTable(OrderTableModel orderTableModel) {;
     setContainerDataSource(orderTableModel);
     setVisibleColumns(orderTableModel.getVisibleColumns());
     setColumnNames();

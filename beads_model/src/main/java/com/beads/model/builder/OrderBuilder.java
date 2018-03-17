@@ -34,12 +34,12 @@ public class OrderBuilder {
         withOrderItems(buildOrderItems());
     }
 
-    private OrderBuilder withDeliveryAddress(String deliveryAddress) {
+    public OrderBuilder withDeliveryAddress(String deliveryAddress) {
         order.setDeliveryAddress(deliveryAddress);
         return this;
     }
 
-    private OrderBuilder withModifiedDate(LocalDateTime modifiedDate) {
+    public OrderBuilder withModifiedDate(LocalDateTime modifiedDate) {
         order.setModifyDate(modifiedDate);
         return this;
     }
@@ -73,7 +73,7 @@ public class OrderBuilder {
         return this;
     }
 
-    public OrderBuilder withId(int id) {
+    public OrderBuilder withId(Integer id) {
         order.setId(id);
         return this;
     }
