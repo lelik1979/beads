@@ -13,6 +13,7 @@ public class OrderWindow extends Window {
     setImmediate(true);
     center();
     initLayout(model);
+    addCloseListener(e -> model.restoreOrderItems());
   }
 
   private void initLayout(OrderWindowModel model) {

@@ -2,14 +2,12 @@ package com.beads.web.vaadin.view.order.component;
 
 import static com.beads.web.vaadin.view.order.component.OrderTableModel.BEAN_NAME;
 import com.beads.model.domain.Order;
-import com.beads.model.domain.OrderStatus;
 import com.beads.web.dao.OrderDao;
 import com.beads.web.dao.OrderDaoImpl;
 import com.beads.web.dao.SearchCriteria;
 import com.beads.web.vaadin.listener.EventBus;
-import com.beads.web.vaadin.view.order.litener.OrderSearchEvent;
-import com.beads.web.vaadin.listener.EventBus;
 import com.beads.web.vaadin.view.order.listener.OrderChangeEvent;
+import com.beads.web.vaadin.view.order.listener.OrderSearchEvent;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.event.ItemClickEvent;
@@ -27,8 +25,7 @@ import org.springframework.stereotype.Component;
 @Lazy
 @Scope("prototype")
 public class OrderTableModel extends BeanItemContainer<Order> implements OrderSearchEvent.OrderSearchListener,
-    ItemClickListener,
-    OrderChangeEvent.OrderChangeListener{
+    ItemClickEvent.ItemClickListener, OrderChangeEvent.OrderChangeListener{
 
   public static final String BEAN_NAME = "OrderTableModel";
 
@@ -37,11 +34,6 @@ public class OrderTableModel extends BeanItemContainer<Order> implements OrderSe
 
   @Autowired
   private EventBus eventBus;
-
-  @Autowired
-  private OrderWindowModel windowModel;
-
-  private Order selectedOrder;
 
   private Object[] visibleColumns = {Order.ID, Order.EMAIL, Order.STATUS,
       Order.PHONE_NUMBER, Order.MODIFIED_DATE, Order.DELIVERY_ADDRESS, Order.ORDER_DETAILS};
@@ -74,24 +66,18 @@ public class OrderTableModel extends BeanItemContainer<Order> implements OrderSe
     addAll(orders);
   }
 
-
-  public Object[] getVisibleColumns() {
-    return visibleColumns;
-  }
-
-
   @Override
   @SuppressWarnings("unchecked")
   public void itemClick(ItemClickEvent event) {
-    selectedOrder = ((BeanItem<Order>) event.getItem()).getBean();
+    Order selectedOrder = ((BeanItem<Order>) event.getItem()).getBean();
     if (event.isDoubleClick()) {
       showEditOrder(selectedOrder);
     }
   }
 
   private void showEditOrder(Order selectedOrder) {
-    windowModel.setOrder(selectedOrder);
-    OrderWindow orderWindow = new OrderWindow(windowModel);
+    OrderWindowModel orderWindowModel = new OrderWindowModel(selectedOrder);
+    OrderWindow orderWindow = new OrderWindow(orderWindowModel);
     UI.getCurrent().addWindow(orderWindow);
   }
 
@@ -104,6 +90,10 @@ public class OrderTableModel extends BeanItemContainer<Order> implements OrderSe
   @Override
   public void fireSearch(OrderSearchEvent event) {
     populateContainer(orderDao.getOrdersBySearchCriteria(event.getOrderSearchCriteria()));
+  }
+
+  public Object[] getVisibleColumns() {
+    return visibleColumns;
   }
 }
 

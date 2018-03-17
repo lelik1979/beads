@@ -4,7 +4,7 @@ import com.beads.web.vaadin.view.order.listener.OrderChangeEvent;
 import com.github.wolfie.blackboard.Blackboard;
 import com.github.wolfie.blackboard.Event;
 import com.github.wolfie.blackboard.Listener;
-import com.beads.web.vaadin.view.order.litener.OrderSearchEvent;
+import com.beads.web.vaadin.view.order.listener.OrderSearchEvent;
 import com.beads.web.vaadin.view.product.listener.ProductChangeEvent;
 import com.beads.web.vaadin.view.product.listener.ProductSearchEvent;
 import com.beads.web.vaadin.view.productgroup.listener.ProductGroupSearchEvent;

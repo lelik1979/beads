@@ -3,7 +3,7 @@ package com.beads.web.vaadin.view.order.component;
 import com.beads.model.domain.OrderStatus;
 import com.beads.web.dao.SearchCriteria;
 import com.beads.web.vaadin.listener.EventBus;
-import com.beads.web.vaadin.view.order.litener.OrderSearchEvent;
+import com.beads.web.vaadin.view.order.listener.OrderSearchEvent;
 import com.vaadin.data.util.ObjectProperty;
 import java.time.LocalDateTime;
 import java.time.ZoneId;

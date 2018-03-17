@@ -1,6 +1,7 @@
 package com.beads.web.vaadin.view.order.component;
 
 import com.beads.model.domain.Order;
+import com.beads.model.domain.OrderItem;
 import com.beads.model.domain.OrderStatus;
 import com.beads.web.vaadin.components.BeadsComboBox;
 import com.beads.web.vaadin.components.BeadsTextField;
@@ -25,6 +26,8 @@ public class OrderFormLayout extends FormLayout implements Button.ClickListener 
   private OrderItemTableModel orderItemTableModel;
 
   private BeanFieldGroup<Order> orderBinder;
+
+  private OrderItemTable orderItemTable;
 
   public OrderFormLayout(OrderWindowModel model) {
     this.model = model;
@@ -67,8 +70,10 @@ public class OrderFormLayout extends FormLayout implements Button.ClickListener 
 
   private void bindOrderItem() {
     orderItemTableModel = new OrderItemTableModel(model.getOrder());
-    OrderItemTable orderItemTable = new OrderItemTable(orderItemTableModel);
+    orderItemTable = new OrderItemTable(orderItemTableModel);
+    orderBinder.bind(orderItemTable, Order.ORDER_ITEMS);
     addComponent(orderItemTable);
+    addDeleteButton();
   }
 
   private void bindTotalPrice() {
@@ -106,5 +111,16 @@ public class OrderFormLayout extends FormLayout implements Button.ClickListener 
     } catch (FieldGroup.CommitException e) {
       Notification.show("Error", "Валидация не прошла", Notification.Type.ERROR_MESSAGE);
     }
+  }
+
+  public void addDeleteButton() {
+    Button deleteButton = new Button("Удалить продукт",
+        new Button.ClickListener() {
+          @Override
+          public void buttonClick(Button.ClickEvent event) {
+            orderItemTableModel.removeOrderItem((OrderItem) orderItemTable.getValue());
+          }
+        });
+    addComponent(deleteButton);
   }
 }
