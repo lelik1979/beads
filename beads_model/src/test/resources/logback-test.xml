@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false" scan="true" scanPeriod="5 seconds">
+
+    <appender name="TEST_LOG_FILE" class="ch.qos.logback.core.FileAppender">
+        <file>target/beads_test.log</file>
+        <append>false</append>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>
+                %date{HH:mm:ss. dd/MM/yyyy} %-5level [%thread] [%class.%method:%line] %msg%n
+            </pattern>
+        </encoder>
+
+    </appender>
+
+    <logger name="com.beads.model" level="DEBUG"/>
+
+    <root level="INFO">
+        <appender-ref ref="TEST_LOG_FILE"/>
+    </root>
+
+</configuration>

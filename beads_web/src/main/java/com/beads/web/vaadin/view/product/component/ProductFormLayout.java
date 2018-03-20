@@ -87,7 +87,7 @@ public class ProductFormLayout extends FormLayout implements Button.ClickListene
     }
 
     private void bindProductCode() {
-        bindAndAddComponent("Артикул", Product.АРТИКУЛ, BeadsTextField.class);
+        bindAndAddComponent("Артикул", Product.ARTIKUL, BeadsTextField.class);
     }
 
     @SuppressWarnings("unchecked")

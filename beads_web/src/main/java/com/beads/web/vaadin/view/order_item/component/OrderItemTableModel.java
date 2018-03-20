@@ -10,7 +10,7 @@ public class OrderItemTableModel extends BeanItemContainer<OrderItem> {
 
   private Order order;
 
-  private Object[] visibleColumns = {OrderItem.ID, OrderItem.PRODUCT_ARTICUL,
+  private Object[] visibleColumns = {OrderItem.ID, OrderItem.PRODUCT_ARTIKUL,
       OrderItem.QUANTITY, OrderItem.PRODUCT_PRICE, OrderItem.PRODUCT_NAME};
 
   public OrderItemTableModel(Order order) {
@@ -21,7 +21,7 @@ public class OrderItemTableModel extends BeanItemContainer<OrderItem> {
 
   private void init() {
     addNestedContainerProperty(OrderItem.ID);
-    addNestedContainerProperty(OrderItem.PRODUCT_ARTICUL);
+    addNestedContainerProperty(OrderItem.PRODUCT_ARTIKUL);
     addNestedContainerProperty(OrderItem.QUANTITY);
     addNestedContainerProperty(OrderItem.PRODUCT_PRICE);
     addNestedContainerProperty(OrderItem.PRODUCT_NAME);

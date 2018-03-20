@@ -24,8 +24,8 @@ public class OrderItemTable extends Table {
   private void setColumnNames() {
     setColumnHeader(OrderItem.ID, "№");
     setColumnWidth(OrderItem.ID, 15);
-    setColumnHeader(OrderItem.PRODUCT_ARTICUL, "Артикул");
-    setColumnWidth(OrderItem.PRODUCT_ARTICUL, 60);
+    setColumnHeader(OrderItem.PRODUCT_ARTIKUL, "Артикул");
+    setColumnWidth(OrderItem.PRODUCT_ARTIKUL, 60);
     setColumnHeader(OrderItem.QUANTITY, "Количество");
     setColumnWidth(OrderItem.QUANTITY, 70);
     setColumnHeader(OrderItem.PRODUCT_NAME, "Продукт");

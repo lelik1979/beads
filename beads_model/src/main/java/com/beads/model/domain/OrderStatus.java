@@ -2,14 +2,13 @@ package com.beads.model.domain;
 
 import com.beads.model.ComboBoxCaption;
 import com.beads.model.util.NullRepresentor;
-import java.io.Serializable;
 
 /**
  * Created by alexey.dranchuk on 29.09.14.
  *
  */
 
-public enum OrderStatus implements Serializable, ComboBoxCaption {
+public enum OrderStatus implements ComboBoxCaption {
 
     PENDING("PENDING"),
     ERROR("ERROR"),

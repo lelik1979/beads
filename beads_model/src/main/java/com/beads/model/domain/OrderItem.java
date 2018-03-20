@@ -28,7 +28,7 @@ public class OrderItem {
 
     public static final String PRODUCT_PRICE = "product.price";
 
-    public static final String PRODUCT_ARTICUL = "product.articul";
+    public static final String PRODUCT_ARTIKUL = "product.artikul";
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -82,7 +82,7 @@ public class OrderItem {
     }
 
     public String getArticul() {
-        return product.getArticul();
+        return product.getArtikul();
     }
 
     @Override

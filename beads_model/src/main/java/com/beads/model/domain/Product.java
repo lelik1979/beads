@@ -31,7 +31,7 @@ public class Product implements Serializable {
 
     public static final String GROUP_ID = "productGroupView.id";
 
-    public static final String АРТИКУЛ = "articul";
+    public static final String ARTIKUL = "artikul";
 
     public static final String PRICE = "price";
 
@@ -59,7 +59,7 @@ public class Product implements Serializable {
     private BigDecimal price;
 
     @Column(name="product_code")
-    private String articul;
+    private String artikul;
 
     public Product() {
     }
@@ -69,12 +69,12 @@ public class Product implements Serializable {
         this.name = name;
     }
 
-    public String getArticul() {
-        return articul;
+    public String getArtikul() {
+        return artikul;
     }
 
-    public void setArticul(String articul) {
-        this.articul = articul;
+    public void setArtikul(String artikul) {
+        this.artikul = artikul;
     }
 
     public Integer getId() {
