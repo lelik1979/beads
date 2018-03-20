@@ -1,5 +1,8 @@
 package com.beads.web.configuration;
 
+import java.util.Locale;
+import javax.annotation.Resource;
+import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -7,9 +10,6 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
-import javax.annotation.Resource;
-import javax.sql.DataSource;
-import java.util.Locale;
 
 /**
  * Created by alexey.dranchuk on 15.11.14.

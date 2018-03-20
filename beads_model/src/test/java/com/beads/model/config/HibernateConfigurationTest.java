@@ -17,7 +17,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @ComponentScan(basePackages = {"com.beads.model", "com.beads.db"})
-@PropertySource("classpath:/env/${env:dev}_db.properties")
+@PropertySource("classpath:/env/${env:test}_db.properties")
 @EnableTransactionManagement(proxyTargetClass = true)
 public class HibernateConfigurationTest {
 
@@ -27,10 +27,10 @@ public class HibernateConfigurationTest {
     @Bean
     public DataSource beadDSTest() {
         DriverManagerDataSource ds = new DriverManagerDataSource();
-        ds.setDriverClassName(env.getProperty("driver", "com.mysql.jdbc.Driver"));
-        ds.setUsername(env.getProperty("username", "beads"));
-        ds.setPassword(env.getProperty("password", "beads"));
-        ds.setUrl(env.getProperty("url", "jdbc:mysql://localhost:3306/beads3"));
+        ds.setDriverClassName(env.getProperty("driver"));
+        ds.setUsername(env.getProperty("username"));
+        ds.setPassword(env.getProperty("password"));
+        ds.setUrl(env.getProperty("url"));
         return ds;
     }
 
