@@ -17,13 +17,14 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component(BEAN_NAME)
 @Lazy
-@Scope("prototype")
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class OrderTableModel extends BeanItemContainer<Order> implements OrderSearchEvent.OrderSearchListener,
     ItemClickEvent.ItemClickListener, OrderChangeEvent.OrderChangeListener{
 
@@ -31,6 +32,9 @@ public class OrderTableModel extends BeanItemContainer<Order> implements OrderSe
 
   @Resource(name = OrderDaoImpl.BEAN_NAME)
   private OrderDao orderDao;
+
+  @Autowired
+  private OrderWindowModel orderWindowModel;
 
   @Autowired
   private EventBus eventBus;
@@ -76,7 +80,7 @@ public class OrderTableModel extends BeanItemContainer<Order> implements OrderSe
   }
 
   private void showEditOrder(Order selectedOrder) {
-    OrderWindowModel orderWindowModel = new OrderWindowModel(selectedOrder);
+    orderWindowModel.setOrder(selectedOrder);
     OrderWindow orderWindow = new OrderWindow(orderWindowModel);
     UI.getCurrent().addWindow(orderWindow);
   }

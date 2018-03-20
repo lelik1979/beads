@@ -3,6 +3,7 @@ package com.beads.web.vaadin.view.order.component;
 import com.beads.model.domain.Order;
 import com.beads.model.domain.OrderItem;
 import com.beads.model.domain.OrderStatus;
+import com.beads.web.vaadin.components.BeadsButton;
 import com.beads.web.vaadin.components.BeadsComboBox;
 import com.beads.web.vaadin.components.BeadsTextField;
 import com.beads.web.vaadin.components.common.BeadsBeanFieldGroup;
@@ -11,10 +12,13 @@ import com.beads.web.vaadin.view.order_item.component.OrderItemTableModel;
 import com.google.common.collect.ImmutableList;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.FieldGroup;
+import com.vaadin.event.ShortcutAction;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Field;
 import com.vaadin.ui.FormLayout;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Layout;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.Window;
@@ -35,6 +39,7 @@ public class OrderFormLayout extends FormLayout implements Button.ClickListener 
     setMargin(true);
     setDefaultComponentAlignment(Alignment.BOTTOM_CENTER);
     bindComponents();
+    addButtons();
   }
 
   private void bindComponents() {
@@ -47,6 +52,27 @@ public class OrderFormLayout extends FormLayout implements Button.ClickListener 
     bindDetails();
     bindTotalPrice();
     bindStatus();
+  }
+
+  private void addButtons() {
+    HorizontalLayout horizontalLayout = new HorizontalLayout();
+    horizontalLayout.setDefaultComponentAlignment(Alignment.MIDDLE_LEFT);
+    horizontalLayout.setSpacing(true);
+    horizontalLayout.setMargin(false);
+    addCloseButton(horizontalLayout);
+    addSaveButton(horizontalLayout);
+    addComponent(horizontalLayout);
+  }
+
+  private void addCloseButton(Layout layout) {
+    Button closeButton = new Button("Закрыть", (Button.ClickListener) event -> closeParentWindow());
+    closeButton.setClickShortcut(ShortcutAction.KeyCode.ESCAPE);
+    layout.addComponent(closeButton);
+  }
+
+  private void addSaveButton(Layout layout) {
+    Button button = new BeadsButton("Сохранить", model.getBeadsButtonModel(),  this);
+    layout.addComponent(button);
   }
 
   private Field bindAndAddComponent(String caption, String propertyName, Class componentClass) {
@@ -71,15 +97,18 @@ public class OrderFormLayout extends FormLayout implements Button.ClickListener 
   private void bindOrderItem() {
     orderItemTableModel = new OrderItemTableModel(model.getOrder());
     orderItemTable = new OrderItemTable(orderItemTableModel);
-    orderBinder.bind(orderItemTable, Order.ORDER_ITEMS);
+    //if not commented this line, we have an error when we delete one of the product
+    //from order and try save it
+//    orderBinder.bind(orderItemTable, Order.ORDER_ITEMS);
     addComponent(orderItemTable);
-    addDeleteButton();
+    addDeleteProductButton();
   }
 
   private void bindTotalPrice() {
     TextField textField = new TextField();
     textField.setCaption("Сумма заказа");
     textField.setValue(model.getOrder().getTotalPrice().toString());
+    textField.setEnabled(false);
     addComponent(textField);
   }
 
@@ -107,20 +136,17 @@ public class OrderFormLayout extends FormLayout implements Button.ClickListener 
   public void buttonClick(Button.ClickEvent event) {
     try {
       orderBinder.commit();
+      model.saveOrder();
+      model.setOriginalOrderItems(model.getOrder().getOrderItems());
       closeParentWindow();
     } catch (FieldGroup.CommitException e) {
       Notification.show("Error", "Валидация не прошла", Notification.Type.ERROR_MESSAGE);
     }
   }
 
-  public void addDeleteButton() {
+  public void addDeleteProductButton() {
     Button deleteButton = new Button("Удалить продукт",
-        new Button.ClickListener() {
-          @Override
-          public void buttonClick(Button.ClickEvent event) {
-            orderItemTableModel.removeOrderItem((OrderItem) orderItemTable.getValue());
-          }
-        });
+        (Button.ClickListener) event -> orderItemTableModel.removeOrderItem((OrderItem) orderItemTable.getValue()));
     addComponent(deleteButton);
   }
 }
