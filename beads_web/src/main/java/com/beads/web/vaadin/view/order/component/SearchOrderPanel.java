@@ -19,6 +19,7 @@ public class SearchOrderPanel extends HorizontalLayout {
   private TextField searchAddressField;
   private Button searchButton;
   private OrderSearchModel orderSearchModel;
+  public static final String SEARCH_FIELD_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
   public SearchOrderPanel(OrderSearchModel orderSearchModel) {
     this.orderSearchModel = orderSearchModel;
@@ -65,7 +66,7 @@ public class SearchOrderPanel extends HorizontalLayout {
   private void addSearchDateDateField() {
     searchDateField = new DateField("Дата заказа", orderSearchModel.getDateProperty());
     searchDateField.setResolution(Resolution.SECOND);
-    searchDateField.setDateFormat("yyyy-MM-dd HH:mm:ss");
+    searchDateField.setDateFormat(SEARCH_FIELD_DATE_FORMAT);
     searchDateField.setRequired(true);
     addComponent(searchDateField);
   }

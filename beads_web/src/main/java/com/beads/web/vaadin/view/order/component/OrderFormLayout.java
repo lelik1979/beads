@@ -1,7 +1,6 @@
 package com.beads.web.vaadin.view.order.component;
 
 import com.beads.model.domain.Order;
-import com.beads.model.domain.OrderItem;
 import com.beads.model.domain.OrderStatus;
 import com.beads.web.vaadin.components.BeadsButton;
 import com.beads.web.vaadin.components.BeadsComboBox;
@@ -97,11 +96,8 @@ public class OrderFormLayout extends FormLayout implements Button.ClickListener 
   private void bindOrderItem() {
     orderItemTableModel = new OrderItemTableModel(model.getOrder());
     orderItemTable = new OrderItemTable(orderItemTableModel);
-    //if not commented this line, we have an error when we delete one of the product
-    //from order and try save it
-//    orderBinder.bind(orderItemTable, Order.ORDER_ITEMS);
+    orderBinder.bind(orderItemTable, Order.ORDER_ITEMS);
     addComponent(orderItemTable);
-    addDeleteProductButton();
   }
 
   private void bindTotalPrice() {
@@ -137,16 +133,9 @@ public class OrderFormLayout extends FormLayout implements Button.ClickListener 
     try {
       orderBinder.commit();
       model.saveOrder();
-      model.setOriginalOrderItems(model.getOrder().getOrderItems());
       closeParentWindow();
     } catch (FieldGroup.CommitException e) {
       Notification.show("Error", "Валидация не прошла", Notification.Type.ERROR_MESSAGE);
     }
-  }
-
-  public void addDeleteProductButton() {
-    Button deleteButton = new Button("Удалить продукт",
-        (Button.ClickListener) event -> orderItemTableModel.removeOrderItem((OrderItem) orderItemTable.getValue()));
-    addComponent(deleteButton);
   }
 }

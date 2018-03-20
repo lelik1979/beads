@@ -31,7 +31,6 @@ public class OrderTable extends Table {
     setColumnWidth(Order.MODIFIED_DATE, 120);
     setColumnHeader(Order.DELIVERY_ADDRESS, "Адресс доставки");
     setColumnWidth(Order.DELIVERY_ADDRESS, 220);
-    setColumnWidth(Order.DELIVERY_ADDRESS, 220);
   }
 
   private void addListeners(OrderTableModel orderTableModel) {

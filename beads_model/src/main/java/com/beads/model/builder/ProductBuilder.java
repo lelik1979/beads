@@ -24,7 +24,7 @@ public class ProductBuilder {
     }
 
     public ProductBuilder withArticul(String articul) {
-        product.setArticul(articul);
+        product.setArtikul(articul);
         return this;
     }
 
