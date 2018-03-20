@@ -1,15 +1,11 @@
 package com.beads.web.vaadin.view.order_item.component;
 
-import static java.util.Objects.requireNonNull;
 import com.beads.model.domain.OrderItem;
 import com.vaadin.ui.Table;
 
 public class OrderItemTable extends Table {
 
-  private OrderItemTableModel tableModel;
-
   public OrderItemTable(OrderItemTableModel tableModel) {
-    this.tableModel = requireNonNull(tableModel);
     setContainerDataSource(tableModel);
     setVisibleColumns(tableModel.getVisibleColumns());
     setColumnNames();

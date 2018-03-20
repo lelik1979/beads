@@ -37,11 +37,6 @@ public class OrderItemTableModel extends BeanItemContainer<OrderItem> {
     addAll(orderItems);
   }
 
-  public void removeOrderItem(OrderItem selectedItem) {
-    order.getOrderItems().remove(selectedItem);
-    populateContainerFullList();
-  }
-
   public Object[] getVisibleColumns() {
     return visibleColumns;
   }
