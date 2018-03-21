@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * @author alexey.dranchuk
  */
-public class EmailJobIT  extends BaseIT{
+public class EmailJobIT  extends BaseIT {
 
     @Autowired
     private EmailJob emailJob;
