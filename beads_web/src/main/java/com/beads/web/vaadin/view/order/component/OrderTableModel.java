@@ -6,26 +6,35 @@ import com.beads.web.dao.OrderDao;
 import com.beads.web.dao.OrderDaoImpl;
 import com.beads.web.dao.SearchCriteria;
 import com.beads.web.vaadin.listener.EventBus;
-import com.beads.web.vaadin.view.order.litener.OrderSearchEvent;
+import com.beads.web.vaadin.view.order.listener.OrderChangeEvent;
+import com.beads.web.vaadin.view.order.listener.OrderSearchEvent;
+import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
+import com.vaadin.event.ItemClickEvent;
+import com.vaadin.ui.UI;
 import java.time.LocalDateTime;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component(BEAN_NAME)
 @Lazy
-@Scope("prototype")
-public class OrderTableModel extends BeanItemContainer<Order> implements OrderSearchEvent.OrderSearchListener {
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+public class OrderTableModel extends BeanItemContainer<Order> implements OrderSearchEvent.OrderSearchListener,
+    ItemClickEvent.ItemClickListener, OrderChangeEvent.OrderChangeListener{
 
   public static final String BEAN_NAME = "OrderTableModel";
 
   @Resource(name = OrderDaoImpl.BEAN_NAME)
   private OrderDao orderDao;
+
+  @Autowired
+  private OrderWindowModel orderWindowModel;
 
   @Autowired
   private EventBus eventBus;
@@ -61,13 +70,34 @@ public class OrderTableModel extends BeanItemContainer<Order> implements OrderSe
     addAll(orders);
   }
 
-  public Object[] getVisibleColumns() {
-    return visibleColumns;
+  @Override
+  @SuppressWarnings("unchecked")
+  public void itemClick(ItemClickEvent event) {
+    Order selectedOrder = ((BeanItem<Order>) event.getItem()).getBean();
+    if (event.isDoubleClick()) {
+      showEditOrder(selectedOrder);
+    }
   }
 
+  private void showEditOrder(Order selectedOrder) {
+    orderWindowModel.setOrder(selectedOrder);
+    OrderWindow orderWindow = new OrderWindow(orderWindowModel);
+    UI.getCurrent().addWindow(orderWindow);
+  }
+
+  @Override
+  public void fireOrderChange(OrderChangeEvent event) {
+    removeItem(event.getOrder());
+    addItemAt(0, event.getOrder());
+  }
 
   @Override
   public void fireSearch(OrderSearchEvent event) {
     populateContainer(orderDao.getOrdersBySearchCriteria(event.getOrderSearchCriteria()));
   }
+
+  public Object[] getVisibleColumns() {
+    return visibleColumns;
+  }
 }
+

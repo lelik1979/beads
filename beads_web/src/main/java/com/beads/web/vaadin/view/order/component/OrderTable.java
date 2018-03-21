@@ -5,7 +5,7 @@ import com.vaadin.ui.Table;
 
 public class OrderTable extends Table {
 
-  public OrderTable(OrderTableModel orderTableModel) {;
+  public OrderTable(OrderTableModel orderTableModel) {
     setContainerDataSource(orderTableModel);
     setVisibleColumns(orderTableModel.getVisibleColumns());
     setColumnNames();
@@ -14,6 +14,7 @@ public class OrderTable extends Table {
     setHeight(400, Unit.POINTS);
     setSelectable(true);
     setImmediate(true);
+    addListeners(orderTableModel);
   }
 
   private void setColumnNames() {
@@ -30,5 +31,9 @@ public class OrderTable extends Table {
     setColumnWidth(Order.MODIFIED_DATE, 120);
     setColumnHeader(Order.DELIVERY_ADDRESS, "Адресс доставки");
     setColumnWidth(Order.DELIVERY_ADDRESS, 220);
+  }
+
+  private void addListeners(OrderTableModel orderTableModel) {
+    addItemClickListener(orderTableModel);
   }
 }

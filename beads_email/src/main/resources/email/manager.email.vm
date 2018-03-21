@@ -74,7 +74,7 @@
     </tr>
     <tr class="table_body">
         <td>$orderItem.id</td>
-        <td>$orderItem.articul</td>
+        <td>$orderItem.artikul</td>
         <td>$orderItem.quantity</td>
         <td>$orderItem.product.name</td>
         <td>$orderItem.itemPrice</td>

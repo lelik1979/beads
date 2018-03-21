@@ -1,13 +1,19 @@
 package com.beads.model.domain;
 
+import java.io.Serializable;
+import java.math.BigDecimal;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.io.Serializable;
-import java.math.BigDecimal;
 
 /**
  * Created by alexey.dranchuk on 12.09.14.
@@ -25,7 +31,7 @@ public class Product implements Serializable {
 
     public static final String GROUP_ID = "productGroupView.id";
 
-    public static final String АРТИКУЛ = "articul";
+    public static final String ARTIKUL = "artikul";
 
     public static final String PRICE = "price";
 
@@ -53,7 +59,7 @@ public class Product implements Serializable {
     private BigDecimal price;
 
     @Column(name="product_code")
-    private String articul;
+    private String artikul;
 
     public Product() {
     }
@@ -63,12 +69,12 @@ public class Product implements Serializable {
         this.name = name;
     }
 
-    public String getArticul() {
-        return articul;
+    public String getArtikul() {
+        return artikul;
     }
 
-    public void setArticul(String articul) {
-        this.articul = articul;
+    public void setArtikul(String artikul) {
+        this.artikul = artikul;
     }
 
     public Integer getId() {

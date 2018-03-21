@@ -42,7 +42,7 @@ public class ProductTableModel extends BeanItemContainer<Product>
     private ProductWindowModel productWindowModel;
 
     private Object[] visibleColumns = new Object[]{
-            Product.ID, Product.АРТИКУЛ, Product.PRICE, Product.NAME, Product.GROUP_NAME, Product.DESCRIPTION};
+            Product.ID, Product.ARTIKUL, Product.PRICE, Product.NAME, Product.GROUP_NAME, Product.DESCRIPTION};
 
     private Product selectedProduct;
 
@@ -54,7 +54,7 @@ public class ProductTableModel extends BeanItemContainer<Product>
     private void init() {
         addNestedContainerProperty(Product.ID);
         addNestedContainerProperty(Product.NAME);
-        addNestedContainerProperty(Product.АРТИКУЛ);
+        addNestedContainerProperty(Product.ARTIKUL);
         addNestedContainerProperty(Product.GROUP_NAME);
         addNestedContainerProperty(Product.DESCRIPTION);
         populateContainerFullList();

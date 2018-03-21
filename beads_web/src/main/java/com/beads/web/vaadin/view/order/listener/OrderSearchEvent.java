@@ -1,4 +1,4 @@
-package com.beads.web.vaadin.view.order.litener;
+package com.beads.web.vaadin.view.order.listener;
 
 import com.beads.web.dao.SearchCriteria;
 import com.github.wolfie.blackboard.Event;
