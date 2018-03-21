@@ -18,7 +18,7 @@ import java.util.Properties;
  */
 
 @Configuration
-@PropertySource("classpath:/env/${env:dev}_db.properties")
+@PropertySource("classpath:/env/${env:local}_db.properties")
 @Import({FlywayConfiguration.class, HibernateConfiguration.class})
 public class DbConfig {
 
@@ -33,8 +33,8 @@ public class DbConfig {
 
     private Properties getProperties() {
         Properties prop = new Properties();
-        prop.setProperty("driverClassName", environment.getProperty("driver", "com.mysql.jdbc.Driver"));
-        prop.setProperty("url", environment.getProperty("url", "jdbc:mysql://localhost:3306/beads3"));
+        prop.setProperty("driverClassName", environment.getProperty("driver"));
+        prop.setProperty("url", environment.getProperty("url"));
         prop.setProperty("username", environment.getProperty("username"));
         prop.setProperty("password", environment.getProperty("password"));
         prop.setProperty("defaultAutoCommit", "false");
