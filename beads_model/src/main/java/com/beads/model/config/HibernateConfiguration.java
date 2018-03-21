@@ -29,7 +29,7 @@ public class HibernateConfiguration {
 
     @DependsOn(FLYWAY_BEAN)
     @Bean
-    public LocalSessionFactoryBean hibernateSessionFactory() throws Exception {
+    public LocalSessionFactoryBean hibernateSessionFactory() {
         LocalSessionFactoryBean lsfb = new LocalSessionFactoryBean();
         lsfb.setDataSource(dataSource);
         lsfb.setPackagesToScan("com.beads.model.domain");
@@ -38,7 +38,7 @@ public class HibernateConfiguration {
 
     @Bean(name=TRANSACTION_MANAGER_NAME)
     @Primary
-    public HibernateTransactionManager hibernateTransactionManager(SessionFactory sf) throws Exception {
+    public HibernateTransactionManager hibernateTransactionManager(SessionFactory sf) {
         return  new HibernateTransactionManager(sf);
     }
 
